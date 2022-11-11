@@ -1,0 +1,9 @@
+@mixin flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}@mixin round-image($width,$height) {
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+}

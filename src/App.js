@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./Gui/scss/style.scss";
+import { Routes,Route } from "react-router-dom";
+import  PrivateRoutes  from "./utils/PrivateRouter";
+import { AuthProvider } from "./context/AuthContext";
+
+import Main from "./Components/Main";
+import Login from "./Components/login";
+import Register from "./Components/Register"
+import Explore from './Components/Explore';
+import Home from './Components/Home';
+import Follow from "./Components/Follow";
+import ExploreInner from "./Components/ExploreInner";
+
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <AuthProvider>
+    <Routes>
+      <Route path="/" element={<PrivateRoutes/>}>
+        <Route path="/" element={<Main/>} exact={true}>
+          <Route index element={<Home/>} />
+          <Route path='/explore' element={<Explore/>} />
+          <Route path='/follow' element={<Follow/>} />
+          <Route path='/explore/:id' element={<ExploreInner/>} />
+        </Route>
+      </Route>
+      <Route path="/login" element={<Login/>} />
+      <Route path="/register" element={<Register/>} />
+    </Routes>
+    </AuthProvider>
+    </>
   );
 }
 
