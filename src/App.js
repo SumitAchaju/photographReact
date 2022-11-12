@@ -11,6 +11,7 @@ import Explore from './Components/Explore';
 import Home from './Components/Home';
 import Follow from "./Components/Follow";
 import ExploreInner from "./Components/ExploreInner";
+import PostSingle from "./Components/PostSingle";
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/explore' element={<Explore/>} />
           <Route path='/follow' element={<Follow/>} />
           <Route path='/explore/:id' element={<ExploreInner/>} />
+          <Route path='/single/:pid' element={<PostSingle/>} />
         </Route>
       </Route>
       <Route path="/login" element={<Login/>} />

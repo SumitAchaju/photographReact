@@ -27,52 +27,6 @@ export default function Explore() {
                             </Link>
                         </div>
                 )}
-
-            {/* <div className="content">
-            <Link to="">
-                <div className="explore-img">
-                    <img src={require("../Gui/media/food.jpg")} alt="travelimg"/>
-                </div>
-                <h4>FOOD</h4>
-                <p>Explore the different food items</p>
-                </Link>
-            </div>
-            <div className="content">
-            <Link to="">
-                <div className="explore-img">
-                    <img src={require("../Gui/media/tiger.jpg")} alt="travelimg"/>
-                </div>
-                <h4>WILDLIFE</h4>
-                <p>Explore the animals</p>
-                </Link>
-            </div>
-            <div className="content">
-            <Link to="">
-                <div className="explore-img">
-                    <img src={require("../Gui/media/house.jpg")} alt="travelimg"/>
-                </div>
-                <h4>HOUSE</h4>
-                <p>Explore the houses</p>
-                </Link>
-            </div>
-            <div className="content">
-            <Link to="">
-                <div className="explore-img">
-                    <img src={require("../Gui/media/fashion.jpg")} alt="travelimg"/>
-                </div>
-                <h4>FASHION</h4>
-                <p>Explore the fashions </p>
-                </Link>
-            </div>
-            <div className="content">
-            <Link to="">
-                <div className="explore-img">
-                    <img src={require("../Gui/media/nature.jpg")} alt="travelimg"/>
-                </div>
-                <h4>NATURE</h4>
-                <p>Explore the beauty of nature</p>
-                </Link>
-            </div> */}
         </div>
     </div>
     </>

@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
+import React,{useEffect} from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams,NavLink } from "react-router-dom";
 import useAxios from "../utils/useAxios";
 import Slider from "./swipper";
 
-export default function Home() {
+export default function PostSingle() {
+  let {pid} = useParams();
   const api = useAxios();
-  const [homeData,setHomeData] = useState(()=>[]);
+  const [data,setData] = useState({});
   const baseUrlImg = "http://127.0.0.1:8000";
-  
+
   useEffect(()=>{
-    api.get("/friendposts/").then(res=>setHomeData(res.data))
+    api.get(`singlepost/${pid}`).then(res=>setData(res.data))
   },[])
+
 
   return (
     <>
       <div id="home">
         <div className="container-mine flex">
-          {homeData.map((data) => (
-            <div key={data.id} className="content">
+            <div className="content">
               <div className="content-profile">
                 <img
                   width="20px"
@@ -33,10 +34,10 @@ export default function Home() {
                     {<Slider images={data.postimage}/>}
                 </div>
                 <div className="likes">
-                  <Link to={`single/${data.id}`}>
+                  <Link to="">
                     <i className="bi bi-heart"></i>
                   </Link>
-                  <Link to={`single/${data.id}`}>
+                  <Link to="">
                     <i className="bi bi-chat"></i>
                   </Link>
                   <Link to="">
@@ -51,19 +52,28 @@ export default function Home() {
               </div>
               <div className="content-info">
                 <div className="content-likes">
-                  <Link to={`single/${data.id}`}><p>1770 Likes</p></Link>
+                  <p>1770 Likes</p>
                 </div>
                 <div className="content-discription">
                   <p>{data.caption}</p>
                 </div>
-                <div className="content-comment">
-                  <Link to={`single/${data.id}`}>View all comments...</Link>
-                </div>
               </div>
             </div>
-          ))}
+            <div className="content">
+                <div className="like-comment">
+                    <div className="like-comment-top">
+                        <NavLink to="">
+                            Likes
+                        </NavLink>
+                        <NavLink to="">
+                            Comments
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
     </>
   );
 }
+
