@@ -622,6 +622,14 @@ width: 50px !important;
             p{
                 color: rgb(200, 200, 200);
             }
+            button{
+                border: 0;
+                padding: 5px 15px;
+                border-radius: 25px;
+                background-color: rgb(129, 43, 43);
+                color: white;
+                cursor: pointer;
+            }
         }
     }
 }

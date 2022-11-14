@@ -24,12 +24,15 @@ export default function Comment() {
         comment: `${e.target.comment.value}`,
       })
       .then((res) => {
-        if (res.data.status === "success") {
           e.target.comment.value = "";
-          api.get(`singlepost/${data.id}`).then((res) => setData(res.data));
+          setData(res.data);
         }
-      });
+      );
   };
+
+  const deleteComment = (id)=>{
+    api.post(`/deletecomment/${id}`,{"postid":`${data.id}`}).then(res=>{setData(res.data)})
+  }
 
   return (
     <>
@@ -42,23 +45,54 @@ export default function Comment() {
         </div>
         <div className="comment-single">
           {data &&
-            data.comment.map((comment) => (
-              <div key={comment.comment_by.id}>
-                <div>
-                  <img
-                    src={baseUrlImg + comment.comment_by.profile_image}
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <h4>
-                    {comment.comment_by.first_name}{" "}
-                    {comment.comment_by.last_name}
-                  </h4>
-                  <p>{comment.comment}</p>
-                </div>
+          data.comment.map(usercomment=>
+            {
+              if(usercomment.comment_by.id===userId){
+          return  <div key={usercomment.comment_by.id}>
+            <div>
+              <img
+                src={baseUrlImg + usercomment.comment_by.profile_image}
+                alt=""
+              />
+            </div>
+            <div>
+              <h4>
+                {usercomment.comment_by.first_name}{" "}
+                {usercomment.comment_by.last_name}
+              </h4>
+              <p>{usercomment.comment}</p>
+              <button onClick={()=>deleteComment(usercomment.id)}>Delete</button>
+            </div>
+          </div>}
+        else{
+          return null
+        }  
+        }
+
+            )}
+           {data && data.comment.map((comment) => 
+              {
+                if(comment.comment_by.id===userId){
+                  return null
+                }
+                else{
+                return  <div key={comment.comment_by.id}>
+              <div>
+                <img
+                  src={baseUrlImg + comment.comment_by.profile_image}
+                  alt=""
+                />
               </div>
-            ))}
+              <div>
+                <h4>
+                  {comment.comment_by.first_name}{" "}
+                  {comment.comment_by.last_name}
+                </h4>
+                <p>{comment.comment}</p>
+              </div>
+            </div>}
+
+            })}
         </div>
       </div>
     </>

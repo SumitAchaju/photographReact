@@ -1,14 +1,44 @@
 import React, { useEffect } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { Link, useParams, NavLink, Outlet } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import useAxios from "../utils/useAxios";
 import Slider from "./swipper";
 
 export default function ExploreInner() {
   let { pid } = useParams();
+  let { userId } = useContext(AuthContext);
   const api = useAxios();
-  const [singlePost, setSinglePost] = useState(() =>{});
+  const [singlePost, setSinglePost] = useState(() => {});
   const baseUrlImg = "http://127.0.0.1:8000";
+
+  const likeStatus = (postid) => {
+    for (let like of singlePost.like_by) {
+      if (like.id === userId) {
+        return (
+          <i
+            style={{ color: "red" }}
+            onClick={() => likePost(postid, "unlike")}
+            className="bi bi-heart-fill"
+          ></i>
+        );
+      }
+    }
+    return (
+      <i onClick={() => likePost(postid, "like")} className="bi bi-heart"></i>
+    );
+  };
+
+  const likePost = (id, action) => {
+    if (action === "like") {
+      api.get(`postlike/${id}`).then((res) => setSinglePost(res.data));
+    } else if (action === "unlike") {
+      api.post(`postlike/${id}`).then((res) => setSinglePost(res.data));
+    } else {
+      console.log("something went wrong");
+    }
+  };
 
   useEffect(() => {
     api.get(`singlepost/${pid}`).then((res) => setSinglePost(res.data));
@@ -17,7 +47,7 @@ export default function ExploreInner() {
 
   return (
     <>
-      {singlePost && 
+      {singlePost && (
         <div id="home">
           <div className="container-mine flex flex-start">
             <div className="content">
@@ -37,9 +67,7 @@ export default function ExploreInner() {
                   {<Slider images={singlePost.postimage} />}
                 </div>
                 <div className="likes">
-                  <Link to="">
-                    <i className="bi bi-heart"></i>
-                  </Link>
+                  {likeStatus(singlePost.id)}
                   <Link to={`comment/`}>
                     <i className="bi bi-chat"></i>
                   </Link>
@@ -76,12 +104,14 @@ export default function ExploreInner() {
                     <NavLink to={`comment/`}>Comments</NavLink>
                   </div>
                 </div>
-                <Outlet context={{ data: singlePost,setData:setSinglePost }} />
+                <Outlet
+                  context={{ data: singlePost, setData: setSinglePost }}
+                />
               </div>
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 }
