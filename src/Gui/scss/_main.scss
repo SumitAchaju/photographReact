@@ -207,6 +207,9 @@ aside{
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.flex-start{
+    align-items: start !important;
+}
 .show-dropdown{
     display: block !important;
 }
@@ -285,10 +288,12 @@ width: 50px !important;
                 opacity: 0;
                 a{
                     color:white;
-                    i{
-                        font-size: 32px;
-                        font-weight: bold;
-                    }
+                }
+                i{
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: white;
+                    cursor: pointer;
                 }
                 transition: .4s;
             }
@@ -532,5 +537,91 @@ width: 50px !important;
         display: inline-block;
         margin-left: 15px;
         font-size: 20px;
+    }
+}
+.likes-comment{
+    .likes-comment-top{
+        @include flex;
+        justify-content: space-around !important;
+        margin: 15px 0;
+        a{
+            color: rgb(229, 229, 229);
+            padding: 10px 50px;
+            display: inline-block;
+            border-radius: 35px;
+            background-color: gray;
+        }
+        .active{
+            color: white;
+            background-color: purple;
+        }
+    }
+    .likes-comment-con{
+        padding-top: 15px;
+        height: 520px;
+        overflow: auto;
+        .likeby{
+            margin: 10px 40px 20px 40px;
+            border-bottom: rgb(133, 133, 133) solid 1px;
+            @include flex;
+            justify-content: flex-start !important;
+            gap: 20px;
+            padding-bottom: 20px;
+            img{
+                display: block;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            h4{
+                font-size: 18px;
+                color: rgb(214, 214, 214);
+            }
+        }
+        .comment-post{
+            input{
+                border-radius: 30px;
+                width: 50%;
+                height: 40px;
+                border: 0;
+                padding-left: 25px;
+                &:focus{
+                    outline: 3px solid skyblue;
+                }
+                margin: 0 20px 20px 40px;
+            }
+            button{
+                padding: 10px 30px;
+                border-radius: 35px;
+                background-color: rgb(7, 101, 7);
+                color: white;
+                border: 0;
+                font-size: 18px;
+                cursor: pointer;
+            }
+        }
+        .comment-single{
+            margin: 10px 40px 20px;
+            > div{
+                @include flex;
+                align-items: flex-start !important;
+                justify-content: flex-start !important;
+                gap: 20px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid gray;
+                margin-bottom: 20px;
+            }
+            img{
+                @include round-image(50px,50px);
+                object-fit:cover;
+            }
+            h4{
+                color: white;
+            }
+            p{
+                color: rgb(200, 200, 200);
+            }
+        }
     }
 }

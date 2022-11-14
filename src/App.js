@@ -12,6 +12,8 @@ import Home from './Components/Home';
 import Follow from "./Components/Follow";
 import ExploreInner from "./Components/ExploreInner";
 import PostSingle from "./Components/PostSingle";
+import Likes from "./Components/Likes";
+import Comment from "./Components/Comment";
 
 
 
@@ -27,7 +29,10 @@ function App() {
           <Route path='/explore' element={<Explore/>} />
           <Route path='/follow' element={<Follow/>} />
           <Route path='/explore/:id' element={<ExploreInner/>} />
-          <Route path='/single/:pid' element={<PostSingle/>} />
+          <Route path='/singlepost/:pid' element={<PostSingle/>} >
+            <Route index element={<Likes/>} />
+            <Route path="/singlepost/:pid/comment" element={<Comment/>} />
+          </Route>
         </Route>
       </Route>
       <Route path="/login" element={<Login/>} />

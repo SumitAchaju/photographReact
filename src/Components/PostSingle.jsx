@@ -1,43 +1,46 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link, useParams,NavLink } from "react-router-dom";
+import { Link, useParams, NavLink, Outlet } from "react-router-dom";
 import useAxios from "../utils/useAxios";
 import Slider from "./swipper";
 
-export default function PostSingle() {
-  let {pid} = useParams();
+export default function ExploreInner() {
+  let { pid } = useParams();
   const api = useAxios();
-  const [data,setData] = useState({});
+  const [singlePost, setSinglePost] = useState(() =>{});
   const baseUrlImg = "http://127.0.0.1:8000";
 
-  useEffect(()=>{
-    api.get(`singlepost/${pid}`).then(res=>setData(res.data))
-  },[])
-
+  useEffect(() => {
+    api.get(`singlepost/${pid}`).then((res) => setSinglePost(res.data));
+  }, [pid]);
+  console.log(singlePost);
 
   return (
     <>
-      <div id="home">
-        <div className="container-mine flex">
+      {singlePost && 
+        <div id="home">
+          <div className="container-mine flex flex-start">
             <div className="content">
               <div className="content-profile">
                 <img
                   width="20px"
-                  src={baseUrlImg + data.user.profile_image}
+                  src={baseUrlImg + singlePost.user.profile_image}
                   alt=""
                 />
-                <p>{data.user.first_name + " " + data.user.last_name}</p>
+                <p>
+                  {singlePost.user.first_name + " " + singlePost.user.last_name}
+                </p>
                 <i className="bi bi-three-dots-vertical"></i>
               </div>
               <div className="content-image">
                 <div className="image">
-                    {<Slider images={data.postimage}/>}
+                  {<Slider images={singlePost.postimage} />}
                 </div>
                 <div className="likes">
                   <Link to="">
                     <i className="bi bi-heart"></i>
                   </Link>
-                  <Link to="">
+                  <Link to={`comment/`}>
                     <i className="bi bi-chat"></i>
                   </Link>
                   <Link to="">
@@ -52,28 +55,33 @@ export default function PostSingle() {
               </div>
               <div className="content-info">
                 <div className="content-likes">
-                  <p>1770 Likes</p>
+                  <Link to={``}>
+                    <p>1770 Likes</p>
+                  </Link>
                 </div>
                 <div className="content-discription">
-                  <p>{data.caption}</p>
+                  <p>{singlePost.caption}</p>
                 </div>
               </div>
             </div>
             <div className="content">
-                <div className="like-comment">
-                    <div className="like-comment-top">
-                        <NavLink to="">
-                            Likes
-                        </NavLink>
-                        <NavLink to="">
-                            Comments
-                        </NavLink>
-                    </div>
+              <div className="likes-comment">
+                <div className="likes-comment-top">
+                  <div>
+                    <NavLink activeclassname={"active"} to="">
+                      Likes
+                    </NavLink>
+                  </div>
+                  <div>
+                    <NavLink to={`comment/`}>Comments</NavLink>
+                  </div>
                 </div>
+                <Outlet context={{ data: singlePost,setData:setSinglePost }} />
+              </div>
             </div>
+          </div>
         </div>
-      </div>
+      }
     </>
   );
 }
-

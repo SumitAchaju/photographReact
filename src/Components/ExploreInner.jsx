@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAxios from "../utils/useAxios";
 import Slider from "./swipper";
 
@@ -9,7 +9,8 @@ export default function ExploreInner() {
   const api = useAxios();
   const [homeData,setHomeData] = useState(()=>[]);
   const baseUrlImg = "http://127.0.0.1:8000";
-  console.log(id)
+  const go = useNavigate();
+
   
   useEffect(()=>{
     api.get(`categoryposts/${id}`).then(res=>setHomeData(res.data))
@@ -17,7 +18,7 @@ export default function ExploreInner() {
 
   return (
     <>
-      <div id="home">
+            <div id="home">
         <div className="container-mine flex">
           {homeData.map((data) => (
             <div key={data.id} className="content">
@@ -35,12 +36,11 @@ export default function ExploreInner() {
                     {<Slider images={data.postimage}/>}
                 </div>
                 <div className="likes">
-                  <Link to="">
+                  <Link to=''>
                     <i className="bi bi-heart"></i>
                   </Link>
-                  <Link to="">
-                    <i className="bi bi-chat"></i>
-                  </Link>
+                    <i onClick={()=>{go(`/singlepost/${data.id}/comment/`)}} className="bi bi-chat"></i>
+
                   <Link to="">
                     <i className="bi bi-send"></i>
                   </Link>
@@ -53,13 +53,13 @@ export default function ExploreInner() {
               </div>
               <div className="content-info">
                 <div className="content-likes">
-                  <p>1770 Likes</p>
+                  <p style={{cursor: 'pointer'}} onClick={()=>{go(`/singlepost/${data.id}`)}}>1770 Likes</p>
                 </div>
                 <div className="content-discription">
                   <p>{data.caption}</p>
                 </div>
                 <div className="content-comment">
-                  <Link to="">View all comments...</Link>
+                  <button style={{cursor:"pointer",background:"none",border:0,color:'white'}} onClick={()=>{go(`/singlepost/${data.id}/comment/`)}} >View all comments...</button>
                 </div>
               </div>
             </div>

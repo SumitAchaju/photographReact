@@ -33,10 +33,10 @@ export default function Home() {
                     {<Slider images={data.postimage}/>}
                 </div>
                 <div className="likes">
-                  <Link to={`single/${data.id}`}>
+                  <Link to=''>
                     <i className="bi bi-heart"></i>
                   </Link>
-                  <Link to={`single/${data.id}`}>
+                  <Link to={`singlepost/${data.id}/comment/`}>
                     <i className="bi bi-chat"></i>
                   </Link>
                   <Link to="">
@@ -51,13 +51,13 @@ export default function Home() {
               </div>
               <div className="content-info">
                 <div className="content-likes">
-                  <Link to={`single/${data.id}`}><p>1770 Likes</p></Link>
+                  <Link to={`singlepost/${data.id}`}><p>1770 Likes</p></Link>
                 </div>
                 <div className="content-discription">
                   <p>{data.caption}</p>
                 </div>
                 <div className="content-comment">
-                  <Link to={`single/${data.id}`}>View all comments...</Link>
+                  <Link to={`singlepost/${data.id}/comment/`}>View all comments...</Link>
                 </div>
               </div>
             </div>
