@@ -29,13 +29,14 @@ export default function Home() {
   };
 
   const likePost = (id, action) => {
-    if (action === "like") {
-      api.get(`postlikeout/${id}`).then((res) => setHomeData(res.data));
-    } else if (action === "unlike") {
-      api.post(`postlikeout/${id}`).then((res) => setHomeData(res.data));
-    } else {
-      console.log("something went wrong");
+    api.post(`postlikeout/${id}`,{
+      "action":`${action}`
+    }).then((res) => {
+    if(res.data.status==="success"){
+      api.get("/friendposts/").then((res) => setHomeData(res.data));
     }
+  }
+    );
   };
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function Home() {
           <div className="container-mine flex">
             {homeData.map((data) => (
               <div key={data.id} className="content">
+                <Link to={`/profile/${data.user.id}`}>
                 <div className="content-profile">
                   <img
                     width="20px"
@@ -58,6 +60,7 @@ export default function Home() {
                   <p>{data.user.first_name + " " + data.user.last_name}</p>
                   <i className="bi bi-three-dots-vertical"></i>
                 </div>
+                  </Link>
                 <div className="content-image">
                   <div className="image">
                     {<Slider images={data.postimage} />}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../utils/useAxios";
 import Slider from "./swipper";
@@ -12,7 +12,6 @@ export default function ExploreInner() {
   const api = useAxios();
   const [homeData, setHomeData] = useState(() => []);
   const baseUrlImg = "http://127.0.0.1:8000";
-  const go = useNavigate();
 
   const likeStatus = (data) => {
     for (let like of data.like_by) {
@@ -31,14 +30,15 @@ export default function ExploreInner() {
     );
   };
 
-  const likePost = (id, action) => {
-    if (action === "like") {
-      api.get(`postlikeout/${id}`).then((res) => setHomeData(res.data));
-    } else if (action === "unlike") {
-      api.post(`postlikeout/${id}`).then((res) => setHomeData(res.data));
-    } else {
-      console.log("something went wrong");
+  const likePost = (pid, action) => {
+    api.post(`postlikeout/${pid}`,{
+      "action":`${action}`
+    }).then((res) => {
+    if(res.data.status==="success"){
+      api.get(`categoryposts/${id}`).then((res) => setHomeData(res.data));
     }
+  }
+    );
   };
   useEffect(() => {
     api.get(`categoryposts/${id}`).then((res) => setHomeData(res.data));
@@ -66,14 +66,13 @@ export default function ExploreInner() {
                   </div>
                   <div className="likes">
                     {likeStatus(data)}
+                    <Link to={`/singlepost/${data.id}/comment/`}>
                     <i
-                      onClick={() => {
-                        go(`/singlepost/${data.id}/comment/`);
-                      }}
                       className="bi bi-chat"
                     ></i>
+                    </Link>
 
-                    <Link to="">
+                    <Link to={`/singlepost/${data.id}/comment/`}>
                       <i className="bi bi-send"></i>
                     </Link>
                   </div>
@@ -85,32 +84,22 @@ export default function ExploreInner() {
                 </div>
                 <div className="content-info">
                   <div className="content-likes">
+                    <Link to={`/singlepost/${data.id}/`}>
                     <p
-                      style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        go(`/singlepost/${data.id}`);
-                      }}
                     >
                       {data.like_by.length} Likes
                     </p>
+                    </Link>
                   </div>
                   <div className="content-discription">
                     <p>{data.caption}</p>
                   </div>
                   <div className="content-comment">
-                    <button
-                      style={{
-                        cursor: "pointer",
-                        background: "none",
-                        border: 0,
-                        color: "white",
-                      }}
-                      onClick={() => {
-                        go(`/singlepost/${data.id}/comment/`);
-                      }}
-                    >
-                      View all {data.comment.length} comments
-                    </button>
+                    <Link to={`/singlepost/${data.id}/comment/`}>
+                      <p>
+                        View all {data.comment.length} comments
+                      </p>
+                    </Link>
                   </div>
                 </div>
               </div>
