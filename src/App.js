@@ -5,18 +5,18 @@ import  PrivateRoutes  from "./utils/PrivateRouter";
 import { AuthProvider } from "./context/AuthContext";
 
 import Main from "./Components/Main";
-import Login from "./Components/login";
-import Register from "./Components/Register"
-import Explore from './Components/Explore';
-import Home from './Components/Home';
-import Follow from "./Components/Follow";
-import ExploreInner from "./Components/ExploreInner";
-import PostSingle from "./Components/PostSingle";
-import Likes from "./Components/Likes";
-import Comment from "./Components/Comment";
-import Profile from "./Components/Profile";
-import ProfileFollowings from "./Components/ProfileFollowings";
-import ProfileFollows from "./Components/ProfileFollows";
+import Login from "./Pages/Authentication/login";
+import Register from "./Pages/Authentication/Register"
+import Home from './Pages/Home';
+import Explore from './Pages/Explore/Explore';
+import ExploreInner from "./Pages/Explore/ExploreInner";
+import Follow from "./Pages/Follow/Follow";
+import PostSingle from "./Pages/SinglePost/PostSingle";
+import Likes from "./Pages/SinglePost/Likes";
+import Comment from "./Pages/SinglePost/Comment";
+import Profile from "./Pages/Profile/Profile";
+import ProfileFollowings from "./Pages/Profile/ProfileFollowings";
+import ProfileFollows from "./Pages/Profile/ProfileFollows";
 
 
 function App() {

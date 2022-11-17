@@ -8,7 +8,7 @@ export default function Follow() {
         <div className="container-mine flex">
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")}alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")}alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -22,7 +22,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -36,7 +36,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -50,7 +50,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -64,7 +64,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -78,7 +78,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -92,7 +92,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -106,7 +106,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>
@@ -120,7 +120,7 @@ export default function Follow() {
             </div>
             <div className="content">
                 <div className="follow-img">
-                    <img src={require("../Gui/media/follow-profile.jpeg")} alt="followimg"/>
+                    <img src={require("../../Gui/media/follow-profile.jpeg")} alt="followimg"/>
                 </div>
                 <div className="follow-content">
                     <h3>Sumit Achaju</h3>

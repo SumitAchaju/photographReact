@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useAxios from "../utils/useAxios";
+import useAxios from "../../utils/useAxios";
 
 export default function Explore() {
   const [category, setCategory] = useState([]);

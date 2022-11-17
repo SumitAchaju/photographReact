@@ -1,8 +1,8 @@
 import React from "react";
 import { useContext } from "react";
 import { useOutletContext } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import useAxios from "../utils/useAxios";
+import AuthContext from "../../context/AuthContext";
+import useAxios from "../../utils/useAxios";
 
 export default function Comment() {
   let { data, setData } = useOutletContext();

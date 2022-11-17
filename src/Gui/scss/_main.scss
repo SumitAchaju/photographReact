@@ -216,6 +216,9 @@ aside {
 .align-items-start{
     align-items: flex-start !important;
 }
+.justify-content-start{
+  justify-content: flex-start !important;
+}
 .flex {
   @include flex;
   justify-content: space-evenly;
@@ -269,20 +272,28 @@ aside {
     .content-profile {
       @include flex;
       justify-content: space-between;
-      padding: 10px 0 5px 20px;
+      padding: 10px 30px 5px 20px;
+      >div{
+        a{
+          display: block;
+          @include flex;
+          justify-content: flex-start !important;
+          flex-wrap: nowrap;
+        }
+      }
       img {
         @include round-image(40px, 40px);
         margin-right: 10px;
         object-fit: cover;
+        display: block;
       }
       p {
-        flex-grow: 7;
         color: rgb(215, 215, 215);
       }
       i {
-        flex-grow: 1;
         color: white;
         text-align: center;
+        cursor: pointer;
       }
     }
     .content-image {
@@ -318,12 +329,11 @@ aside {
         bottom: 0px;
         opacity: 0;
         visibility: hidden;
-        a {
-          color: white;
           i {
+            color: white;
             font-size: 32px;
+            cursor: pointer;
           }
-        }
         transition: 0.4s;
       }
     }
@@ -698,6 +708,20 @@ aside {
     p {
       color: rgb(209, 209, 209) !important;
     }
+  }
+}
+.user-posts,.user-saved{
+  margin-left: 80px;
+  a{
+    color: rgb(213, 213, 213);
+    font-size: 20px;
+    background-color: gray;
+    padding: 10px 30px;
+    border-radius: 55px;
+  }
+  .active{
+    color: white;
+    background-color: purple;
   }
 }
 .follow-following {
