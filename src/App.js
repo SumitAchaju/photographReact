@@ -28,16 +28,16 @@ function App() {
       <Route path="/" element={<PrivateRoutes/>}>
         <Route path="/" element={<Main/>} exact={true}>
           <Route index element={<Home/>} />
-          <Route path='/explore' element={<Explore/>} />
-          <Route path='/follow' element={<Follow/>} />
-          <Route path='/explore/:id' element={<ExploreInner/>} />
-          <Route path="/profile/:uid" element={<Profile/>} >
+          <Route path='explore' element={<Explore/>} />
+          <Route path='follow' element={<Follow/>} />
+          <Route path='explore/:id' element={<ExploreInner/>} />
+          <Route path="profile/:uid" element={<Profile/>} >
             <Route index element={<ProfileFollows/>} />
-            <Route path="/profile/:uid/following" element={<ProfileFollowings/>} />
+            <Route path="following" element={<ProfileFollowings/>} />
           </Route>
-          <Route path='/singlepost/:pid' element={<PostSingle/>} >
+          <Route path='singlepost/:pid' element={<PostSingle/>} >
             <Route index element={<Likes/>} />
-            <Route path="/singlepost/:pid/comment" element={<Comment/>} />
+            <Route path="comment" element={<Comment/>} />
           </Route>
         </Route>
       </Route>

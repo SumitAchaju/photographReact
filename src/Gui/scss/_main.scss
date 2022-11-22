@@ -5,7 +5,7 @@
 }
 body {
   font-family: "Poppins", sans-serif;
-  background-color: $background-color;
+  padding-bottom: 50px;
 }
 a {
   text-decoration: none !important;
@@ -18,6 +18,7 @@ header {
   background-color: $theme;
   padding: 10px 50px;
   position: sticky;
+  border-bottom: $border-light;
   top: 0;
   z-index: 999;
   .logo {
@@ -31,23 +32,28 @@ header {
     padding-right: 10%;
     form {
       input {
-        background-color: #383838;
-        color: white;
+        color: $input-text-color;
         width: 300px;
         padding-left: 25px;
         height: 40px;
         border-radius: 40px;
-        border: none;
+        border: 0.5px solid rgb(147, 147, 147); 
+        background-color: $input-color;
       }
       input:focus {
-        outline: 1px solid rgb(84, 84, 174);
+        outline: 3px solid rgb(121, 235, 255);
+        border: none;
       }
-      a {
+      button{
+        border: 0;
+        background-color: $theme;
+        cursor: pointer;
+        margin-left: 5px;
+      }
         i {
           font-size: 20px;
           color: $icon-color;
           margin-left: 15px;
-        }
       }
     }
   }
@@ -59,6 +65,7 @@ header {
       color: $icon-color;
       font-size: 20px;
       position: relative;
+      cursor: pointer;
       i::after {
         content: "";
         position: absolute;
@@ -75,6 +82,7 @@ header {
       color: $icon-color;
       font-size: 20px;
       position: relative;
+      cursor: pointer;
       i::after {
         content: "";
         position: absolute;
@@ -106,7 +114,7 @@ header {
       }
     }
     i {
-      color: gray;
+      color: $icon-color;
     }
     .header-profile-dropdown {
       display: none;
@@ -114,20 +122,17 @@ header {
       left: 0px;
       bottom: -170px;
       ul {
-        background-color: #383838;
+        background-color: $theme;
         padding: 15px 0;
         border-radius: 15px;
         width: 180px;
+        box-shadow: 2px 2px 10px 5px rgb(225, 225, 225);
         li {
           line-height: 40px;
           padding: 0 28px;
-          &:hover {
-            background-color: purple;
-            transition: 0.3s;
-          }
           &:hover i,
           &:hover p {
-            color: white;
+            color: $text-hover;
             transition: 0.3s;
           }
           a {
@@ -139,6 +144,7 @@ header {
                 display: inline;
                 padding-left: 10px;
                 font-size: 18px;
+                color: $text-color;
               }
             }
           }
@@ -157,7 +163,7 @@ aside {
   z-index: 10;
   overflow: auto;
   .side-profile {
-    margin: 100px 0 50px 0;
+    margin: 100px 0 20px 0;
     .side-profile-image {
       width: 130px;
       margin: 0 auto;
@@ -168,7 +174,7 @@ aside {
       object-fit: cover;
     }
     h4 {
-      color: rgb(232, 232, 232);
+      color: $text-color;
       font-size: 24px;
       text-align: center;
     }
@@ -176,7 +182,7 @@ aside {
       content: "";
       position: absolute;
       @include round-image(20px, 20px);
-      border: 5px black solid;
+      border: 5px rgb(77, 77, 77) solid;
       background-color: rgb(9, 241, 9);
       right: 20px;
       bottom: 10px;
@@ -189,8 +195,7 @@ aside {
         display: block;
         width: 100%;
         border-radius: 0 40px 40px 0;
-        background-color: purple;
-        color: white;
+        color: $text-hover;
       }
       li {
         line-height: 60px;
@@ -198,7 +203,7 @@ aside {
 
         a {
           font-size: 24px;
-          color: rgb(168, 168, 168);
+          color: $text-color;
           display: block;
           width: 100%;
           border-radius: 0 40px 40px 0;
@@ -227,15 +232,23 @@ aside {
 .flex-start {
   align-items: start !important;
 }
+.notfound{
+  font-size: 20px;
+  padding-left: 80px;
+  color: $text-color !important;
+}
 .show-dropdown {
+  display: block !important;
+}
+.show-content-dropdown {
   display: block !important;
 }
 .content {
   background-color: $content-color;
-  border-radius: 20px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   width: 40%;
+  border-radius: 20px;
 }
 .content-image-show-like {
   visibility: visible !important;
@@ -288,10 +301,10 @@ aside {
         display: block;
       }
       p {
-        color: rgb(215, 215, 215);
+        color: $text-color;
       }
       i {
-        color: white;
+        color: $icon-color;
         text-align: center;
         cursor: pointer;
       }
@@ -349,13 +362,13 @@ aside {
     }
     .content-likes {
       p {
-        color: rgb(232, 232, 232);
+        color: $text-color;
         font-size: 12px;
       }
     }
     .content-discription {
       p {
-        color: rgb(232, 232, 232);
+        color: $text-color;
         font-size: 15px;
         line-height: 22px;
         margin: 5px 0;
@@ -366,7 +379,7 @@ aside {
     .content-comment {
       padding-bottom: 3px;
       a {
-        color: rgb(232, 232, 232);
+        color: $text-color;
         font-size: 13px;
       }
     }
@@ -378,6 +391,9 @@ aside {
   }
   .content {
     width: 28%;
+    box-shadow: 2px 5px 10px 10px rgb(230, 230, 230);
+    border-radius: 30px;
+    margin: 20px 0;
     .explore-img {
       margin: 25px auto 10px;
       width: 80%;
@@ -389,12 +405,12 @@ aside {
       }
     }
     h4 {
-      color: white;
+      color: $text-color;
       margin-left: 30px;
       font-size: 24px;
     }
     p {
-      color: white;
+      color: $text-color;
       margin-left: 30px;
       font-size: 16px;
       margin-bottom: 15px;
@@ -405,6 +421,9 @@ aside {
   .content {
     width: 27%;
     text-align: center;
+    box-shadow: 2px 5px 10px 10px rgb(230, 230, 230);
+    border-radius: 35px;
+    margin: 20px 0;
     .follow-img {
       width: 132px;
       height: 132px;
@@ -419,15 +438,15 @@ aside {
       line-height: 30px;
       margin-bottom: 15px;
       h3 {
-        color: rgb(232, 232, 232);
+        color: $text-color;
         font-size: 20px;
       }
       p {
-        color: rgb(232, 232, 232);
+        color: $text-color;
         font-size: 13px;
       }
       h4 {
-        color: rgb(232, 232, 232);
+        color: $text-color;
         font-size: 16px;
       }
     }
@@ -445,13 +464,13 @@ aside {
         transition: 0.5s;
       }
       .follow-message-change-color {
-        color: black;
+        color: rgb(101, 101, 101);
         background-color: white;
         margin-left: 10px;
         transition: 0.5s;
       }
       a:hover {
-        color: black;
+        color: rgb(98, 98, 98);
         background-color: white;
       }
       .follow-message-change-color:hover {
@@ -474,7 +493,7 @@ aside {
     label {
       display: block;
       font-size: 22px;
-      color: white;
+      color: $text-color;
     }
     input {
       padding-left: 25px;
@@ -483,9 +502,9 @@ aside {
       width: 100%;
       margin-bottom: 16px;
       background-color: white;
-      border: 1px solid gray;
+      border: $border-light;
       &:focus {
-        outline: 1px solid purple;
+        outline: 3px solid rgb(121, 235, 255);
       }
       font-size: 25px;
       color: gray;
@@ -495,14 +514,15 @@ aside {
       margin: 25px auto;
       border-radius: 45px;
       padding: 15px 25px;
-      background-color: purple;
+      background-color: rgb(18, 180, 220);
       color: white;
       border: 0;
       font-size: 25px;
+      cursor: pointer;
     }
   }
   span {
-    color: white;
+    color: $text-color;
   }
   a {
     color: rgb(97, 97, 245);
@@ -525,7 +545,7 @@ aside {
     label {
       display: block;
       font-size: 18px;
-      color: white;
+      color: $text-color;
     }
     input {
       padding-left: 25px;
@@ -534,9 +554,9 @@ aside {
       background-color: white;
       height: 40px;
       width: 100%;
-      border: 1px solid gray;
+      border: $border-light;
       &:focus {
-        outline: 2px solid rgb(74, 164, 248);
+        outline: 3px solid rgb(121, 235, 255);
       }
       font-size: 25px;
       color: gray;
@@ -546,14 +566,15 @@ aside {
       margin: 25px auto;
       border-radius: 45px;
       padding: 15px 25px;
-      background-color: purple;
+      background-color: rgb(47, 122, 135);
       color: white;
       border: 0;
       font-size: 25px;
+      cursor: pointer;
     }
   }
   span {
-    color: white;
+    color: $text-color;
   }
   a {
     color: rgb(97, 97, 245);
@@ -566,23 +587,25 @@ aside {
 .likes-comment {
   .likes-comment-top {
     @include flex;
-    justify-content: space-around !important;
+    justify-content: space-evenly !important;
     margin: 15px 0;
     a {
-      color: rgb(229, 229, 229);
+      color: $text-color;
       padding: 10px 50px;
       display: inline-block;
       border-radius: 35px;
-      background-color: gray;
+      background-color: $theme;
+      border: $border-light;
     }
     .active {
       color: white;
-      background-color: purple;
+      background-color: $text-color;
+      border: 0;
     }
   }
   .likes-comment-con {
     padding-top: 15px;
-    height: 520px;
+    max-height: 520px;
     overflow: auto;
     .likeby {
       margin: 10px 40px 20px 40px;
@@ -600,25 +623,28 @@ aside {
       }
       h4 {
         font-size: 18px;
-        color: rgb(214, 214, 214);
+        color: $text-color;
       }
     }
     .comment-post {
+      padding-left: 25px;
       input {
         border-radius: 30px;
         width: 50%;
         height: 40px;
-        border: 0;
+        border: 0.5px solid rgb(147, 147, 147); 
         padding-left: 25px;
+        color: gray;
         &:focus {
           outline: 3px solid skyblue;
+          border: 0;
         }
         margin: 0 20px 20px 40px;
       }
       button {
-        padding: 10px 30px;
-        border-radius: 35px;
-        background-color: rgb(7, 101, 7);
+        padding: 10px 20px;
+        border-radius: 40px;
+        background-color: rgb(54, 164, 54);
         color: white;
         border: 0;
         font-size: 18px;
@@ -641,10 +667,10 @@ aside {
         object-fit: cover;
       }
       h4 {
-        color: white;
+        color: $text-color;
       }
       p {
-        color: rgb(200, 200, 200);
+        color: $text-color;
       }
       button {
         border: 0;
@@ -671,7 +697,7 @@ aside {
       @include flex;
       gap: 15px;
       a {
-        color: white;
+        color: $text-color;
         text-align: center;
       }
     }
@@ -679,7 +705,7 @@ aside {
   .profile-work,
   .profile-bio {
     p {
-      color: white;
+      color: $text-color;
       width: 300px;
     }
   }
@@ -687,7 +713,8 @@ aside {
     @include flex;
     span {
       font-size: 20px;
-      color: white;
+      color: $text-color;
+      font-weight: 600;
     }
     button {
       background-color: purple;
@@ -698,30 +725,32 @@ aside {
       color: white;
       cursor: pointer;
     }
+    .notmyprofile{
+      visibility: hidden !important;
+    }
   }
   .profile-work {
     p {
-      color: rgb(131, 131, 131) !important;
+      color: $text-color !important;
     }
   }
   .profile-bio {
     p {
-      color: rgb(209, 209, 209) !important;
+      color: $text-color !important;
     }
   }
-}
-.user-posts,.user-saved{
-  margin-left: 80px;
-  a{
-    color: rgb(213, 213, 213);
-    font-size: 20px;
-    background-color: gray;
-    padding: 10px 30px;
-    border-radius: 55px;
-  }
-  .active{
-    color: white;
-    background-color: purple;
+  .other-profile-follow-message{
+    @include flex;
+    justify-content: flex-start !important;
+    gap: 10px;
+    margin-top: 10px;
+    a{
+      display: block;
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: white;
+      background-color: skyblue;
+    }
   }
 }
 .follow-following {
@@ -735,19 +764,20 @@ aside {
     }
     .active {
         color: white;
-        background-color: purple;
+        background-color: $text-color;
+        border: 0;
       }
     a {
-      color: rgb(185, 185, 185);
+      color: $text-color;
       display: inline-block;
       padding: 10px 30px;
       border-radius: 35px;
-      background-color: gray;
+      border: $border-light;
     }
     .follow-following-follow{
         padding: 0px 50px;
         overflow: auto;
-        height: 340px;
+        max-height: 245px;
         .follow-following-follow-single{
             @include flex;
             border-bottom: 1px solid gray;
@@ -763,7 +793,7 @@ aside {
                     object-fit: cover;
                 }
                 span{
-                    color: white;
+                    color: $text-color;
                     font-size: 16px;
                 }
             }

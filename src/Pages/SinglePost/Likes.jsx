@@ -7,13 +7,14 @@ export default function Likes() {
   return (
     <>
       <div className="likes-comment-con">
-        {data &&
+        {data.like_by.length ?
         data.like_by.map(like=>
           <div key={like.id} className="likeby">
           <img src={baseUrlImg+like.profile_image} alt="" />
           <h4>{like.first_name} {like.last_name}</h4>
           </div>
         )
+        :<p className="notfound">"No Likes"</p>
         }
       </div>
     </>

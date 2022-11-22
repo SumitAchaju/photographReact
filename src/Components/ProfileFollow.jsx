@@ -18,7 +18,7 @@ export default function ProfileFollow(props) {
                     </div>
                     <div>
                         {follow.category==="Mutual"
-                        ?<button className='following'>Following</button>
+                        ?<button className='following'>Unfollow</button>
                         :<button>Follow</button>
                     }
                     </div>

@@ -24,77 +24,85 @@ export default function Comment() {
         comment: `${e.target.comment.value}`,
       })
       .then((res) => {
-          e.target.comment.value = "";
-          setData(res.data);
-        }
-      );
+        e.target.comment.value = "";
+        setData(res.data);
+      });
   };
 
-  const deleteComment = (id)=>{
-    api.post(`/deletecomment/${id}`,{"postid":`${data.id}`}).then(res=>{setData(res.data)})
-  }
-
+  const deleteComment = (id) => {
+    api.post(`/deletecomment/${id}`, { postid: `${data.id}` }).then((res) => {
+      setData(res.data);
+    });
+  };
+  console.log(data.comment)
   return (
     <>
-      <div className="likes-comment-con">
-        <div className="comment-post">
-          <form onSubmit={addComment}>
-            <input name="comment" type="text" />
-            <button type="sumbit">Post</button>
-          </form>
-        </div>
-        <div className="comment-single">
-          {data &&
-          data.comment.map(usercomment=>
-            {
-              if(usercomment.comment_by.id===userId){
-          return  <div key={usercomment.comment_by.id}>
-            <div>
-              <img
-                src={baseUrlImg + usercomment.comment_by.profile_image}
-                alt=""
-              />
-            </div>
-            <div>
-              <h4>
-                {usercomment.comment_by.first_name}{" "}
-                {usercomment.comment_by.last_name}
-              </h4>
-              <p>{usercomment.comment}</p>
-              <button onClick={()=>deleteComment(usercomment.id)}>Delete</button>
-            </div>
-          </div>}
-        else{
-          return null
-        }  
-        }
-
-            )}
-           {data && data.comment.map((comment) => 
-              {
-                if(comment.comment_by.id===userId){
-                  return null
-                }
-                else{
-                return  <div key={comment.comment_by.id}>
-              <div>
-                <img
-                  src={baseUrlImg + comment.comment_by.profile_image}
-                  alt=""
-                />
-              </div>
-              <div>
-                <h4>
-                  {comment.comment_by.first_name}{" "}
-                  {comment.comment_by.last_name}
-                </h4>
-                <p>{comment.comment}</p>
-              </div>
-            </div>}
-
+      {data && (
+        <div className="likes-comment-con">
+          <div className="comment-post">
+            <form onSubmit={addComment}>
+              <input name="comment" type="text" placeholder="Add comment..." />
+              <button type="sumbit">
+                <i className="bi bi-send-fill"></i>
+              </button>
+            </form>
+          </div>
+          <div className="comment-single">
+            {data.comment.map((usercomment) => {
+              if (usercomment.comment_by.id === userId) {
+                return (
+                  <div key={usercomment.comment_by.id}>
+                    <div>
+                      <img
+                        src={baseUrlImg + usercomment.comment_by.profile_image}
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <h4>
+                        {usercomment.comment_by.first_name}{" "}
+                        {usercomment.comment_by.last_name}
+                      </h4>
+                      <p>{usercomment.comment}</p>
+                      <button onClick={() => deleteComment(usercomment.id)}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                );
+              } else {
+                return null;
+              }
             })}
+            {data.comment.length ? 
+              data.comment.map((comment) => {
+                if (comment.comment_by.id === userId) {
+                  return null;
+                } else {
+                  return (
+                    <div key={comment.comment_by.id}>
+                      <div>
+                        <img
+                          src={baseUrlImg + comment.comment_by.profile_image}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <h4>
+                          {comment.comment_by.first_name}{" "}
+                          {comment.comment_by.last_name}
+                        </h4>
+                        <p>{comment.comment}</p>
+                      </div>
+                    </div>
+                  );
+                }
+              })
+              : <p className="notfound">"No Comments"</p>
+            }
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

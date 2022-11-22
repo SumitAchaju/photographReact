@@ -21,18 +21,18 @@ export default function Main() {
             console.log(err)
         }
     },[setUserData,userId])
-
-    console.log(userData)
     return (
         <>
             <header>
                 <div className="logo">
+                    <Link to="/">
                     <h2>PHOTOGRAPH</h2>
+                    </Link>
                 </div>
                 <div className="search-box">
                     <form action="">
                         <input type="text" placeholder="Search..." />
-                        <Link to=""><i className="bi bi-search"></i></Link>
+                        <button><i className="bi bi-search"></i></button>
                     </form>
                 </div>
                 <div className="notification">
@@ -45,11 +45,11 @@ export default function Main() {
                 </div>
                 <div onClick={fun.profile_dropdown} className="header-profile">
                     <img src={userData.profile_image} alt="profile" />
-                    <p>Sumit Achaju</p>
+                    <p>{userData.first_name} {userData.last_name}</p>
                     <i className="bi bi-caret-down-fill"></i>
                     <div className="header-profile-dropdown">
                         <ul>
-                            <li><Link to="">
+                            <li><Link to={`/profile/${userId}`}>
                                 <div>
                                     <i className="bi bi-person-circle"></i>
                                     <p>Profile</p>
@@ -79,7 +79,7 @@ export default function Main() {
                     <div className="side-profile-image">
                         <img src={userData.profile_image} alt="" />
                     </div>
-                    <h4>Sumit Achaju</h4>
+                    <h4>{userData.first_name} {userData.last_name}</h4>
                 </div>
                 <nav>
                     <ul>

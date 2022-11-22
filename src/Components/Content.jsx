@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "./swipper";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 export default function Content(props) {
-    const baseUrlImg = "http://127.0.0.1:8000";
+  let { userId } = useContext(AuthContext);
+  const baseUrlImg = "http://127.0.0.1:8000";
   return (
     <>
-      <div key={props.data.id} className="content">
+      <div className="content">
         <div className="content-profile">
           <div>
             <Link to={`/profile/${props.data.user.id}`}>
@@ -27,7 +29,18 @@ export default function Content(props) {
             {<Slider images={props.data.postimage} />}
           </div>
           <div className="likes">
-            {props.likeStatus(props.data, "like")}
+            {props.data.like_by.find((like) => like.id === userId) ? (
+              <i
+                style={{ color: "red" }}
+                onClick={() => props.likePost(props.data.id, "unlike")}
+                className="bi bi-heart-fill"
+              ></i>
+            ) : (
+              <i
+                onClick={() => props.likePost(props.data.id, "like")}
+                className="bi bi-heart"
+              ></i>
+            )}
             <Link to={`/singlepost/${props.data.id}/comment/`}>
               <i className="bi bi-chat"></i>
             </Link>
@@ -35,7 +48,19 @@ export default function Content(props) {
               <i className="bi bi-send"></i>
             </Link>
           </div>
-          <div className="save">{props.likeStatus(props.data, "save")}</div>
+          <div className="save">
+            {props.data.saved_by.find((save) => save.id === userId) ? (
+              <i
+                onClick={() => props.likePost(props.data.id, "unsave")}
+                className="bi bi-bookmark-fill"
+              ></i>
+            ) : (
+              <i
+                onClick={() => props.likePost(props.data.id, "save")}
+                className="bi bi-bookmark"
+              ></i>
+            )}
+          </div>
         </div>
         <div className="content-info">
           <div className="content-likes">
