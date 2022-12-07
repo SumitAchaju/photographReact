@@ -1,32 +1,53 @@
-import React from 'react';
+import React from "react";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function ProfileFollow(props) {
-    const baseUrlImg = "http://127.0.0.1:8000"
+  const baseUrlImg = "http://127.0.0.1:8000";
+  let { userId } = useContext(AuthContext);
   return (
     <>
-    {props.follow &&
-    <div className="follow-following-follow">
-        {props.follow.map(follow=>
-                    <div key={follow.id} className="follow-following-follow-single">
-                    <div className='follow-following-follow-single-profile'>
-                    <div>
-                        <img src={baseUrlImg+follow.friends.profile_image} alt="" />
-                    </div>
-                    <div>
-                        <span>{follow.friends.first_name} {follow.friends.last_name}</span>
-                    </div>
-                    </div>
-                    <div>
-                        {follow.category==="Mutual"
-                        ?<button className='following'>Unfollow</button>
-                        :<button>Follow</button>
-                    }
-                    </div>
+      {props.follow.length ? (
+        <div className="follow-following-follow">
+          {props.follow.map((follow) => (
+            <div key={follow.id} className="follow-following-follow-single">
+              <div className="follow-following-follow-single-profile">
+                <div>
+                  <img src={baseUrlImg + follow.profile_image} alt="" />
                 </div>
-            )}
-
-    </div>
+                <div>
+                  <span>
+                    <Link to={`/profile/${follow.id}`}>
+                    {follow.first_name} {follow.last_name}
+                    </Link>
+                  </span>
+                </div>
+              </div>
+              <div>
+                {follow.id === userId ? (
+                  <Link to={`/profile/${userId}`}>
+                  <button className="me">Your Profile</button>
+                  </Link>
+                ) : follow.myfriend_status === true ? (
+                  <button
+                    className="following"
+                    onClick={() => props.unFollow(follow.id)}
+                  >
+                    Unfollow
+                  </button>
+                ) : (
+                  <button onClick={() => props.Follow(follow.id)}>
+                    Follow
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    :<p className="notfound">"No {props.followorfollowing} yet"</p>
     }
     </>
-  )
+  );
 }

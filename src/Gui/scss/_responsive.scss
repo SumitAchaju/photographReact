@@ -1,3 +1,23 @@
+@media (min-width:1200px) and (max-width:1400px) {
+    .profile-edits{
+        .profile-dis,.profile-password,.profile-pic{
+        form{
+            input{
+                width: 250px;
+            }
+        }
+    }
+    }
+    
+}
+@media (min-width:1024px) and (max-width:1199px) {
+    .profile-edits{
+        .content{
+            width: 40%;
+        }
+    }
+}
+
 @media (min-width:768px) and (max-width:1100px){
     header{
         padding-left: 20px;
@@ -261,7 +281,7 @@
             background-color: $theme;
             ul{
                 .not-show-in-mobile{
-                    display: none;
+                    display: none !important;
                 }
                 .active{
                     border-radius: 0; 

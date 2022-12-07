@@ -6,6 +6,7 @@
 body {
   font-family: "Poppins", sans-serif;
   padding-bottom: 50px;
+  background-color: $background-color;
 }
 a {
   text-decoration: none !important;
@@ -37,11 +38,11 @@ header {
         padding-left: 25px;
         height: 40px;
         border-radius: 40px;
-        border: 0.5px solid rgb(147, 147, 147); 
+        border: $border-light;
         background-color: $input-color;
       }
       input:focus {
-        outline: 3px solid rgb(121, 235, 255);
+        outline: 3px solid rgb(108, 184, 197);
         border: none;
       }
       button{
@@ -126,15 +127,10 @@ header {
         padding: 15px 0;
         border-radius: 15px;
         width: 180px;
-        box-shadow: 2px 2px 10px 5px rgb(225, 225, 225);
+        box-shadow: 0px 0px 8px 0px rgb(193, 193, 193);
         li {
           line-height: 40px;
           padding: 0 28px;
-          &:hover i,
-          &:hover p {
-            color: $text-hover;
-            transition: 0.3s;
-          }
           a {
             div {
               i {
@@ -160,7 +156,7 @@ aside {
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 998;
   overflow: auto;
   .side-profile {
     margin: 100px 0 20px 0;
@@ -195,7 +191,8 @@ aside {
         display: block;
         width: 100%;
         border-radius: 0 40px 40px 0;
-        color: $text-hover;
+        color: white;
+        background-color: $btn-color;
       }
       li {
         line-height: 60px;
@@ -234,8 +231,9 @@ aside {
 }
 .notfound{
   font-size: 20px;
-  padding-left: 80px;
+  text-align: center;
   color: $text-color !important;
+  padding: 30px 0;
 }
 .show-dropdown {
   display: block !important;
@@ -245,8 +243,8 @@ aside {
 }
 .content {
   background-color: $content-color;
-  margin-top: 15px;
-  margin-bottom: 5px;
+  margin-top: 25px;
+  margin-bottom: 15px;
   width: 40%;
   border-radius: 20px;
 }
@@ -279,6 +277,12 @@ aside {
   color: white;
   font-size: 13px;
   width: 50px !important;
+}
+.searchresultname{
+  padding-top: 15px;
+
+    color: $text-color;
+    font-size: 20px;
 }
 #home {
   .container-mine {
@@ -334,20 +338,20 @@ aside {
           color: white;
           cursor: pointer;
         }
-        transition: 0.4s;
+        transition: .4s;
       }
       .save {
         position: absolute;
         right: 20px;
         bottom: 0px;
-        opacity: 0;
+        opacity: .5;
         visibility: hidden;
           i {
             color: white;
             font-size: 32px;
             cursor: pointer;
           }
-        transition: 0.4s;
+        transition: .4s;
       }
     }
     .content-image:hover .likes,
@@ -355,7 +359,7 @@ aside {
       visibility: visible;
       opacity: 1;
       bottom: 25px;
-      z-index: 999;
+      z-index: 99;
     }
     .content-info {
       padding: 0 15px;
@@ -391,7 +395,9 @@ aside {
   }
   .content {
     width: 28%;
-    box-shadow: 2px 5px 10px 10px rgb(230, 230, 230);
+    &:hover{
+      box-shadow: 0px 0px 10px 0px rgb(206, 206, 206);
+    }
     border-radius: 30px;
     margin: 20px 0;
     .explore-img {
@@ -421,7 +427,9 @@ aside {
   .content {
     width: 27%;
     text-align: center;
-    box-shadow: 2px 5px 10px 10px rgb(230, 230, 230);
+    &:hover{
+      box-shadow: 0px 0px 10px 0px rgb(206, 206, 206);
+    }
     border-radius: 35px;
     margin: 20px 0;
     .follow-img {
@@ -430,6 +438,7 @@ aside {
       margin: 25px auto 10px;
       img {
         width: 100%;
+        height: 100%;
         border-radius: 50%;
         object-fit: cover;
       }
@@ -451,31 +460,35 @@ aside {
       }
     }
     .follow-message {
+      .myprofile{
+        padding: 8px 5px !important;
+        background-color: green;
+        width: 130px !important;
+      }
       margin-bottom: 15px;
       a {
         display: inline-block;
         width: 110px;
-        padding: 5px 0;
+        padding: 5px 5px;
         border-radius: 40px;
         background-color: $btn-color;
         color: white;
-        font-size: 21px;
-        font-weight: bold;
-        transition: 0.5s;
+        font-size: 18px;
+        transition: 0.3s;
       }
       .follow-message-change-color {
-        color: rgb(101, 101, 101);
-        background-color: white;
         margin-left: 10px;
-        transition: 0.5s;
       }
       a:hover {
-        color: rgb(98, 98, 98);
-        background-color: white;
-      }
-      .follow-message-change-color:hover {
         color: white;
-        background-color: $btn-color;
+        background-color: $btn-hover;
+      }
+      .followed{
+        background-color: $followed-color;
+        &:hover{
+          color: white;
+          background-color: $unfollow-hover;
+        }
       }
     }
   }
@@ -506,19 +519,22 @@ aside {
       &:focus {
         outline: 3px solid rgb(121, 235, 255);
       }
-      font-size: 25px;
+      font-size: 20px;
       color: gray;
     }
     button {
       display: inline-block;
       margin: 25px auto;
-      border-radius: 45px;
-      padding: 15px 25px;
-      background-color: rgb(18, 180, 220);
+      border-radius: 40px;
+      padding: 10px 20px;
+      background-color: $btn-color;
       color: white;
       border: 0;
       font-size: 25px;
       cursor: pointer;
+      &:hover{
+        background-color: $btn-hover;
+      }
     }
   }
   span {
@@ -558,19 +574,22 @@ aside {
       &:focus {
         outline: 3px solid rgb(121, 235, 255);
       }
-      font-size: 25px;
+      font-size: 20px;
       color: gray;
     }
     button {
       display: inline-block;
       margin: 25px auto;
       border-radius: 45px;
-      padding: 15px 25px;
-      background-color: rgb(47, 122, 135);
+      padding: 10px 20px;
+      background-color: $btn-color;
       color: white;
       border: 0;
       font-size: 25px;
       cursor: pointer;
+      &:hover{
+        background-color: $btn-hover;
+      }
     }
   }
   span {
@@ -582,6 +601,25 @@ aside {
     display: inline-block;
     margin-left: 15px;
     font-size: 20px;
+  }
+}
+#userprofilepostnot{
+  span{
+    font-size: 25px;
+    padding: 30px;
+    color: $text-color;
+    display: block;
+    text-align: center;
+  }
+}
+#chatsdevelopment{
+  margin-top: 100px;
+  span{
+    display: block;
+    text-align: center;
+    font-size: 35px;
+    padding: 50px;
+    color: $text-color;
   }
 }
 .likes-comment {
@@ -599,7 +637,7 @@ aside {
     }
     .active {
       color: white;
-      background-color: $text-color;
+      background-color: $btn-color;
       border: 0;
     }
   }
@@ -649,6 +687,10 @@ aside {
         border: 0;
         font-size: 18px;
         cursor: pointer;
+        transition: .3s;
+        &:hover{
+          background-color: $your-profile-hover;
+        }
       }
     }
     .comment-single {
@@ -676,9 +718,13 @@ aside {
         border: 0;
         padding: 5px 15px;
         border-radius: 25px;
-        background-color: rgb(129, 43, 43);
+        background-color: $followed-color;
         color: white;
         cursor: pointer;
+        transition: .3s;
+        &:hover{
+          background-color: $unfollow-hover;
+        }
       }
     }
   }
@@ -716,17 +762,19 @@ aside {
       color: $text-color;
       font-weight: 600;
     }
-    button {
-      background-color: purple;
-      border: 0;
-      border-radius: 30px;
-      padding: 10px 30px;
-      font-size: 16px;
-      color: white;
-      cursor: pointer;
-    }
     .notmyprofile{
       visibility: hidden !important;
+    }
+    a{
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: $btn-color;
+      transition: .3s;
+      &:hover{
+        background-color: $btn-hover;
+      }
     }
   }
   .profile-work {
@@ -749,7 +797,18 @@ aside {
       padding: 10px 20px;
       border-radius: 30px;
       color: white;
-      background-color: skyblue;
+      background-color: $btn-color;
+      transition: .3s;
+      &:hover{
+        background-color: $btn-hover;
+      }
+    }
+
+    .followed{
+      background-color: green;
+      &:hover{
+        background-color: $your-profile-hover;
+      }
     }
   }
 }
@@ -761,29 +820,35 @@ aside {
         @include flex;
         justify-content: space-evenly !important;
         padding: 15px 0;
+        >a {
+          color: $text-color;
+          display: inline-block;
+          padding: 10px 30px;
+          border-radius: 35px;
+          border: $border-light;
+          background-color: $theme;
+        }
     }
     .active {
-        color: white;
-        background-color: $text-color;
-        border: 0;
+        color: white !important;
+        background-color: $btn-color !important;
+        border: 0 !important;
       }
-    a {
-      color: $text-color;
-      display: inline-block;
-      padding: 10px 30px;
-      border-radius: 35px;
-      border: $border-light;
-    }
     .follow-following-follow{
         padding: 0px 50px;
         overflow: auto;
         max-height: 245px;
+        padding-bottom: 15px;
         .follow-following-follow-single{
             @include flex;
             border-bottom: 1px solid gray;
             padding: 15px 0;
             .following{
-              background-color: gray !important;
+              background-color: $followed-color !important;
+              transition: .3s;
+              &:hover{
+                background-color: $unfollow-hover !important;
+              }
             }
             .follow-following-follow-single-profile{
                 @include flex;
@@ -793,7 +858,8 @@ aside {
                     object-fit: cover;
                 }
                 span{
-                    color: $text-color;
+                  a{color: $text-color;}
+                    
                     font-size: 16px;
                 }
             }
@@ -801,12 +867,108 @@ aside {
                 color: white;
                 border: 0;
                 padding: 10px 20px;
-                background-color: purple;
+                background-color: $btn-color;
                 border-radius: 25px;
                 font-size: 16px;
                 cursor: pointer;
+                transition: .3s;
+                &:hover{
+                  background-color: $btn-hover;
+                }
+            }
+            .me{
+              background-color: green;
+              transition: .3s;
+              &:hover{
+                background-color: $your-profile-hover;
+              }
             }
         }
+    }
+  }
+}
+.profile-edits{
+  .flex{
+    align-items: flex-start;
+  }
+  .content{
+    width: 30%;
+  }
+  #pe-pp{
+    display: none;
+  }
+  #labelforprofile{
+    cursor: pointer;
+    text-align: center;
+    margin: 15px 0;
+    border: 1px solid gray;
+    border-radius: 10px;
+    i{
+      color: $icon-color;
+      display: block;
+      font-size: 25px;
+    }
+  }
+  .profile-dis,.profile-password,.profile-pic{
+    img{
+      width: 200px;
+      display: block;
+      margin-bottom: 15px;
+    }
+    h4{
+      color: $text-color;
+      margin-bottom: 20px;
+      font-size: 20px;
+      text-align: center;
+    }
+    form{
+      padding: 15px 25px;
+      label{
+        font-size: 17px;
+        color: $text-color;
+        display: block;
+      }
+      input{
+        width: 300px;
+        height: 40px;
+        margin-bottom: 10px;
+        color: $text-color;
+        font-size: 17px;
+        padding: 0px 15px;
+        border-radius: 30px;
+        border: 0;
+        display: block;
+        background-color: $input-color;
+        &:focus{
+          outline: 2px solid rgb(111, 227, 227);
+          border: 0;
+        }
+      }
+      button{
+        padding: 10px 30px;
+        font-size: 19px;
+        color: white;
+        background-color: $btn-color;
+        border: 0;
+        border-radius: 35px;
+        cursor: pointer;
+      }
+      #pe-bio{
+        height: 80px !important;
+        display: block;
+        margin-bottom: 10px;
+        width: 270px;
+        font-size: 17px;
+        color: $text-color;
+        background-color: $input-color;
+        border: 0;
+        padding: 10px;
+        border-radius: 15px;
+        &:focus{
+          outline: 2px solid rgb(116, 199, 200);
+          border: 0;
+        }
+      }
     }
   }
 }

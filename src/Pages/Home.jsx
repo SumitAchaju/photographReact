@@ -8,16 +8,16 @@ export default function Home() {
   const [homeData, setHomeData] = useState(() => []);
 
   const likePost = (id, action) => {
-    api.post(`postlikeout/${id}`,{
-      "action":`${action}`
-    }).then((res) => {
-    if(res.data.status==="success"){
-      api.get("/friendposts/").then((res) => setHomeData(res.data));
-    }
-  }
-    );
+    api
+      .post(`postlikeout/${id}`, {
+        action: `${action}`,
+      })
+      .then((res) => {
+        if (res.data.status === "success") {
+          api.get("/friendposts/").then((res) => setHomeData(res.data));
+        }
+      });
   };
-
 
   useEffect(() => {
     api.get("/friendposts/").then((res) => setHomeData(res.data));
@@ -29,7 +29,7 @@ export default function Home() {
         <div id="home">
           <div className="container-mine flex">
             {homeData.map((data) => (
-            <Content key={data.id} data={data} likePost={likePost}/>
+              <Content key={data.id} data={data} likePost={likePost} />
             ))}
           </div>
         </div>

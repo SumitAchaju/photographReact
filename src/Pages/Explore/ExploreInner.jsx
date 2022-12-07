@@ -10,14 +10,15 @@ export default function ExploreInner() {
   const [homeData, setHomeData] = useState(() => []);
 
   const likePost = (pid, action) => {
-    api.post(`postlikeout/${pid}`,{
-      "action":`${action}`
-    }).then((res) => {
-    if(res.data.status==="success"){
-      api.get(`categoryposts/${id}`).then((res) => setHomeData(res.data));
-    }
-  }
-    );
+    api
+      .post(`postlikeout/${pid}`, {
+        action: `${action}`,
+      })
+      .then((res) => {
+        if (res.data.status === "success") {
+          api.get(`categoryposts/${id}`).then((res) => setHomeData(res.data));
+        }
+      });
   };
   useEffect(() => {
     api.get(`categoryposts/${id}`).then((res) => setHomeData(res.data));
@@ -29,7 +30,7 @@ export default function ExploreInner() {
         <div id="home">
           <div className="container-mine flex">
             {homeData.map((data) => (
-            <Content key={data.id} data={data} likePost={likePost} />
+              <Content key={data.id} data={data} likePost={likePost} />
             ))}
           </div>
         </div>
