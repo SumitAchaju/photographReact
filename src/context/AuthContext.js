@@ -68,7 +68,7 @@ export function AuthProvider({ children }) {
     setAuthToken: setAuthToken,
     LoginUser: LoginUser,
     LogoutUser: LogoutUser,
-    setloginStatus:setloginStatus,
+    setloginStatus: setloginStatus,
   };
 
   return (

@@ -32,17 +32,17 @@ function App() {
               <Route path="explore" element={<Explore />} />
               <Route path="follow" element={<Follow />} />
               <Route path="explore/:id" element={<ExploreInner />} />
-              <Route path="chats" element={<Chat/>} />
+              <Route path="chats" element={<Chat />} />
               <Route path="profile/:uid" element={<Profile />}>
                 <Route index element={<ProfileFollows />} />
                 <Route path="following" element={<ProfileFollowings />} />
               </Route>
-              <Route path="profile/edits" element={<ProfileEdits/>} />
+              <Route path="profile/edits" element={<ProfileEdits />} />
               <Route path="singlepost/:pid" element={<PostSingle />}>
                 <Route index element={<Likes />} />
                 <Route path="comment" element={<Comment />} />
               </Route>
-              <Route path="/friendsearch" element={<FriendSearch/>} />
+              <Route path="/friendsearch" element={<FriendSearch />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

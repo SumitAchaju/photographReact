@@ -19,7 +19,7 @@ export default function ProfileFollow(props) {
                 <div>
                   <span>
                     <Link to={`/profile/${follow.id}`}>
-                    {follow.first_name} {follow.last_name}
+                      {follow.first_name} {follow.last_name}
                     </Link>
                   </span>
                 </div>
@@ -27,7 +27,7 @@ export default function ProfileFollow(props) {
               <div>
                 {follow.id === userId ? (
                   <Link to={`/profile/${userId}`}>
-                  <button className="me">Your Profile</button>
+                    <button className="me">Your Profile</button>
                   </Link>
                 ) : follow.myfriend_status === true ? (
                   <button
@@ -45,9 +45,9 @@ export default function ProfileFollow(props) {
             </div>
           ))}
         </div>
-      )
-    :<p className="notfound">"No {props.followorfollowing} yet"</p>
-    }
+      ) : (
+        <p className="notfound">"No {props.followorfollowing} yet"</p>
+      )}
     </>
   );
 }

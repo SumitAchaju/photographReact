@@ -60,10 +60,10 @@ export default function Comment() {
                     </div>
                     <div>
                       <Link to={`/profile/${usercomment.comment_by.id}`}>
-                      <h4>
-                        {usercomment.comment_by.first_name} 
-                        {usercomment.comment_by.last_name}
-                      </h4>
+                        <h4>
+                          {usercomment.comment_by.first_name}
+                          {usercomment.comment_by.last_name}
+                        </h4>
                       </Link>
                       <p>{usercomment.comment}</p>
                       <button onClick={() => deleteComment(usercomment.id)}>
@@ -84,19 +84,19 @@ export default function Comment() {
                   return (
                     <div key={comment.comment_by.id}>
                       <Link to={`/profile/${comment.comment_by.id}`}>
+                        <div>
+                          <img
+                            src={baseUrlImg + comment.comment_by.profile_image}
+                            alt=""
+                          />
+                        </div>
+                      </Link>
                       <div>
-                        <img
-                          src={baseUrlImg + comment.comment_by.profile_image}
-                          alt=""
-                        />
-                      </div>
-                        </Link>
-                      <div>
-                      <Link to={`/profile/${comment.comment_by.id}`}>
-                        <h4>
-                          {comment.comment_by.first_name} 
-                          {comment.comment_by.last_name}
-                        </h4>
+                        <Link to={`/profile/${comment.comment_by.id}`}>
+                          <h4>
+                            {comment.comment_by.first_name}
+                            {comment.comment_by.last_name}
+                          </h4>
                         </Link>
                         <p>{comment.comment}</p>
                       </div>

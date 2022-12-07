@@ -12,9 +12,9 @@ export default function Likes() {
             <div key={like.id} className="likeby">
               <img src={baseUrlImg + like.profile_image} alt="" />
               <Link to={`/profile/${like.id}`}>
-              <h4>
-                {like.first_name} {like.last_name}
-              </h4>
+                <h4>
+                  {like.first_name} {like.last_name}
+                </h4>
               </Link>
             </div>
           ))

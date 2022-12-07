@@ -66,56 +66,58 @@ export default function ProfileEdits() {
       });
   };
 
-  const updateProfileImage = (e)=>{
-    e.preventDefault()
-    if(e.target.image.files){
-      api.patch("updateprofile/",{"profile_image":e.target.image.files[0],"exclude":"null"},{headers: { 'Content-Type': 'multipart/form-data' }}).then(res=>{
-        if(res.data.status==="error"){
-          alert("problem")
-        }
-        else if(res.data.status==="success"){
-          api.get(`user/${userId}`).then((res) => {
-            setUserData(res.data);
-            alert("Profile Picture sucessfully updated!!");
-          });
-        }
-      })
+  const updateProfileImage = (e) => {
+    e.preventDefault();
+    if (e.target.image.files) {
+      api
+        .patch(
+          "updateprofile/",
+          { profile_image: e.target.image.files[0], exclude: "null" },
+          { headers: { "Content-Type": "multipart/form-data" } }
+        )
+        .then((res) => {
+          if (res.data.status === "error") {
+            alert("problem");
+          } else if (res.data.status === "success") {
+            api.get(`user/${userId}`).then((res) => {
+              setUserData(res.data);
+              alert("Profile Picture sucessfully updated!!");
+            });
+          }
+        });
     }
-  }
-  
-  const changePassword = (e)=>{
-    e.preventDefault()
-    if (e.target.newpass.value === e.target.confirmpass.value){
+  };
+
+  const changePassword = (e) => {
+    e.preventDefault();
+    if (e.target.newpass.value === e.target.confirmpass.value) {
       const data = {
-        "current_password":e.target.currentpass.value,
-        "password":e.target.newpass.value
+        current_password: e.target.currentpass.value,
+        password: e.target.newpass.value,
+      };
+      if (e.target.newpass.value.length < 8) {
+        alert("password must be atleast 8 characters");
+        return;
       }
-      if (e.target.newpass.value.length<8){
-        alert("password must be atleast 8 characters")
-        return
-      }
-      api.patch("changepassword/",data).then(res=>{
-        console.log(res.data.status)
-        if(res.data.status==="success"){
-          alert("password sucessfully changed")
-          e.target.currentpass.value=''
-          e.target.newpass.value=''
-          e.target.confirmpass.value = ''
+      api.patch("changepassword/", data).then((res) => {
+        console.log(res.data.status);
+        if (res.data.status === "success") {
+          alert("password sucessfully changed");
+          e.target.currentpass.value = "";
+          e.target.newpass.value = "";
+          e.target.confirmpass.value = "";
+        } else if (res.data.status === "wrong_current_password") {
+          alert("Wrong Current Password");
+        } else if (res.data.status === "Invalid_password") {
+          alert("Too Comman Password !!");
         }
-        else if(res.data.status==="wrong_current_password"){
-          alert("Wrong Current Password")
-        }
-        else if(res.data.status==="Invalid_password"){
-          alert("Too Comman Password !!")
-        }
-      })
+      });
+    } else {
+      alert("New Password and Confirm Password didnot Match!!");
+      e.target.confirmpass.value = "";
+      e.target.newpass.value = "";
     }
-    else{
-      alert("New Password and Confirm Password didnot Match!!")
-      e.target.confirmpass.value=''
-      e.target.newpass.value=''
-    }
-  }
+  };
 
   const preview = (e) => {
     const [file] = e.target.files;
@@ -133,7 +135,7 @@ export default function ProfileEdits() {
           <div className="content">
             <div className="profile-dis">
               <form onSubmit={profileInfoSave}>
-            <h4>Profile Info</h4>
+                <h4>Profile Info</h4>
                 <label htmlFor="pe-fm">First Name</label>
                 <input
                   id="pe-fm"
@@ -186,7 +188,7 @@ export default function ProfileEdits() {
           <div className="content">
             <div className="profile-pic">
               <form onSubmit={changeUsername}>
-              <h4>Change username</h4>
+                <h4>Change username</h4>
                 <label htmlFor="pe-un">UserName</label>
                 <input
                   name="username"
@@ -200,9 +202,18 @@ export default function ProfileEdits() {
               <form encType="multipart/form-data" onSubmit={updateProfileImage}>
                 <label>Profile Picture</label>
                 <img id="preview" src={userInfo.profile_image} alt="" />
-                <label id="labelforprofile" htmlFor="pe-pp"> Select Image
-                <input name="image" onChange={preview} id="pe-pp" accept="image/*" type="file" required />
-                <i class="bi bi-camera-fill"></i>
+                <label id="labelforprofile" htmlFor="pe-pp">
+                  {" "}
+                  Select Image
+                  <input
+                    name="image"
+                    onChange={preview}
+                    id="pe-pp"
+                    accept="image/*"
+                    type="file"
+                    required
+                  />
+                  <i class="bi bi-camera-fill"></i>
                 </label>
                 <button type="sumbit">Change</button>
               </form>
@@ -213,11 +224,29 @@ export default function ProfileEdits() {
               <form onSubmit={changePassword}>
                 <h4>Change Password</h4>
                 <label htmlFor="pe-cp">Current Password</label>
-                <input id="pe-cp" placeholder="previous password..." name="currentpass" type="text" required />
+                <input
+                  id="pe-cp"
+                  placeholder="previous password..."
+                  name="currentpass"
+                  type="text"
+                  required
+                />
                 <label htmlFor="pe-np">New Password</label>
-                <input id="pe-np" placeholder="enter password..." name="newpass" type="password" required />
+                <input
+                  id="pe-np"
+                  placeholder="enter password..."
+                  name="newpass"
+                  type="password"
+                  required
+                />
                 <label htmlFor="pe-cfp">Confirm Password</label>
-                <input id="pe-cfp" placeholder="enter password again..." name="confirmpass" type="password" required />
+                <input
+                  id="pe-cfp"
+                  placeholder="enter password again..."
+                  name="confirmpass"
+                  type="password"
+                  required
+                />
                 <button type="sumbit">Change</button>
               </form>
             </div>

@@ -17,9 +17,9 @@ export default function Login() {
         <div className="login-input">
           <form onSubmit={LoginUser}>
             <label htmlFor="#u">Username</label>
-            <input id="u" name="username" type="text" required/>
+            <input id="u" name="username" type="text" required />
             <label htmlFor="#p">Password</label>
-            <input id="p" name="password" type="password" required/>
+            <input id="p" name="password" type="password" required />
             <button type="sumbit">Login</button>
           </form>
         </div>

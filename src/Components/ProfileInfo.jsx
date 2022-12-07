@@ -19,20 +19,26 @@ export default function ProfileInfo(props) {
               </div>
               <div className="profile-info-status">
                 <div className="profile-post">
-                  <Link to='#userprofilepost'>
+                  <Link to="#userprofilepost">
                     <p>{props.post}</p>
                     <p>POSTS</p>
                   </Link>
                 </div>
                 <div className="profile-follow">
-                  <Link to=''>
-                    <p>{props.userfriend.userfriend.followers.length + props.userfriend.userfriend.mutual.length}</p>
+                  <Link to="">
+                    <p>
+                      {props.userfriend.userfriend.followers.length +
+                        props.userfriend.userfriend.mutual.length}
+                    </p>
                     <p>FOLLOWERS</p>
                   </Link>
                 </div>
                 <div className="profile-follow">
                   <Link to={`following/`}>
-                    <p>{props.userfriend.userfriend.following.length + props.userfriend.userfriend.mutual.length}</p>
+                    <p>
+                      {props.userfriend.userfriend.following.length +
+                        props.userfriend.userfriend.mutual.length}
+                    </p>
                     <p>FOLLOWING</p>
                   </Link>
                 </div>

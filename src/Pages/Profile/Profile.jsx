@@ -64,19 +64,19 @@ export default function Profile() {
             unFollow={unFollow}
             Follow={Follow}
           />
-          {homeData.length?
-                  <div id="userprofilepost" className="container-mine flex">
-                  {homeData.map((data) => (
-                    <Content key={data.id} data={data} likePost={likePost} />
-                  ))}
-                </div>
-                :  <div id="userprofilepostnot" className="container-mine flex">
-                  <div className="content">
-                    <span>"No Post Yet"</span>
-                  </div>
-                </div>
-        }
-
+          {homeData.length ? (
+            <div id="userprofilepost" className="container-mine flex">
+              {homeData.map((data) => (
+                <Content key={data.id} data={data} likePost={likePost} />
+              ))}
+            </div>
+          ) : (
+            <div id="userprofilepostnot" className="container-mine flex">
+              <div className="content">
+                <span>"No Post Yet"</span>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>

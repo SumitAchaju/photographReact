@@ -1,15 +1,14 @@
-import React from 'react';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
-
+import React from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 export default function FollowCard(props) {
-    const baseUrlImg = "http://127.0.0.1:8000";
-    let {userId} = useContext(AuthContext)
+  const baseUrlImg = "http://127.0.0.1:8000";
+  let { userId } = useContext(AuthContext);
   return (
     <>
-          {props.followSuggestion.user && (
+      {props.followSuggestion.user && (
         <div id="follow">
           <div className="container-mine flex">
             {props.followSuggestion.user.map((sugg) => (
@@ -31,26 +30,37 @@ export default function FollowCard(props) {
                     </h4>
                   </div>
                 </Link>
-                {sugg.id===userId?
-                <div className="follow-message">
-                  <Link className='myprofile' to={`/profile/${userId}`}>Your Profile</Link>
-                </div>
-                :
+                {sugg.id === userId ? (
                   <div className="follow-message">
-                    {sugg.myfriend?
-                    <Link className='followed' to="" onClick={()=>props.unFollow(sugg.id)}>UnFollow</Link>
-                    :<Link to="" onClick={()=>props.Follow(sugg.id)}>Follow</Link>
-                  }
+                    <Link className="myprofile" to={`/profile/${userId}`}>
+                      Your Profile
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="follow-message">
+                    {sugg.myfriend ? (
+                      <Link
+                        className="followed"
+                        to=""
+                        onClick={() => props.unFollow(sugg.id)}
+                      >
+                        UnFollow
+                      </Link>
+                    ) : (
+                      <Link to="" onClick={() => props.Follow(sugg.id)}>
+                        Follow
+                      </Link>
+                    )}
                     <Link className="follow-message-change-color" to="">
                       Message
                     </Link>
                   </div>
-              }
+                )}
               </div>
             ))}
           </div>
         </div>
       )}
     </>
-  )
+  );
 }

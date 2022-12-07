@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Main() {
   let { LogoutUser, setUserData, userId, userData } = useContext(AuthContext);
-  const [searchName,setSearchName] = useState('');
+  const [searchName, setSearchName] = useState("");
   const api = useAxios();
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,15 +21,14 @@ export default function Main() {
     }
   }, [setUserData, userId]);
 
-  const Search =(e)=>{
+  const Search = (e) => {
     e.preventDefault();
-      const value = e.target.searchbox.value
-      if(value){
-      setSearchName(value)
-      navigate("/friendsearch")
+    const value = e.target.searchbox.value;
+    if (value) {
+      setSearchName(value);
+      navigate("/friendsearch");
     }
-    
-  }
+  };
   return (
     <>
       <header>
@@ -40,7 +39,12 @@ export default function Main() {
         </div>
         <div className="search-box">
           <form onSubmit={Search}>
-            <input type="text" name="searchbox" placeholder="Search..." required/>
+            <input
+              type="text"
+              name="searchbox"
+              placeholder="Search..."
+              required
+            />
             <button>
               <i className="bi bi-search"></i>
             </button>
@@ -121,9 +125,9 @@ export default function Main() {
                 <i className="bi bi-chat-left-text-fill"></i> Chats
               </NavLink>
             </li>
-            <li id="g" >
+            <li id="g">
               <NavLink to="groups/">
-              <i class="bi bi-file-earmark-arrow-up-fill"></i> Posts
+                <i class="bi bi-file-earmark-arrow-up-fill"></i> Posts
               </NavLink>
             </li>
             <li id="m">
@@ -134,7 +138,7 @@ export default function Main() {
           </ul>
         </nav>
       </aside>
-      <Outlet context={{searchName:searchName}}/>
+      <Outlet context={{ searchName: searchName }} />
     </>
   );
 }
