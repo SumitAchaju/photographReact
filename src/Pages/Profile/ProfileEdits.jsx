@@ -13,7 +13,6 @@ export default function ProfileEdits() {
 
   const profileInfoSave = (e) => {
     e.preventDefault();
-    console.log(e.target.firstname.value);
     if (
       e.target.firstname.value === e.target.firstname.defaultValue &&
       e.target.lastname.value === e.target.lastname.defaultValue &&
@@ -31,7 +30,6 @@ export default function ProfileEdits() {
       date_of_birth: e.target.dob.value,
       skill: e.target.skill.value,
       bio: e.target.bio.value,
-      exclude: e.target.email.value,
     };
     api.patch("updateprofile/", data).then((res) => {
       if (res.data.status === "success") {
@@ -42,7 +40,7 @@ export default function ProfileEdits() {
       } else if (res.data.status === "email exists") {
         alert("account with this email already exists!!");
       } else if (res.data.status === "error") {
-        alert("invaid email");
+        alert("invalid email");
       }
     });
   };
@@ -55,7 +53,7 @@ export default function ProfileEdits() {
     api
       .patch("updateprofile/", {
         username: e.target.username.value,
-        exclude: "null",
+        email:userInfo.email
       })
       .then((res) => {
         if (res.data.status === "error") {
@@ -72,7 +70,7 @@ export default function ProfileEdits() {
       api
         .patch(
           "updateprofile/",
-          { profile_image: e.target.image.files[0], exclude: "null" },
+          { profile_image: e.target.image.files[0], email: userInfo.email },
           { headers: { "Content-Type": "multipart/form-data" } }
         )
         .then((res) => {
@@ -166,6 +164,7 @@ export default function ProfileEdits() {
                   name="dob"
                   defaultValue={userInfo.date_of_birth}
                   type="date"
+                  required
                 />
                 <label htmlFor="pe-sk">Skills</label>
                 <input
@@ -213,7 +212,7 @@ export default function ProfileEdits() {
                     type="file"
                     required
                   />
-                  <i class="bi bi-camera-fill"></i>
+                  <i className="bi bi-camera-fill"></i>
                 </label>
                 <button type="sumbit">Change</button>
               </form>

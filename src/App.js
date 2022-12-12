@@ -20,6 +20,8 @@ import ProfileFollows from "./Pages/Profile/ProfileFollows";
 import FriendSearch from "./Pages/Search/FriendSearch";
 import ProfileEdits from "./Pages/Profile/ProfileEdits";
 import Chat from "./Pages/Chats/Chat";
+import Post from "./Pages/Posts/Post";
+import SavedPost from "./Pages/Saved/SavedPost";
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
               <Route path="follow" element={<Follow />} />
               <Route path="explore/:id" element={<ExploreInner />} />
               <Route path="chats" element={<Chat />} />
+              <Route path="posts" element={<Post />} />
               <Route path="profile/:uid" element={<Profile />}>
                 <Route index element={<ProfileFollows />} />
                 <Route path="following" element={<ProfileFollowings />} />
@@ -42,7 +45,8 @@ function App() {
                 <Route index element={<Likes />} />
                 <Route path="comment" element={<Comment />} />
               </Route>
-              <Route path="/friendsearch" element={<FriendSearch />} />
+              <Route path="friendsearch" element={<FriendSearch />} />
+              <Route path="savedpost" element={<SavedPost />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

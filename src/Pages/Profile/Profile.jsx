@@ -51,34 +51,87 @@ export default function Profile() {
   useEffect(() => {
     api.get(`userfollowfollowing/${uid}`).then((res) => setFollow(res.data));
   }, [uid]);
-  return (
-    <>
-      {homeData && follow && (
-        <div id="home">
-          <ProfileInfo
-            userfriend={follow}
-            baseUrlImg={baseUrlImg}
-            post={homeData.length}
-            myprofile={uid.toString() === userId.toString() ? true : false}
-            userId={userId}
-            unFollow={unFollow}
-            Follow={Follow}
-          />
-          {homeData.length ? (
-            <div id="userprofilepost" className="container-mine flex">
-              {homeData.map((data) => (
-                <Content key={data.id} data={data} likePost={likePost} />
-              ))}
-            </div>
-          ) : (
-            <div id="userprofilepostnot" className="container-mine flex">
-              <div className="content">
-                <span>"No Post Yet"</span>
+  if(window.screen.width>1024){
+    return (
+      <>
+        {homeData && follow && (
+          <div id="home">
+            <ProfileInfo
+              userfriend={follow}
+              baseUrlImg={baseUrlImg}
+              post={homeData.length}
+              myprofile={uid.toString() === userId.toString() ? true : false}
+              userId={userId}
+              unFollow={unFollow}
+              Follow={Follow}
+            />
+            {homeData.length ? (
+              <div id="userprofilepost" className="container-mine flex">
+                <div className="content-column1">
+                {homeData.map((data,index) => {
+                  if(index % 2 === 0 ){
+                    return <Content key={data.id} data={data} likePost={likePost}/>
+                  }
+                  else{
+                    return null
+                  }
+                }
+                )}
+                </div>
+                <div className="content-column2">
+                {homeData.map((data,index) =>{
+                  if(index % 2 !== 0 ){
+                    return <Content key={data.id} data={data} likePost={likePost}/>
+                  }
+                  else{
+                    return null
+                  }
+                }
+                )}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      )}
-    </>
-  );
+            ) : (
+              <div id="userprofilepostnot" className="container-mine flex">
+                <div className="content">
+                  <span>"No Post Yet"</span>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </>
+    );
+  }
+  else{
+    return (
+      <>
+        {homeData && follow && (
+          <div id="home">
+            <ProfileInfo
+              userfriend={follow}
+              baseUrlImg={baseUrlImg}
+              post={homeData.length}
+              myprofile={uid.toString() === userId.toString() ? true : false}
+              userId={userId}
+              unFollow={unFollow}
+              Follow={Follow}
+            />
+            {homeData.length ? (
+              <div id="userprofilepost" className="container-mine flex">
+                {homeData.map((data) => 
+                <Content key={data.id} data={data} likePost={likePost}/>
+                )}
+              </div>
+            ) : (
+              <div id="userprofilepostnot" className="container-mine flex">
+                <div className="content">
+                  <span>"No Post Yet"</span>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </>
+    );
+  }
 }

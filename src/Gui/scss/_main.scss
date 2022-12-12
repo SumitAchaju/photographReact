@@ -7,6 +7,7 @@ body {
   font-family: "Poppins", sans-serif;
   padding-bottom: 50px;
   background-color: $background-color;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none !important;
@@ -121,7 +122,7 @@ header {
       display: none;
       position: absolute;
       left: 0px;
-      bottom: -170px;
+      bottom: -165px;
       ul {
         background-color: $theme;
         padding: 15px 0;
@@ -130,7 +131,11 @@ header {
         box-shadow: 0px 0px 8px 0px rgb(193, 193, 193);
         li {
           line-height: 40px;
-          padding: 0 28px;
+          padding: 0 25px;
+          transition: .4s;
+          &:hover{
+            background-color: gray;
+          }
           a {
             div {
               i {
@@ -221,10 +226,31 @@ aside {
 .justify-content-start {
   justify-content: flex-start !important;
 }
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .flex {
   @include flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  align-items: flex-start !important;
+  .content-column1 {
+    width: 40%;
+    .content {
+      margin-bottom: 40px !important;
+      width: 100% !important;
+    }
+  }
+  .content-column2 {
+    width: 40%;
+    .content {
+      margin-bottom: 40px !important;
+      width: 100% !important;
+    }
+  }
 }
 .flex-start {
   align-items: start !important;
@@ -255,15 +281,20 @@ aside {
 }
 .swiper-button-prev {
   left: 50px !important;
+  top: 10% !important;
+  height: 80% !important;
 }
 .swiper-button-next {
+  top: 10% !important;
   right: 50px !important;
+  height: 80% !important;
 }
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 150px !important;
   padding: 40px !important;
   opacity: 0;
+  height: 100%;
 }
 .swiper-pagination {
   display: inline;
@@ -272,8 +303,10 @@ aside {
   border-radius: 30px !important;
 }
 .swiper-pagination-fraction {
-  left: 85% !important;
-  bottom: 84% !important;
+  position: absolute;
+  z-index: 100;
+  right: 10px !important;
+  top: 10px !important;
   color: white;
   font-size: 13px;
   width: 50px !important;
@@ -283,6 +316,19 @@ aside {
 
   color: $text-color;
   font-size: 20px;
+  background-color: rgb(80, 80, 80);
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.noposts{
+  padding: 50px 50px;
+  margin-top: 120px;
+  p{
+    color: $text-color;
+    font-size: 22px;
+  }
 }
 #home {
   .container-mine {
@@ -425,7 +471,8 @@ aside {
 }
 #follow {
   .content {
-    width: 27%;
+    width: 100%;
+    padding: 0px 40px;
     text-align: center;
     &:hover {
       box-shadow: 0px 0px 10px 0px rgb(206, 206, 206);
@@ -645,6 +692,8 @@ aside {
     padding-top: 15px;
     max-height: 520px;
     overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
     .likeby {
       margin: 10px 40px 20px 40px;
       border-bottom: rgb(133, 133, 133) solid 1px;
@@ -837,7 +886,9 @@ aside {
     .follow-following-follow {
       padding: 0px 50px;
       overflow: auto;
-      max-height: 245px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      max-height: 260px;
       padding-bottom: 15px;
       .follow-following-follow-single {
         @include flex;
@@ -968,6 +1019,9 @@ aside {
         border: 0;
         padding: 10px;
         border-radius: 15px;
+        scrollbar-width: none;
+        resize: none;
+        cursor: text;
         &:focus {
           outline: 2px solid rgb(116, 199, 200);
           border: 0;
@@ -975,4 +1029,300 @@ aside {
       }
     }
   }
+}
+.uploadpost {
+  width: 80% !important;
+  padding: 25px 4%;
+  p {
+    color: $text-color;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .imagepreview {
+    .imagepreviewbox {
+      max-height: 500px;
+      overflow: auto;
+      margin-bottom: 30px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      margin-top: 5px;
+      border: 1px solid gray;
+    }
+    img {
+      margin-right: 0.5%;
+      width: 32.5%;
+    }
+    p {
+      font-size: 20px;
+      font-weight: normal;
+      position: sticky;
+      margin-top: 10px;
+      left: 0;
+      top: -1px;
+      z-index: 2;
+      background-color: $content-color;
+      padding: 5px 0;
+    }
+  }
+  .selectimageform {
+    form {
+      label {
+        color: $text-color;
+        text-align: center;
+        border: 1px solid gray;
+        display: block;
+        padding: 30px 0;
+        cursor: pointer;
+        border-radius: 10px;
+        font-size: 20px;
+        input {
+          display: none;
+        }
+        i {
+          display: block;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+  .imageuploadguide {
+    p {
+      font-weight: normal;
+      font-size: 13px;
+    }
+  }
+  .discatform {
+    .selectimagecat,
+    .discatformlabel {
+      color: $text-color;
+      display: block;
+      font-size: 19px;
+      margin: 10px 0;
+    }
+    #disform {
+      resize: none;
+      width: 100%;
+      border-radius: 10px;
+      border: 0;
+      color: $text-color;
+      padding: 15px 10px 5px 10px;
+      font-size: 22px;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      background-color: rgb(108, 108, 108);
+      &:focus {
+        outline: 3px solid rgb(107, 160, 181);
+      }
+      margin-bottom: 25px;
+    }
+    button {
+      display: block;
+      margin: auto;
+      padding: 10px 25px;
+      border: 0;
+      margin-bottom: 30px;
+      transition: 0.3s;
+      cursor: pointer;
+      background-color: $btn-color;
+      &:hover {
+        background-color: $btn-hover;
+      }
+      color: white;
+      font-size: 18px;
+      border-radius: 35px;
+    }
+  }
+}
+#catform {
+  /* Customize the label (the container) */
+  .catform {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    user-select: none;
+    color: $text-color;
+    margin-right: 155px;
+    width: 60px;
+  }
+
+  /* Hide the browser's default checkbox */
+  .catform input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .catform:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .catform input:checked ~ .checkmark {
+    background-color: #2196f3;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  .catform input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .catform .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+}
+.popup {
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0%;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: $content-color;
+    margin-left: auto;
+    margin-right: 25%;
+    padding: 0;
+    border-radius: 25px;
+    border: 1px solid $content-color;
+    width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  /* The Close Button */
+  .close {
+    color: $text-color;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: .4s;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: gray;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal-header {
+    padding: 2px 16px;
+    color: $text-color;
+    margin-top: 25px;
+  }
+
+  .modal-body {
+    padding: 2px 16px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    label{
+      color: $text-color;
+      font-size: 19px;
+      display: inline-block;
+      margin-top: 0px;
+    }
+    textarea{
+      width: 100%;
+      margin: 0px 0 10px 0;
+      resize: none;
+      color: $text-color;
+      font-size: 18px;
+      padding: 10px;
+      background-color: rgb(91, 91, 91);
+      border:0;
+      &:focus{
+        outline: 3px solid rgb(68, 125, 148);
+      }
+    }
+    button{
+      color: $text-color;
+      background-color: $content-color;
+      cursor: pointer;
+      padding: 10px 30px;
+      width: 100%;
+      font-size: 18px;
+      margin: 15px auto;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      border-right: 0;
+      border-left: 0;
+      display: block;
+      transition: .4s;
+      &:hover{
+        color: white;
+        background-color: gray;
+      }
+    }
+  }
+
 }

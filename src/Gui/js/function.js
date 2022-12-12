@@ -1,11 +1,10 @@
 export const profile_dropdown = () => {
-  if (document.getElementsByClassName("show-dropdown")[0]) {
-    document
-      .getElementsByClassName("header-profile-dropdown")[0]
-      .classList.remove("show-dropdown");
+  if (document.getElementById("profile_menu").style.display==="block") {
+    document.getElementById("profile_menu")
+      .style.display="none"
   } else {
     document
       .getElementsByClassName("header-profile-dropdown")[0]
-      .classList.add("show-dropdown");
+      .style.display="block"
   }
 };

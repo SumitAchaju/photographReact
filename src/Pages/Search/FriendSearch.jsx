@@ -6,7 +6,7 @@ import FollowCard from "../../Components/FollowCard";
 import useAxios from "../../utils/useAxios";
 
 export default function FriendSearch() {
-  const [followSuggestion, setFollowSuggestion] = useState({});
+  const [followSuggestion, setFollowSuggestion] = useState({"user":[]});
   const api = useAxios();
   let { searchName } = useOutletContext();
   useEffect(() => {
@@ -35,6 +35,7 @@ export default function FriendSearch() {
   };
   return (
     <>
+  {followSuggestion.user &&
       <div className="container-mine flex">
         {followSuggestion.user.length ? (
           <span className="searchresultname">
@@ -46,6 +47,7 @@ export default function FriendSearch() {
           </span>
         )}
       </div>
+      }
       <FollowCard
         followSuggestion={followSuggestion}
         unFollow={unFollow}

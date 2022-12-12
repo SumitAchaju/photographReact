@@ -21,6 +21,7 @@ export function AuthProvider({ children }) {
   );
 
   const [userData, setUserData] = useState({});
+  const[editId,setEditId] = useState(()=>0);
 
   const LoginUser = async (e) => {
     e.preventDefault();
@@ -63,12 +64,14 @@ export function AuthProvider({ children }) {
     userId: userId,
     loginStatus: loginStatus,
     authToken: authToken,
+    editId:editId,
     setUserId: setUserId,
     setUserData: setUserData,
     setAuthToken: setAuthToken,
     LoginUser: LoginUser,
     LogoutUser: LogoutUser,
     setloginStatus: setloginStatus,
+    setEditId:setEditId
   };
 
   return (

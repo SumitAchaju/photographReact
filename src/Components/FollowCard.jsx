@@ -10,7 +10,7 @@ export default function FollowCard(props) {
     <>
       {props.followSuggestion.user && (
         <div id="follow">
-          <div className="container-mine flex">
+          <div className="container-mine grid">
             {props.followSuggestion.user.map((sugg) => (
               <div key={sugg.id} className="content">
                 <Link to={`/profile/${sugg.id}`}>

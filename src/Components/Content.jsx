@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 export default function Content(props) {
-  let { userId } = useContext(AuthContext);
+  let { userId, setEditId } = useContext(AuthContext);
+  const popUp = (id) => {
+    setEditId(id)
+    let modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  };
   const baseUrlImg = "http://127.0.0.1:8000";
   return (
     <>
@@ -22,7 +27,7 @@ export default function Content(props) {
               </p>
             </Link>
           </div>
-          <i className="bi bi-three-dots-vertical"></i>
+          <i onClick={props.data.user.id===userId?()=>popUp(props.data.id):null} className="bi bi-three-dots-vertical"></i>
         </div>
         <div className="content-image">
           <div className="image">

@@ -10,11 +10,25 @@
       }
     }
   }
+  .popup{
+    .modal-content{
+      width: 450px;
+      .catform{
+        width: 40px !important;
+      }
+    }
+  }
 }
 @media (min-width: 1024px) and (max-width: 1199px) {
   .profile-edits {
     .content {
       width: 40%;
+    }
+  }
+  #follow {
+    .content {
+      width: 100%;
+      padding: 0px 15px;
     }
   }
 }
@@ -50,8 +64,28 @@
     }
   }
   #follow {
-    .content {
-      width: 40%;
+    .grid{
+      grid-template-columns: auto auto;
+      .content{
+        width: 100% !important;
+        padding: 10px 40px;
+      }
+    }
+  }
+  .uploadpost{
+    .imagepreview{
+      img{
+        width: 49%;
+      }
+    }
+  }
+  .popup{
+    .modal-content{
+      margin-right: 10%;
+      width: 450px;
+      .catform{
+        width: 40px !important;
+      }
     }
   }
 }
@@ -103,15 +137,23 @@
     }
   }
   #follow {
-    .content {
-      width: 40%;
+    .grid{
+      grid-template-columns: auto auto;
+      .content{
+        width: 100% !important;
+        padding: 10px 38px;
+      }
     }
   }
 }
 @media (max-width: 900px) {
   #follow {
-    .content {
-      width: 80%;
+    .grid{
+      grid-template-columns: auto;
+      .content{
+        width: 100% !important;
+        padding: 10px 50px;
+      }
     }
   }
 }
@@ -217,6 +259,24 @@
       }
       img {
         height: 130px !important;
+      }
+    }
+  }
+  .uploadpost{
+    width: 85% !important;
+    .imagepreview{
+      img{
+        width: 99%;
+      }
+    }
+  }
+  .popup{
+    .modal-content{
+      margin: auto !important;
+      width: 400px;
+      .catform{
+        width: 28px !important;
+        padding-left: 28px !important;
       }
     }
   }
@@ -335,6 +395,31 @@
       }
       img {
         height: 120px !important;
+      }
+    }
+  }
+  .uploadpost{
+    width: 90% !important;
+    .imagepreview{
+      img{
+        width: 99%;
+      }
+    }
+  }
+  #catform{
+    .catform{
+      width: 0px !important;
+      padding-left: 28px !important;
+      margin-right: 137px !important;
+    }
+  }
+  .popup{
+    .modal-content{
+      margin: auto !important;
+      width: 90% !important;
+      .catform{
+        width: 0px !important;
+        padding-left: 28px !important;
       }
     }
   }
