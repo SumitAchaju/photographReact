@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { useParams, NavLink, Outlet } from "react-router-dom";
+import { useParams, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAxios from "../../utils/useAxios";
 import Content from "../../Components/Content";
+import AuthContext from "../../context/AuthContext";
 
 export default function ExploreInner() {
   let { pid } = useParams();
   const api = useAxios();
   const [singlePost, setSinglePost] = useState(() => {});
+  let { edited } = useContext(AuthContext);
+  const go = useNavigate();
 
   const likePost = (id, action) => {
     api
@@ -22,8 +25,13 @@ export default function ExploreInner() {
   };
 
   useEffect(() => {
-    api.get(`singlepost/${pid}`).then((res) => setSinglePost(res.data));
-  }, [pid]);
+    api
+      .get(`singlepost/${pid}`)
+      .then((res) => setSinglePost(res.data))
+      .catch((error) => {
+        go("/");
+      });
+  }, [pid, edited]);
 
   return (
     <>

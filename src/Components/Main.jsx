@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import * as fun from "../Gui/js/function";
 import useAxios from "../utils/useAxios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PopUpModel from "./PopUpModel";
+import PopUpMsg from "./PopUpMsg";
 
 export default function Main() {
   let { LogoutUser, setUserData, userId, userData } = useContext(AuthContext);
@@ -30,6 +30,11 @@ export default function Main() {
       navigate("/friendsearch");
     }
   };
+  const profile_dropdown = () => {
+    const dropdownWindow = document.querySelector(".header-profile-dropdown");
+    dropdownWindow.classList.toggle("show-dropdown");
+  };
+
   return (
     <>
       <header>
@@ -59,7 +64,7 @@ export default function Main() {
             <i className="bi bi-bell-fill"></i>
           </div>
         </div>
-        <div onClick={fun.profile_dropdown}  className="header-profile">
+        <div onClick={profile_dropdown} className="header-profile">
           <img src={userData.profile_image} alt="profile" />
           <p>
             {userData.first_name} {userData.last_name}
@@ -86,7 +91,7 @@ export default function Main() {
               <li>
                 <Link to="/savedpost">
                   <div>
-                  <i className="bi bi-bookmark-fill"></i>
+                    <i className="bi bi-bookmark-fill"></i>
                     <p>Saved</p>
                   </div>
                 </Link>
@@ -99,13 +104,13 @@ export default function Main() {
         <div className="side-profile">
           <div className="side-profile-image">
             <Link to={`/profile/${userId}`}>
-            <img src={userData.profile_image} alt="" />
+              <img src={userData.profile_image} alt="" />
             </Link>
           </div>
           <Link to={`/profile/${userId}`}>
-          <h4>
-            {userData.first_name} {userData.last_name}
-          </h4>
+            <h4>
+              {userData.first_name} {userData.last_name}
+            </h4>
           </Link>
         </div>
         <nav>
@@ -144,11 +149,11 @@ export default function Main() {
         </nav>
       </aside>
       <div id="home">
-            <div className="container-mine flex">
-
-            <PopUpModel/>
-            </div>
-            </div>
+        <div className="container-mine flex">
+          <PopUpModel />
+          <PopUpMsg />
+        </div>
+      </div>
       <Outlet context={{ searchName: searchName }} />
     </>
   );

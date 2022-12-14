@@ -3,16 +3,22 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useAxios from "../../utils/useAxios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 export default function Post() {
   const [Preview, setPreview] = useState(() => []);
   const [category, setCategory] = useState([]);
   const api = useAxios();
   const go = useNavigate();
+  let { Message } = useContext(AuthContext);
 
   useEffect(() => {
     api.get("/postcategory/").then((res) => setCategory(res.data));
   }, []);
+  function clearPreview() {
+    setPreview([]);
+  }
 
   const removeDuplicates = (arr) => {
     let unique = [];
@@ -28,18 +34,27 @@ export default function Post() {
 
   const preview = (e) => {
     const files = e.target.files;
+    if (files) {
+      let pattern = /image-*/;
+      for (let i = 0; i < files.length; i++) {
+        if (!files[i].type.match(pattern)) {
+          Message("Invalid image format!!");
+          return;
+        }
+      }
+    }
     setPreview(removeDuplicates([...Preview, ...files]));
   };
 
   const uploadPost = (e) => {
     e.preventDefault();
     if (Preview.length === 0) {
-      alert("no image is selected");
+      Message("no image is selected");
       return;
     }
     let checkedbox = document.querySelectorAll("input[type=checkbox]:checked");
     if (checkedbox.length === 0) {
-      alert("you must select atleast one category!");
+      Message("you must select atleast one category!");
       return;
     }
     let categoryid = [];
@@ -57,8 +72,11 @@ export default function Post() {
       })
       .then((res) => {
         if (res.data.status === "success") {
-          alert("successfully uploaded");
+          Message("Successfully Uploaded Post!!");
           go(`/singlepost/${res.data.postid}`);
+          return;
+        } else {
+          Message("Something went wrong!!");
         }
       });
   };
@@ -82,6 +100,9 @@ export default function Post() {
                   alt=""
                 />
               ))}
+              <button className="clearpreview" onClick={clearPreview}>
+                Clear All
+              </button>
             </div>
           </div>
           <div className="selectimageform">

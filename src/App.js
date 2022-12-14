@@ -3,7 +3,6 @@ import "./Gui/scss/style.scss";
 import { Routes, Route } from "react-router-dom";
 import PrivateRoutes from "./utils/PrivateRouter";
 import { AuthProvider } from "./context/AuthContext";
-
 import Main from "./Components/Main";
 import Login from "./Pages/Authentication/login";
 import Register from "./Pages/Authentication/Register";

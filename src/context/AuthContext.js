@@ -21,7 +21,10 @@ export function AuthProvider({ children }) {
   );
 
   const [userData, setUserData] = useState({});
-  const[editId,setEditId] = useState(()=>0);
+  const [editId, setEditId] = useState(() => 0);
+  const [edited, setEdited] = useState(() => false);
+  const [trigger, setTrigger] = useState(() => false);
+  const [msg, setMsg] = useState(() => "");
 
   const LoginUser = async (e) => {
     e.preventDefault();
@@ -41,10 +44,9 @@ export function AuthProvider({ children }) {
       }
     } catch (error) {
       if (error.response.status === 401) {
-        alert("Wrong Username or Password");
+        Message("wrong username or password!!");
       } else {
-        alert("login Failed!!");
-        console.log(error);
+        Message("Something went Wrong!!");
       }
       e.target.username.value = "";
       e.target.password.value = "";
@@ -58,20 +60,32 @@ export function AuthProvider({ children }) {
     setUserData({});
     localStorage.removeItem("token");
   };
+  function Message(msg) {
+    document.getElementById("myModal1").style.display = "block";
+    setMsg(msg);
+    setTrigger(true);
+  }
 
   let contextData = {
     userData: userData,
     userId: userId,
     loginStatus: loginStatus,
     authToken: authToken,
-    editId:editId,
+    editId: editId,
+    edited: edited,
+    msg: msg,
+    trigger: trigger,
     setUserId: setUserId,
     setUserData: setUserData,
     setAuthToken: setAuthToken,
     LoginUser: LoginUser,
     LogoutUser: LogoutUser,
     setloginStatus: setloginStatus,
-    setEditId:setEditId
+    setEditId: setEditId,
+    setEdited: setEdited,
+    setMsg: setMsg,
+    setTrigger: setTrigger,
+    Message: Message,
   };
 
   return (

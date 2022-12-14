@@ -1,50 +1,55 @@
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../utils/useAxios";
 
 export default function PopUpModel() {
-  let { editId, setEditId } = useContext(AuthContext);
+  let { editId, edited, setEdited, Message } = useContext(AuthContext);
   const [postData, setPostData] = useState({});
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState([]);
   const api = useAxios();
-  const go = useNavigate();
 
   const closePopUp = () => {
-    setEditId(0);
     setPostData({});
     let modal = document.getElementById("myModal");
     modal.style.display = "none";
-    document.getElementById("popupedit").style.display="block"
-    document.getElementById("popupdelete").style.display="block"
+    document.getElementById("popupedit").style.display = "block";
+    document.getElementById("popupdelete").style.display = "block";
   };
 
   window.addEventListener("click", function (event) {
     let modal = document.getElementById("myModal");
     if (event.target === modal) {
       modal.style.display = "none";
-      setEditId(0);
       setPostData({});
-      document.getElementById("popupedit").style.display="block"
-    document.getElementById("popupdelete").style.display="block"
+      document.getElementById("popupedit").style.display = "block";
+      document.getElementById("popupdelete").style.display = "block";
     }
   });
   const editPost = () => {
     console.log(editId);
-    api.get(`/Post/${editId}`).then((res) => {setPostData(res.data);setCategoryId(res.data.category.map(data=>data.id))});
+    api.get(`/Post/${editId}`).then((res) => {
+      setPostData(res.data);
+      setCategoryId(res.data.category.map((data) => data.id));
+    });
     api.get("/postcategory/").then((res) => setCategory(res.data));
-    document.getElementById("popupedit").style.display="none"
-    document.getElementById("popupdelete").style.display="none"
+    document.getElementById("popupedit").style.display = "none";
+    document.getElementById("popupdelete").style.display = "none";
   };
   const deletePost = () => {
-    api.get(`deletepost/${editId}`).then(res=>{
-      if(res.data.status==="success"){
-        closePopUp()
+    api.get(`deletepost/${editId}`).then((res) => {
+      if (res.data.status === "success") {
+        if (edited) {
+          setEdited(false);
+        } else {
+          setEdited(true);
+        }
+        closePopUp();
+        Message("Successfully deleted Post");
       }
-    })
+    });
   };
   const updatePost = (e) => {
     e.preventDefault();
@@ -55,19 +60,26 @@ export default function PopUpModel() {
     }
     let categoryid = [];
     for (let i = 0; i < checkedbox.length; i++) {
+      if (checkedbox[i].value === "on") {
+        continue;
+      }
       categoryid.push(checkedbox[i].value);
     }
     let data = {
       discription: e.target.discrip.value,
       category: categoryid,
     };
-    api.post(`updatepost/${editId}`,data).then(res=>{
-      if(res.data.status==="success"){
-        go(`/singlepost/${res.data.postid}`)
-        closePopUp()
+    api.post(`updatepost/${editId}`, data).then((res) => {
+      if (res.data.status === "success") {
+        if (edited) {
+          setEdited(false);
+        } else {
+          setEdited(true);
+        }
+        closePopUp();
+        Message("Successfully Updated Post");
       }
-    })
-
+    });
   };
 
   return (
@@ -86,7 +98,9 @@ export default function PopUpModel() {
               <h2>Edit Post</h2>
             </div>
             <div className="modal-body">
-              <button id="popupedit" onClick={editPost}>Edit</button>
+              <button id="popupedit" onClick={editPost}>
+                Edit
+              </button>
               {postData.id ? (
                 <form onSubmit={updatePost}>
                   <label htmlFor="diseditpost">Description:</label>
@@ -107,7 +121,9 @@ export default function PopUpModel() {
                         <input
                           value={data.id}
                           type="checkbox"
-                          defaultChecked={categoryId.includes(data.id) ? "checked" : null}
+                          defaultChecked={
+                            categoryId.includes(data.id) ? "checked" : null
+                          }
                         />
                         <span className="checkmark" />
                       </label>
@@ -116,7 +132,9 @@ export default function PopUpModel() {
                   <button>update</button>
                 </form>
               ) : null}
-              <button id="popupdelete" onClick={deletePost}>Delete</button>
+              <button id="popupdelete" onClick={deletePost}>
+                Delete
+              </button>
             </div>
           </div>
         </div>

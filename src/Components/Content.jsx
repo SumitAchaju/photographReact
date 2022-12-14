@@ -3,17 +3,30 @@ import Slider from "./swipper";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
-export default function Content(props) {
+const Content = React.forwardRef((props, ref) => {
   let { userId, setEditId } = useContext(AuthContext);
   const popUp = (id) => {
-    setEditId(id)
+    setEditId(id);
     let modal = document.getElementById("myModal");
     modal.style.display = "block";
   };
+  function showText() {
+    let element = document.getElementsByClassName("content-discription");
+    for (let i = 0; i < element.length; i++) {
+      if (element[i].children.length == 2) {
+        if (element[i].children[1].checked) {
+          element[i].children[0].classList.add("show-all");
+          console.log(element[i].children[0].style);
+        } else {
+          element[i].children[0].classList.remove("show-all");
+        }
+      }
+    }
+  }
   const baseUrlImg = "http://127.0.0.1:8000";
   return (
     <>
-      <div className="content">
+      <div ref={ref} className="content">
         <div className="content-profile">
           <div>
             <Link to={`/profile/${props.data.user.id}`}>
@@ -27,7 +40,12 @@ export default function Content(props) {
               </p>
             </Link>
           </div>
-          <i onClick={props.data.user.id===userId?()=>popUp(props.data.id):null} className="bi bi-three-dots-vertical"></i>
+          <i
+            onClick={
+              props.data.user.id === userId ? () => popUp(props.data.id) : null
+            }
+            className="bi bi-three-dots-vertical"
+          ></i>
         </div>
         <div className="content-image">
           <div className="image">
@@ -56,6 +74,7 @@ export default function Content(props) {
           <div className="save">
             {props.data.saved_by.find((save) => save.id === userId) ? (
               <i
+                style={{ color: "white" }}
                 onClick={() => props.likePost(props.data.id, "unsave")}
                 className="bi bi-bookmark-fill"
               ></i>
@@ -74,7 +93,16 @@ export default function Content(props) {
             </Link>
           </div>
           <div className="content-discription">
-            <p>{props.data.caption}</p>
+            <p className="cutoff">
+              <span className="innercutoff">{props.data.caption}</span>
+            </p>
+            {props.data.caption.length > 120 ? (
+              <input
+                onChange={showText}
+                className="show-text"
+                type="checkbox"
+              />
+            ) : null}
           </div>
           <div className="content-comment">
             <Link to={`/singlepost/${props.data.id}/comment/`}>
@@ -85,4 +113,6 @@ export default function Content(props) {
       </div>
     </>
   );
-}
+});
+
+export default Content;

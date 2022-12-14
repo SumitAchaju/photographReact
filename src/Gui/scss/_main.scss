@@ -114,6 +114,10 @@ header {
       &::selection {
         color: none;
       }
+      transition: 0.4s;
+      &:hover {
+        color: skyblue;
+      }
     }
     i {
       color: $icon-color;
@@ -131,12 +135,21 @@ header {
         box-shadow: 0px 0px 8px 0px rgb(193, 193, 193);
         li {
           line-height: 40px;
-          padding: 0 25px;
-          transition: .4s;
-          &:hover{
+
+          transition: 0.4s;
+          &:hover {
             background-color: gray;
           }
           a {
+            width: 100%;
+            padding: 0 25px;
+            display: inline-block;
+            &:hover i {
+              color: white;
+            }
+            &:hover p {
+              color: white !important;
+            }
             div {
               i {
                 font-size: 25px;
@@ -198,6 +211,9 @@ aside {
         border-radius: 0 40px 40px 0;
         color: white;
         background-color: $btn-color;
+        &:hover {
+          color: white !important;
+        }
       }
       li {
         line-height: 60px;
@@ -322,12 +338,31 @@ aside {
   text-align: center;
   padding-bottom: 10px;
 }
-.noposts{
+.noposts {
   padding: 50px 50px;
   margin-top: 120px;
-  p{
+  p {
     color: $text-color;
     font-size: 22px;
+  }
+}
+.show-all {
+  max-height: none !important;
+}
+i {
+  transition: 0.4s;
+  &:hover {
+    color: skyblue !important;
+  }
+}
+a {
+  p {
+    transition: 0.5s;
+  }
+  transition: 0.5s;
+  &:hover,
+  &:hover p {
+    color: skyblue !important;
   }
 }
 #home {
@@ -417,13 +452,34 @@ aside {
       }
     }
     .content-discription {
+      position: relative;
       p {
         color: $text-color;
         font-size: 15px;
-        line-height: 22px;
+        line-height: $line-height;
         margin: 5px 0;
+        max-height: $max-lines * $line-height;
         overflow: hidden;
-        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+      .show-text {
+        appearance: none;
+        position: absolute;
+        bottom: -20px;
+        right: 15px;
+        &:hover::before {
+          color: skyblue;
+        }
+        &::before {
+          content: "more";
+          font-size: 15px;
+          cursor: pointer;
+          color: rgb(181, 181, 181);
+          transition: 0.4s;
+        }
+        &:checked::before {
+          content: "show less" !important;
+        }
       }
     }
     .content-comment {
@@ -527,13 +583,13 @@ aside {
         margin-left: 10px;
       }
       a:hover {
-        color: white;
+        color: white !important;
         background-color: $btn-hover;
       }
       .followed {
         background-color: $followed-color;
         &:hover {
-          color: white;
+          color: white !important;
           background-color: $unfollow-hover;
         }
       }
@@ -543,6 +599,26 @@ aside {
 #login {
   width: 300px;
   margin: 50px auto;
+  .showpassword {
+    position: relative;
+    .showpasswordtext {
+      position: absolute;
+      top: 1px;
+      right: 0px;
+      border-radius: 0 20px 20px 0;
+      background-color: white;
+      i {
+        cursor: pointer;
+        font-size: 17px;
+        padding: 11px 8px;
+        display: block;
+        color: $content-color;
+        &:hover {
+          color: $content-color !important;
+        }
+      }
+    }
+  }
   h1 {
     color: purple;
     font-family: "Lacquer", cursive;
@@ -598,6 +674,26 @@ aside {
 #register {
   width: 300px;
   margin: 30px auto;
+  .showpassword {
+    position: relative;
+    .showpasswordtext {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      border-radius: 0 20px 20px 0;
+      background-color: white;
+      i {
+        cursor: pointer;
+        font-size: 17px;
+        padding: 7px 8px;
+        display: block;
+        color: $content-color;
+        &:hover {
+          color: $content-color !important;
+        }
+      }
+    }
+  }
   h1 {
     color: purple;
     font-family: "Lacquer", cursive;
@@ -686,6 +782,9 @@ aside {
       color: white;
       background-color: $btn-color;
       border: 0;
+      &:hover {
+        color: white !important;
+      }
     }
   }
   .likes-comment-con {
@@ -794,6 +893,9 @@ aside {
       a {
         color: $text-color;
         text-align: center;
+        &:hover {
+          color: white !important;
+        }
       }
     }
   }
@@ -822,18 +924,20 @@ aside {
       background-color: $btn-color;
       transition: 0.3s;
       &:hover {
-        background-color: $btn-hover;
+        background-color: $btn-hover !important;
+        color: white !important;
       }
     }
   }
   .profile-work {
     p {
-      color: $text-color !important;
+      color: rgb(209, 209, 209) !important;
     }
   }
   .profile-bio {
     p {
-      color: $text-color !important;
+      color: rgb(176, 176, 176) !important;
+      font-size: 14px;
     }
   }
   .other-profile-follow-message {
@@ -850,6 +954,7 @@ aside {
       transition: 0.3s;
       &:hover {
         background-color: $btn-hover;
+        color: white !important;
       }
     }
 
@@ -857,6 +962,7 @@ aside {
       background-color: green;
       &:hover {
         background-color: $your-profile-hover;
+        color: white !important;
       }
     }
   }
@@ -941,6 +1047,26 @@ aside {
   }
 }
 .profile-edits {
+  .showpassword {
+    position: relative;
+    .showpasswordtext {
+      position: absolute;
+      top: 0px;
+      right: 5px;
+      border-radius: 0 20px 20px 0;
+      background-color: rgb(162, 162, 162);
+      i {
+        cursor: pointer;
+        font-size: 17px;
+        padding: 7px 8px;
+        display: block;
+        color: $content-color;
+        &:hover {
+          color: $content-color !important;
+        }
+      }
+    }
+  }
   .flex {
     align-items: flex-start;
   }
@@ -1041,6 +1167,18 @@ aside {
     margin-bottom: 10px;
   }
   .imagepreview {
+    position: relative;
+    .clearpreview {
+      position: absolute;
+      right: 10px;
+      top: 50px;
+      color: white;
+      background-color: coral;
+      padding: 5px 10px;
+      font-size: 17px;
+      border: 0;
+      cursor: pointer;
+    }
     .imagepreviewbox {
       max-height: 500px;
       overflow: auto;
@@ -1235,6 +1373,11 @@ aside {
     animation-name: animatetop;
     animation-duration: 0.4s;
   }
+  .popupmsg {
+    color: $text-color;
+    font-size: 18px;
+    padding-bottom: 5px;
+  }
 
   /* Add Animation */
   @-webkit-keyframes animatetop {
@@ -1265,7 +1408,7 @@ aside {
     float: right;
     font-size: 28px;
     font-weight: bold;
-    transition: .4s;
+    transition: 0.4s;
   }
 
   .close:hover,
@@ -1285,13 +1428,13 @@ aside {
     padding: 2px 16px;
     margin-bottom: 25px;
     margin-top: 15px;
-    label{
+    label {
       color: $text-color;
       font-size: 19px;
       display: inline-block;
       margin-top: 0px;
     }
-    textarea{
+    textarea {
       width: 100%;
       margin: 0px 0 10px 0;
       resize: none;
@@ -1299,12 +1442,12 @@ aside {
       font-size: 18px;
       padding: 10px;
       background-color: rgb(91, 91, 91);
-      border:0;
-      &:focus{
+      border: 0;
+      &:focus {
         outline: 3px solid rgb(68, 125, 148);
       }
     }
-    button{
+    button {
       color: $text-color;
       background-color: $content-color;
       cursor: pointer;
@@ -1317,12 +1460,11 @@ aside {
       border-right: 0;
       border-left: 0;
       display: block;
-      transition: .4s;
-      &:hover{
+      transition: 0.4s;
+      &:hover {
         color: white;
         background-color: gray;
       }
     }
   }
-
 }

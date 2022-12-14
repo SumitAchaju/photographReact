@@ -6,7 +6,7 @@ import useAxios from "../../utils/useAxios";
 export default function ProfileEdits() {
   const [userInfo, setUserInfo] = useState();
   const api = useAxios();
-  let { userId, setUserData } = useContext(AuthContext);
+  let { userId, setUserData, Message } = useContext(AuthContext);
   useEffect(() => {
     api.get(`user/${userId}`).then((res) => setUserInfo(res.data));
   }, [userId]);
@@ -35,12 +35,12 @@ export default function ProfileEdits() {
       if (res.data.status === "success") {
         api.get(`user/${userId}`).then((res) => {
           setUserData(res.data);
-          alert("profileInfo sucessfully updated!!");
+          Message("profileInfo sucessfully updated!!");
         });
       } else if (res.data.status === "email exists") {
-        alert("account with this email already exists!!");
+        Message("account with this email already exists!!");
       } else if (res.data.status === "error") {
-        alert("invalid email");
+        Message("invalid email");
       }
     });
   };
@@ -53,13 +53,13 @@ export default function ProfileEdits() {
     api
       .patch("updateprofile/", {
         username: e.target.username.value,
-        email:userInfo.email
+        email: userInfo.email,
       })
       .then((res) => {
         if (res.data.status === "error") {
-          alert("Username already taken!!");
+          Message("Username already taken!!");
         } else {
-          alert("Username successfully updated");
+          Message("Username successfully updated");
         }
       });
   };
@@ -75,11 +75,11 @@ export default function ProfileEdits() {
         )
         .then((res) => {
           if (res.data.status === "error") {
-            alert("problem");
+            Message("Something went wrong!!");
           } else if (res.data.status === "success") {
             api.get(`user/${userId}`).then((res) => {
               setUserData(res.data);
-              alert("Profile Picture sucessfully updated!!");
+              Message("Profile Picture sucessfully updated!!");
             });
           }
         });
@@ -94,24 +94,24 @@ export default function ProfileEdits() {
         password: e.target.newpass.value,
       };
       if (e.target.newpass.value.length < 8) {
-        alert("password must be atleast 8 characters");
+        Message("password must be atleast 8 characters");
         return;
       }
       api.patch("changepassword/", data).then((res) => {
         console.log(res.data.status);
         if (res.data.status === "success") {
-          alert("password sucessfully changed");
+          Message("password sucessfully changed");
           e.target.currentpass.value = "";
           e.target.newpass.value = "";
           e.target.confirmpass.value = "";
         } else if (res.data.status === "wrong_current_password") {
-          alert("Wrong Current Password");
+          Message("Wrong Current Password");
         } else if (res.data.status === "Invalid_password") {
-          alert("Too Comman Password !!");
+          Message("Too Comman Password !!");
         }
       });
     } else {
-      alert("New Password and Confirm Password didnot Match!!");
+      Message("New Password and Confirm Password didnot Match!!");
       e.target.confirmpass.value = "";
       e.target.newpass.value = "";
     }
@@ -120,9 +120,50 @@ export default function ProfileEdits() {
   const preview = (e) => {
     const [file] = e.target.files;
     if (file) {
+      let pattern = /image-*/;
+      if (!file.type.match(pattern)) {
+        Message("Invalid image format!!");
+        return;
+      }
       document.getElementById("preview").src = URL.createObjectURL(file);
     }
   };
+  function showpassword(event) {
+    let element = document.querySelector("#pe-np");
+    if (element.type === "password") {
+      element.type = "text";
+      if (event.target.classList.contains("bi-eye-fill")) {
+        console.log("work");
+
+        event.target.classList.remove("bi-eye-fill");
+        event.target.classList.add("bi-eye-slash-fill");
+      }
+    } else {
+      element.type = "password";
+      if (event.target.classList.contains("bi-eye-slash-fill")) {
+        event.target.classList.add("bi-eye-fill");
+        event.target.classList.remove("bi-eye-slash-fill");
+      }
+    }
+  }
+  function showcppassword(event) {
+    let element = document.querySelector("#pe-cfp");
+    if (element.type === "password") {
+      element.type = "text";
+      if (event.target.classList.contains("bi-eye-fill")) {
+        console.log("work");
+
+        event.target.classList.remove("bi-eye-fill");
+        event.target.classList.add("bi-eye-slash-fill");
+      }
+    } else {
+      element.type = "password";
+      if (event.target.classList.contains("bi-eye-slash-fill")) {
+        event.target.classList.add("bi-eye-fill");
+        event.target.classList.remove("bi-eye-slash-fill");
+      }
+    }
+  }
   if (!userInfo) {
     return null;
   }
@@ -223,6 +264,7 @@ export default function ProfileEdits() {
               <form onSubmit={changePassword}>
                 <h4>Change Password</h4>
                 <label htmlFor="pe-cp">Current Password</label>
+
                 <input
                   id="pe-cp"
                   placeholder="previous password..."
@@ -231,21 +273,37 @@ export default function ProfileEdits() {
                   required
                 />
                 <label htmlFor="pe-np">New Password</label>
-                <input
-                  id="pe-np"
-                  placeholder="enter password..."
-                  name="newpass"
-                  type="password"
-                  required
-                />
+                <div className="showpassword">
+                  <input
+                    id="pe-np"
+                    placeholder="enter password..."
+                    name="newpass"
+                    type="password"
+                    required
+                  />
+                  <span
+                    className="showpasswordtext"
+                    onClick={(event) => showpassword(event)}
+                  >
+                    <i className="bi bi-eye-fill"></i>
+                  </span>
+                </div>
                 <label htmlFor="pe-cfp">Confirm Password</label>
-                <input
-                  id="pe-cfp"
-                  placeholder="enter password again..."
-                  name="confirmpass"
-                  type="password"
-                  required
-                />
+                <div className="showpassword">
+                  <input
+                    id="pe-cfp"
+                    placeholder="enter password again..."
+                    name="confirmpass"
+                    type="password"
+                    required
+                  />
+                  <span
+                    className="showpasswordtext"
+                    onClick={(event) => showcppassword(event)}
+                  >
+                    <i className="bi bi-eye-fill"></i>
+                  </span>
+                </div>
                 <button type="sumbit">Change</button>
               </form>
             </div>
