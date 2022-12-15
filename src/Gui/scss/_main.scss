@@ -1463,3 +1463,116 @@ a {
     }
   }
 }
+
+#more {
+  .content {
+    padding: 20px 30px;
+    label {
+      color: $text-color;
+      font-size: 19px;
+      display: block;
+      margin-left: 5px;
+    }
+    textarea {
+      width: 100%;
+      border: 0;
+      color: white;
+      background-color: #666666;
+      padding: 3px 8px;
+      font-size: 17px;
+      height: 83px;
+      border-radius: 8px;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      resize: none;
+      margin: 10px 0;
+      &:focus {
+        border: 0;
+        outline: 3px solid rgb(79, 124, 142);
+      }
+    }
+    .links {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid gray;
+      border-radius: 10px;
+      @include flex;
+      flex-wrap: wrap;
+      span {
+        color: $text-color;
+        font-size: 18px;
+        display: block;
+      }
+      a {
+        display: block;
+        color: white;
+        padding: 5px 10px;
+        background-color: $btn-color;
+        text-align: center;
+        &:hover {
+          color: white !important;
+          background-color: $btn-hover !important;
+        }
+      }
+    }
+    .moresearch {
+      margin-bottom: 10px;
+      input {
+        width: 80%;
+        height: 40px;
+        border-radius: 30px;
+        border: 0;
+        color: white;
+        background-color: #666666;
+        padding: 0 15px;
+        &:focus {
+          border: 0;
+          outline: 3px solid rgb(79, 124, 142);
+        }
+      }
+      button {
+        border: 0;
+        background-color: $content-color;
+        margin-left: 10px;
+        cursor: pointer;
+        padding: 10px;
+        i {
+          font-size: 20px;
+          color: $icon-color;
+        }
+      }
+    }
+    .moresuggestion {
+      form {
+        > div {
+          position: relative;
+        }
+      }
+      button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border: 0;
+        padding: 5px 10px;
+        display: inline-block;
+        font-size: 18px;
+        margin-bottom: 15px;
+        transition: 0.4s;
+        border-radius: 5px;
+        background-color: $btn-color;
+        cursor: pointer;
+        &:hover {
+          background-color: $btn-hover;
+        }
+      }
+    }
+    h4 {
+      color: $text-color;
+      margin-top: 8px;
+    }
+    p {
+      color: rgb(184, 184, 184);
+    }
+  }
+}

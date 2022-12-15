@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import FollowCard from "../../Components/FollowCard";
 import useAxios from "../../utils/useAxios";
 
 export default function FriendSearch() {
   const [followSuggestion, setFollowSuggestion] = useState({ user: [] });
   const api = useAxios();
-  let { searchName } = useOutletContext();
+  let { searchName } = useParams();
   useEffect(() => {
     api
       .post("followsuggestion/", { searchname: `${searchName}` })

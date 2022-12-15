@@ -21,6 +21,7 @@ import ProfileEdits from "./Pages/Profile/ProfileEdits";
 import Chat from "./Pages/Chats/Chat";
 import Post from "./Pages/Posts/Post";
 import SavedPost from "./Pages/Saved/SavedPost";
+import More from "./Pages/More/More";
 
 function App() {
   return (
@@ -44,8 +45,9 @@ function App() {
                 <Route index element={<Likes />} />
                 <Route path="comment" element={<Comment />} />
               </Route>
-              <Route path="friendsearch" element={<FriendSearch />} />
+              <Route path="friendsearch/:searchName" element={<FriendSearch />} />
               <Route path="savedpost" element={<SavedPost />} />
+              <Route path="more" element={<More />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

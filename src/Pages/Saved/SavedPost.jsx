@@ -118,6 +118,9 @@ export default function SavedPost() {
         {posts.length !== 0 && (
           <div id="home">
             <div className="container-mine flex">
+              <span className="searchresultname">{totalPost} Saved Posts</span>
+            </div>
+            <div className="container-mine flex">
               {posts.map((data, index) => {
                 if (index + 1 === posts.length) {
                   return (

@@ -3,13 +3,11 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../utils/useAxios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import PopUpModel from "./PopUpModel";
 import PopUpMsg from "./PopUpMsg";
 
 export default function Main() {
   let { LogoutUser, setUserData, userId, userData } = useContext(AuthContext);
-  const [searchName, setSearchName] = useState("");
   const api = useAxios();
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,8 +24,7 @@ export default function Main() {
     e.preventDefault();
     const value = e.target.searchbox.value;
     if (value) {
-      setSearchName(value);
-      navigate("/friendsearch");
+      navigate(`friendsearch/${value}`);
     }
   };
   const profile_dropdown = () => {
@@ -154,7 +151,7 @@ export default function Main() {
           <PopUpMsg />
         </div>
       </div>
-      <Outlet context={{ searchName: searchName }} />
+      <Outlet />
     </>
   );
 }

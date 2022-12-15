@@ -66,6 +66,13 @@ export default function ProfileEdits() {
 
   const updateProfileImage = (e) => {
     e.preventDefault();
+    const [file] = e.target.image.files;
+    if (file) {
+      let pattern = /image-*/;
+      if (!file.type.match(pattern)) {
+        Message("Invalid image format!!");
+        return;
+      }}
     if (e.target.image.files) {
       api
         .patch(
