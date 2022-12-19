@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 export default function FollowCard(props) {
-  const baseUrlImg = "http://127.0.0.1:8000";
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   let { userId } = useContext(AuthContext);
   return (
     <>

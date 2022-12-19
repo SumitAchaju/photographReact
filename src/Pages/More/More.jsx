@@ -98,6 +98,7 @@ export default function More() {
                     type="text"
                     name="suggestion"
                     id="more-sugg"
+                    placeholder="Your Suggestions..."
                     required
                   />
                   <button>Send</button>
@@ -113,6 +114,7 @@ export default function More() {
                     type="text"
                     name="feedback"
                     id="more-fed"
+                    placeholder="Your Feedback..."
                     required
                   />
                   <button>Send</button>

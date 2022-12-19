@@ -349,7 +349,14 @@ aside {
 .show-all {
   max-height: none !important;
 }
-
+input::placeholder{
+  color: rgb(185, 185, 185);
+  opacity: 1;
+}
+textarea::placeholder{
+  color: rgb(185, 185, 185);
+  opacity: 1;
+}
 a {
   p {
     transition: 0.5s;
@@ -399,12 +406,13 @@ a {
       .likes {
         position: absolute;
         left: 20px;
-        bottom: 0px;
+        bottom: -5px;
         display: flex;
         align-items: center;
         gap: 30px;
         visibility: hidden;
         opacity: 0;
+        z-index: 99;
         a {
           color: white;
         }

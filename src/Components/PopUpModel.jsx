@@ -29,7 +29,6 @@ export default function PopUpModel() {
     }
   });
   const editPost = () => {
-    console.log(editId);
     api.get(`/Post/${editId}`).then((res) => {
       setPostData(res.data);
       setCategoryId(res.data.category.map((data) => data.id));

@@ -22,6 +22,7 @@ import Chat from "./Pages/Chats/Chat";
 import Post from "./Pages/Posts/Post";
 import SavedPost from "./Pages/Saved/SavedPost";
 import More from "./Pages/More/More";
+import NotFound from "./Pages/404NotFound";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
               <Route path="friendsearch/:searchName" element={<FriendSearch />} />
               <Route path="savedpost" element={<SavedPost />} />
               <Route path="more" element={<More />} />
+          <Route path="/*" element={<NotFound />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

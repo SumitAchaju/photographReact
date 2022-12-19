@@ -15,8 +15,6 @@ export default function Login() {
     if (element.type === "password") {
       element.type = "text";
       if (event.target.classList.contains("bi-eye-fill")) {
-        console.log("work");
-
         event.target.classList.remove("bi-eye-fill");
         event.target.classList.add("bi-eye-slash-fill");
       }

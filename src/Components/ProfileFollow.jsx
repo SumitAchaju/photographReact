@@ -4,7 +4,7 @@ import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 export default function ProfileFollow(props) {
-  const baseUrlImg = "http://127.0.0.1:8000";
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   let { userId } = useContext(AuthContext);
   return (
     <>

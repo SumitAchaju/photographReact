@@ -6,15 +6,15 @@ import useAxios from "../../utils/useAxios";
 
 export default function Comment() {
   let { data, setData } = useOutletContext();
-  let { userId } = useContext(AuthContext);
-  const baseUrlImg = "http://127.0.0.1:8000";
+  let { userId,Message } = useContext(AuthContext);
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const api = useAxios();
 
   const addComment = (e) => {
     e.preventDefault();
     for (let comment of data.comment) {
       if (comment.comment_by.id === userId) {
-        alert("comment already exist!!");
+        Message("comment already exist!!");
         return;
       }
     }
@@ -34,7 +34,6 @@ export default function Comment() {
       setData(res.data);
     });
   };
-  console.log(data.comment);
   return (
     <>
       {data && (

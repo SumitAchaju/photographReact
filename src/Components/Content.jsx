@@ -13,17 +13,16 @@ const Content = React.forwardRef((props, ref) => {
   function showText() {
     let element = document.getElementsByClassName("content-discription");
     for (let i = 0; i < element.length; i++) {
-      if (element[i].children.length == 2) {
+      if (element[i].children.length === 2) {
         if (element[i].children[1].checked) {
           element[i].children[0].classList.add("show-all");
-          console.log(element[i].children[0].style);
         } else {
           element[i].children[0].classList.remove("show-all");
         }
       }
     }
   }
-  const baseUrlImg = "http://127.0.0.1:8000";
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   return (
     <>
       <div ref={ref} className="content">

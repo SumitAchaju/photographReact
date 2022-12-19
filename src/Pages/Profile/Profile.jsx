@@ -12,7 +12,7 @@ export default function Profile() {
   let { uid } = useParams();
   let { userId } = useContext(AuthContext);
   const api = useAxios();
-  const baseUrlImg = "http://127.0.0.1:8000";
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const [follow, setFollow] = useState(() => {});
   const [level, setLevel] = useState(() => 10);
   const { loading, posts, hasMore, setPosts, totalPost } = useInfiniteScroll(

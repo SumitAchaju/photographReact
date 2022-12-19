@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function Slider(props) {
-  const baseUrlImg = "http://127.0.0.1:8000";
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const [height, setHeight] = useState();
   let img = new Image();
   img.onload = () => {

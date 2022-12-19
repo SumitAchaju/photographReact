@@ -52,8 +52,7 @@ export default function ProfileEdits() {
     }
     api
       .patch("updateprofile/", {
-        username: e.target.username.value,
-        email: userInfo.email,
+        username: e.target.username.value
       })
       .then((res) => {
         if (res.data.status === "error") {
@@ -77,7 +76,7 @@ export default function ProfileEdits() {
       api
         .patch(
           "updateprofile/",
-          { profile_image: e.target.image.files[0], email: userInfo.email },
+          { profile_image: e.target.image.files[0] },
           { headers: { "Content-Type": "multipart/form-data" } }
         )
         .then((res) => {
@@ -105,7 +104,6 @@ export default function ProfileEdits() {
         return;
       }
       api.patch("changepassword/", data).then((res) => {
-        console.log(res.data.status);
         if (res.data.status === "success") {
           Message("password sucessfully changed");
           e.target.currentpass.value = "";
@@ -140,8 +138,6 @@ export default function ProfileEdits() {
     if (element.type === "password") {
       element.type = "text";
       if (event.target.classList.contains("bi-eye-fill")) {
-        console.log("work");
-
         event.target.classList.remove("bi-eye-fill");
         event.target.classList.add("bi-eye-slash-fill");
       }
@@ -158,8 +154,6 @@ export default function ProfileEdits() {
     if (element.type === "password") {
       element.type = "text";
       if (event.target.classList.contains("bi-eye-fill")) {
-        console.log("work");
-
         event.target.classList.remove("bi-eye-fill");
         event.target.classList.add("bi-eye-slash-fill");
       }

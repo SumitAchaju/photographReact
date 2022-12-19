@@ -3,7 +3,7 @@ import { Link, useOutletContext } from "react-router-dom";
 
 export default function Likes() {
   let { data } = useOutletContext();
-  const baseUrlImg = "http://127.0.0.1:8000";
+  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   return (
     <>
       <div className="likes-comment-con">

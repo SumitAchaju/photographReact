@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
   const LoginUser = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.post("http://127.0.0.1:8000/api/token/", {
+      let response = await axios.post("https://sumitachaju.pythonanywhere.com/api/token/", {
         username: `${e.target.username.value}`,
         password: `${e.target.password.value}`,
       });
