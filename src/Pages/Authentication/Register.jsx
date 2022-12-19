@@ -34,12 +34,12 @@ export default function Register() {
       password2: e.target.confirmpassword.value,
     };
     axios
-      .post("http://127.0.0.1:8000/register/", registerData)
+      .post("https://sumitachaju.pythonanywhere.com/register/", registerData)
       .then((res) => {
         if (res.status === 201) {
           try {
             axios
-              .post("http://127.0.0.1:8000/api/token/", {
+              .post("https://sumitachaju.pythonanywhere.com/api/token/", {
                 username: `${e.target.username.value}`,
                 password: `${e.target.password.value}`,
               })
