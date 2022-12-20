@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { DataProvider } from "./DataContext";
 
 const AuthContext = createContext();
 export default AuthContext;
@@ -89,6 +90,8 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextData}>
+      <DataProvider>{children}</DataProvider>
+    </AuthContext.Provider>
   );
 }

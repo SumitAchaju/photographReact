@@ -1,15 +1,14 @@
 import React, { useCallback, useState } from "react";
+import { useContext } from "react";
 import Content from "../Components/Content";
 import useInfiniteScroll from "../Components/InfiniteScroll";
+import DataContext from "../context/DataContext";
 import useAxios from "../utils/useAxios";
 
 export default function Home() {
   const api = useAxios();
-  const [level, setLevel] = useState(() => 10);
-  const { loading, posts, hasMore, setPosts } = useInfiniteScroll(
-    "/friendposts/",
-    level
-  );
+  const {homeValue} = useContext(DataContext);
+  const{level,setLevel,loading,posts,hasMore,setPosts} = homeValue
   const observer = React.createRef();
   const lastPostRef = useCallback(
     (node) => {
@@ -98,7 +97,7 @@ export default function Home() {
             </div>
             {loading === true ? (
               <div className="container-mine flex">
-                <p style={{ color: "white" }}>Loading...</p>
+                <h2 style={{ color: "white" }}>Loading...</h2>
               </div>
             ) : (
               <div className="container-mine flex">
@@ -136,7 +135,7 @@ export default function Home() {
             </div>
             {loading === true ? (
               <div className="container-mine flex">
-                <p style={{ color: "white" }}>Loading...</p>
+                <h2 style={{ color: "white" }}>Loading...</h2>
               </div>
             ) : (
               <div className="container-mine flex">

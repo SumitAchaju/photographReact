@@ -1,17 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import DataContext from "../../context/DataContext";
 
 export default function Explore() {
-  const [category, setCategory] = useState([]);
-  const api = useAxios();
-
-  useEffect(() => {
-    api.get("/postcategory/").then((res) => setCategory(res.data));
-  }, []);
-
+  const{category} = useContext(DataContext)
   return (
     <>
       <div id="explore">

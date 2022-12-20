@@ -1,16 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useContext } from "react";
 import FollowCard from "../../Components/FollowCard";
+import DataContext from "../../context/DataContext";
 import useAxios from "../../utils/useAxios";
 
 export default function Follow() {
-  const [followSuggestion, setFollowSuggestion] = useState({});
   const api = useAxios();
-  useEffect(() => {
-    api.get("followsuggestion/").then((res) => setFollowSuggestion(res.data));
-  }, []);
-
+  const {followSuggestion,setFollowSuggestion} = useContext(DataContext)
   const unFollow = (unFollowId) => {
     api.get(`removefriend/${unFollowId}`).then((res) => {
       if (res.data.status === "success") {

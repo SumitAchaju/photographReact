@@ -5,17 +5,14 @@ import useAxios from "../../utils/useAxios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import DataContext from "../../context/DataContext";
 
 export default function Post() {
   const [Preview, setPreview] = useState(() => []);
-  const [category, setCategory] = useState([]);
   const api = useAxios();
   const go = useNavigate();
   let { Message } = useContext(AuthContext);
-
-  useEffect(() => {
-    api.get("/postcategory/").then((res) => setCategory(res.data));
-  }, []);
+  const {categoryPost} = useContext(DataContext)
   function clearPreview() {
     setPreview([]);
   }
@@ -142,7 +139,7 @@ export default function Post() {
                 Select Image Category:
               </label>
               <div id="catform">
-                {category.map((data) => (
+                {categoryPost.map((data) => (
                   <label key={data.id} className="catform">
                     {data.title}
                     <input

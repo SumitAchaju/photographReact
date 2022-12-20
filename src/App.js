@@ -46,10 +46,13 @@ function App() {
                 <Route index element={<Likes />} />
                 <Route path="comment" element={<Comment />} />
               </Route>
-              <Route path="friendsearch/:searchName" element={<FriendSearch />} />
+              <Route
+                path="friendsearch/:searchName"
+                element={<FriendSearch />}
+              />
               <Route path="savedpost" element={<SavedPost />} />
               <Route path="more" element={<More />} />
-          <Route path="/*" element={<NotFound />} />
+              <Route path="/*" element={<NotFound />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

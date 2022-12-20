@@ -134,6 +134,11 @@ export default function ExploreInner() {
                 }
               })}
             </div>
+            {loading && (
+              <div className="container-mine flex">
+                <h2 style={{ color: "white" }}>Loading...</h2>
+              </div>
+            )}
           </div>
         )}
       </>

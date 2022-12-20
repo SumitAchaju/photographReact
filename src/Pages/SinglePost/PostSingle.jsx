@@ -5,7 +5,7 @@ import useAxios from "../../utils/useAxios";
 import Content from "../../Components/Content";
 import AuthContext from "../../context/AuthContext";
 
-export default function ExploreInner() {
+export default function PostSingle() {
   let { pid } = useParams();
   const api = useAxios();
   const [singlePost, setSinglePost] = useState(() => {});
