@@ -166,7 +166,16 @@ export default function ProfileEdits() {
     }
   }
   if (!userInfo) {
-    return null;
+    return (
+      <div className="container-mine flex">
+      <div className="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    );
   }
   return (
     <>

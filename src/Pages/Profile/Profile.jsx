@@ -72,7 +72,7 @@ export default function Profile() {
   if (window.screen.width > 1024) {
     return (
       <>
-        {posts && follow && (
+        {posts && follow ? (
           <div id="home">
             <ProfileInfo
               userfriend={follow}
@@ -84,6 +84,7 @@ export default function Profile() {
               Follow={Follow}
             />
             {posts.length ? (
+              <div>
               <div className="container-mine flex">
                 <div className="content-column1">
                   {posts.map((data, index) => {
@@ -138,6 +139,17 @@ export default function Profile() {
                   })}
                 </div>
               </div>
+                {loading && (
+                  <div className="container-mine flex">
+                  <div className="lds-ring1">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  </div>
+                )}
+                </div>
             ) : (
               <div id="userprofilepostnot" className="container-mine flex">
                 <div className="content">
@@ -146,13 +158,22 @@ export default function Profile() {
               </div>
             )}
           </div>
+        ) : (
+          <div className="container-mine flex">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
         )}
       </>
     );
   } else {
     return (
       <>
-        {posts && follow && (
+        {posts && follow ? (
           <div id="home">
             <ProfileInfo
               userfriend={follow}
@@ -181,6 +202,14 @@ export default function Profile() {
                     );
                   }
                 })}
+                {loading && (
+                  <div className="lds-ring1">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                )}
               </div>
             ) : (
               <div id="userprofilepostnot" className="container-mine flex">
@@ -189,6 +218,15 @@ export default function Profile() {
                 </div>
               </div>
             )}
+          </div>
+        ) : (
+          <div className="container-mine flex">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </div>
         )}
       </>

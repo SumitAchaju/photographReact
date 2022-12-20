@@ -44,7 +44,7 @@ export default function SavedPost() {
   if (window.screen.width > 1024) {
     return (
       <>
-        {posts.length !== 0 && (
+        {posts.length !== 0 ? (
           <div id="home">
             <div className="container-mine flex">
               <span className="searchresultname">{totalPost} Saved Posts</span>
@@ -105,9 +105,23 @@ export default function SavedPost() {
             </div>
             {loading && (
               <div className="container-mine flex">
-                <h2 style={{ color: "white" }}>Loading...</h2>
+                <div className="lds-ring1">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             )}
+          </div>
+        ) : (
+          <div className="container-mine flex">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </div>
         )}
       </>
@@ -115,7 +129,7 @@ export default function SavedPost() {
   } else {
     return (
       <>
-        {posts.length !== 0 && (
+        {posts.length !== 0 ? (
           <div id="home">
             <div className="container-mine flex">
               <span className="searchresultname">{totalPost} Saved Posts</span>
@@ -137,6 +151,25 @@ export default function SavedPost() {
                   );
                 }
               })}
+              {loading && (
+                <div className="container-mine flex">
+                  <div className="lds-ring1">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="container-mine flex">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
         )}

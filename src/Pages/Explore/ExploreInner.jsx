@@ -46,7 +46,7 @@ export default function ExploreInner() {
   if (window.screen.width > 1024) {
     return (
       <>
-        {posts.length !== 0 && (
+        {posts.length !== 0 ? (
           <div id="home">
             <div className="container-mine flex">
               <div className="content-column1">
@@ -104,9 +104,25 @@ export default function ExploreInner() {
             </div>
             {loading && (
               <div className="container-mine flex">
-                <h2 style={{ color: "white" }}>Loading...</h2>
+                <div class="lds-ring1">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             )}
+          </div>
+        ) : (
+          <div id="home">
+            <div className="container-mine flex">
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
           </div>
         )}
       </>
@@ -114,7 +130,7 @@ export default function ExploreInner() {
   } else {
     return (
       <>
-        {posts.length !== 0 && (
+        {posts.length !== 0 ? (
           <div id="home">
             <div className="container-mine flex">
               {posts.map((data, index) => {
@@ -136,9 +152,25 @@ export default function ExploreInner() {
             </div>
             {loading && (
               <div className="container-mine flex">
-                <h2 style={{ color: "white" }}>Loading...</h2>
+                <div class="lds-ring1">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             )}
+          </div>
+        ) : (
+          <div id="home">
+            <div className="container-mine flex">
+              <div className="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
           </div>
         )}
       </>

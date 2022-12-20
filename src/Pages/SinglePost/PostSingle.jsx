@@ -35,7 +35,7 @@ export default function PostSingle() {
 
   return (
     <>
-      {singlePost && (
+      {singlePost ? (
         <div id="home">
           <div className="container-mine flex flex-start">
             <Content data={singlePost} likePost={likePost} />
@@ -58,7 +58,12 @@ export default function PostSingle() {
             </div>
           </div>
         </div>
-      )}
+      ):
+      <div id="home">
+      <div className="container-mine flex">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+      </div>}
     </>
   );
 }

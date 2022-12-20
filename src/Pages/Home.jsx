@@ -7,8 +7,8 @@ import useAxios from "../utils/useAxios";
 
 export default function Home() {
   const api = useAxios();
-  const {homeValue} = useContext(DataContext);
-  const{level,setLevel,loading,posts,hasMore,setPosts} = homeValue
+  const { homeValue } = useContext(DataContext);
+  const { level, setLevel, loading, posts, hasMore, setPosts } = homeValue;
   const observer = React.createRef();
   const lastPostRef = useCallback(
     (node) => {
@@ -39,7 +39,7 @@ export default function Home() {
   if (window.screen.width > 1024) {
     return (
       <>
-        {posts.length !== 0 && (
+        {posts.length !== 0 ? (
           <div id="home">
             <div className="container-mine flex">
               <div className="content-column1">
@@ -97,7 +97,12 @@ export default function Home() {
             </div>
             {loading === true ? (
               <div className="container-mine flex">
-                <h2 style={{ color: "white" }}>Loading...</h2>
+                <div className="lds-ring1">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             ) : (
               <div className="container-mine flex">
@@ -107,13 +112,22 @@ export default function Home() {
               </div>
             )}
           </div>
-        )}
+        ):
+        <div className="container-mine flex">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+        }
       </>
     );
   } else {
     return (
       <>
-        {posts.length !== 0 && (
+        {posts.length !== 0 ? (
           <div id="home">
             <div className="container-mine flex">
               {posts.map((data, index) => {
@@ -135,7 +149,12 @@ export default function Home() {
             </div>
             {loading === true ? (
               <div className="container-mine flex">
-                <h2 style={{ color: "white" }}>Loading...</h2>
+                <div className="lds-ring1">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             ) : (
               <div className="container-mine flex">
@@ -145,7 +164,16 @@ export default function Home() {
               </div>
             )}
           </div>
-        )}
+        ):
+        
+        <div className="container-mine flex">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>}
       </>
     );
   }
