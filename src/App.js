@@ -23,6 +23,7 @@ import Post from "./Pages/Posts/Post";
 import SavedPost from "./Pages/Saved/SavedPost";
 import More from "./Pages/More/More";
 import NotFound from "./Pages/404NotFound";
+import Loading from "./Pages/Loading";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               />
               <Route path="savedpost" element={<SavedPost />} />
               <Route path="more" element={<More />} />
+              <Route path="loading" element={<Loading />} />
               <Route path="/*" element={<NotFound />} />
             </Route>
           </Route>

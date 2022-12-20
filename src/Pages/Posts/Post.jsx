@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 import useAxios from "../../utils/useAxios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -63,7 +62,7 @@ export default function Post() {
       discription: e.target.discription.value,
       category: categoryid,
     };
-    go(`/singlepost/loading`);
+    go(`/loading`);
     api
       .post("uploadpost/", data, {
         headers: { "Content-Type": "multipart/form-data" },
