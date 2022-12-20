@@ -63,7 +63,7 @@ export default function Post() {
       discription: e.target.discription.value,
       category: categoryid,
     };
-    Message("Please Wait...")
+    go(`/singlepost/loading`);
     api
       .post("uploadpost/", data, {
         headers: { "Content-Type": "multipart/form-data" },
