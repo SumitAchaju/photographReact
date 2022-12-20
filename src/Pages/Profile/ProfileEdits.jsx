@@ -6,10 +6,10 @@ import useAxios from "../../utils/useAxios";
 export default function ProfileEdits() {
   const [userInfo, setUserInfo] = useState();
   const api = useAxios();
-  let { userId, setUserData, Message } = useContext(AuthContext);
+  let { userId, setUserData, Message, authToken } = useContext(AuthContext);
   useEffect(() => {
     api.get(`user/${userId}`).then((res) => setUserInfo(res.data));
-  }, [userId]);
+  }, [userId, authToken]);
 
   const profileInfoSave = (e) => {
     e.preventDefault();
@@ -52,7 +52,7 @@ export default function ProfileEdits() {
     }
     api
       .patch("updateprofile/", {
-        username: e.target.username.value
+        username: e.target.username.value,
       })
       .then((res) => {
         if (res.data.status === "error") {
@@ -71,7 +71,8 @@ export default function ProfileEdits() {
       if (!file.type.match(pattern)) {
         Message("Invalid image format!!");
         return;
-      }}
+      }
+    }
     if (e.target.image.files) {
       api
         .patch(
@@ -168,13 +169,13 @@ export default function ProfileEdits() {
   if (!userInfo) {
     return (
       <div className="container-mine flex">
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-    </div>
     );
   }
   return (

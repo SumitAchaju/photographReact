@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FollowCard from "../../Components/FollowCard";
+import AuthContext from "../../context/AuthContext";
 import useAxios from "../../utils/useAxios";
 
 export default function FriendSearch() {
@@ -11,6 +13,7 @@ export default function FriendSearch() {
   });
   const [loading, setLoading] = useState(false);
   const api = useAxios();
+  let {authToken} = useContext(AuthContext)
   let { searchName } = useParams();
   useEffect(() => {
     setLoading(true);
@@ -20,7 +23,7 @@ export default function FriendSearch() {
         setFollowSuggestion(res.data);
         setLoading(false);
       });
-  }, [searchName]);
+  }, [searchName,authToken]);
 
   const unFollow = (unFollowId) => {
     api.get(`removefriend/${unFollowId}`).then((res) => {

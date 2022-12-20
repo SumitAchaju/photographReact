@@ -7,10 +7,11 @@ import useInfiniteScroll from "../../Components/InfiniteScroll";
 import ProfileInfo from "../../Components/ProfileInfo";
 import AuthContext from "../../context/AuthContext";
 import useAxios from "../../utils/useAxios";
+import useLikePost from "../../Components/LikePost";
 
 export default function Profile() {
   let { uid } = useParams();
-  let { userId } = useContext(AuthContext);
+  let { userId, authToken } = useContext(AuthContext);
   const api = useAxios();
   const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const [follow, setFollow] = useState(() => {});
@@ -34,19 +35,7 @@ export default function Profile() {
     [loading, hasMore]
   );
 
-  const likePost = (id, action) => {
-    api
-      .post(`postlikeout/${id}`, {
-        action: `${action}`,
-      })
-      .then((res) => {
-        if (res.data.status === "success") {
-          api
-            .get(`userpost/${uid}`, { params: { level: level } })
-            .then((res) => setPosts(res.data.post));
-        }
-      });
-  };
+  const likePost = useLikePost(setPosts, `userpost/${uid}`, level);
 
   const unFollow = (unFollowId) => {
     api.get(`removefriend/${unFollowId}`).then((res) => {
@@ -68,7 +57,7 @@ export default function Profile() {
   };
   useEffect(() => {
     api.get(`userfollowfollowing/${uid}`).then((res) => setFollow(res.data));
-  }, [uid]);
+  }, [uid, authToken]);
   if (window.screen.width > 1024) {
     return (
       <>
@@ -85,71 +74,71 @@ export default function Profile() {
             />
             {posts.length ? (
               <div>
-              <div className="container-mine flex">
-                <div className="content-column1">
-                  {posts.map((data, index) => {
-                    if (index % 2 === 0) {
-                      if (index + 1 === posts.length) {
-                        return (
-                          <Content
-                            ref={lastPostRef}
-                            key={data.id}
-                            data={data}
-                            likePost={likePost}
-                          />
-                        );
+                <div className="container-mine flex">
+                  <div className="content-column1">
+                    {posts.map((data, index) => {
+                      if (index % 2 === 0) {
+                        if (index + 1 === posts.length) {
+                          return (
+                            <Content
+                              ref={lastPostRef}
+                              key={data.id}
+                              data={data}
+                              likePost={likePost}
+                            />
+                          );
+                        } else {
+                          return (
+                            <Content
+                              key={data.id}
+                              data={data}
+                              likePost={likePost}
+                            />
+                          );
+                        }
                       } else {
-                        return (
-                          <Content
-                            key={data.id}
-                            data={data}
-                            likePost={likePost}
-                          />
-                        );
+                        return null;
                       }
-                    } else {
-                      return null;
-                    }
-                  })}
-                </div>
-                <div className="content-column2">
-                  {posts.map((data, index) => {
-                    if (index % 2 !== 0) {
-                      if (index + 1 === posts.length) {
-                        return (
-                          <Content
-                            ref={lastPostRef}
-                            key={data.id}
-                            data={data}
-                            likePost={likePost}
-                          />
-                        );
+                    })}
+                  </div>
+                  <div className="content-column2">
+                    {posts.map((data, index) => {
+                      if (index % 2 !== 0) {
+                        if (index + 1 === posts.length) {
+                          return (
+                            <Content
+                              ref={lastPostRef}
+                              key={data.id}
+                              data={data}
+                              likePost={likePost}
+                            />
+                          );
+                        } else {
+                          return (
+                            <Content
+                              key={data.id}
+                              data={data}
+                              likePost={likePost}
+                            />
+                          );
+                        }
                       } else {
-                        return (
-                          <Content
-                            key={data.id}
-                            data={data}
-                            likePost={likePost}
-                          />
-                        );
+                        return null;
                       }
-                    } else {
-                      return null;
-                    }
-                  })}
+                    })}
+                  </div>
                 </div>
-              </div>
                 {loading && (
                   <div className="container-mine flex">
-                  <div className="lds-ring1">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
+                    <div className="lds-ring1">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
                   </div>
                 )}
-                </div>
+              </div>
             ) : (
               <div id="userprofilepostnot" className="container-mine flex">
                 <div className="content">

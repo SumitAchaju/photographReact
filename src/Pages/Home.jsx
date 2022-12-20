@@ -1,12 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useContext } from "react";
 import Content from "../Components/Content";
-import useInfiniteScroll from "../Components/InfiniteScroll";
 import DataContext from "../context/DataContext";
-import useAxios from "../utils/useAxios";
+import useLikePost from "../Components/LikePost";
 
 export default function Home() {
-  const api = useAxios();
   const { homeValue } = useContext(DataContext);
   const { level, setLevel, loading, posts, hasMore, setPosts } = homeValue;
   const observer = React.createRef();
@@ -23,19 +21,9 @@ export default function Home() {
     },
     [loading, hasMore]
   );
-  const likePost = (id, action) => {
-    api
-      .post(`postlikeout/${id}`, {
-        action: `${action}`,
-      })
-      .then((res) => {
-        if (res.data.status === "success") {
-          api
-            .get("/friendposts/", { params: { level: level } })
-            .then((res) => setPosts(res.data.post));
-        }
-      });
-  };
+
+  const likePost = useLikePost(setPosts,"friendposts",level)
+
   if (window.screen.width > 1024) {
     return (
       <>
@@ -112,16 +100,16 @@ export default function Home() {
               </div>
             )}
           </div>
-        ):
-        <div className="container-mine flex">
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-        }
+        ) : (
+          <div className="container-mine flex">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        )}
       </>
     );
   } else {
@@ -164,16 +152,16 @@ export default function Home() {
               </div>
             )}
           </div>
-        ):
-        
-        <div className="container-mine flex">
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>}
+        ) : (
+          <div className="container-mine flex">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        )}
       </>
     );
   }

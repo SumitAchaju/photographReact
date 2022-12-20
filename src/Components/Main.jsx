@@ -7,7 +7,7 @@ import PopUpModel from "./PopUpModel";
 import PopUpMsg from "./PopUpMsg";
 
 export default function Main() {
-  let { LogoutUser, setUserData, userId, userData } = useContext(AuthContext);
+  let { LogoutUser, setUserData, userId, userData,authToken } = useContext(AuthContext);
   const api = useAxios();
   const navigate = useNavigate();
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Main() {
     } catch (err) {
       console.log(err)
     }
-  }, [setUserData, userId]);
+  }, [setUserData, userId,authToken]);
 
   const Search = (e) => {
     e.preventDefault();

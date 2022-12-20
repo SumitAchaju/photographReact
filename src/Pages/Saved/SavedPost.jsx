@@ -2,10 +2,9 @@ import React from "react";
 import useInfiniteScroll from "../../Components/InfiniteScroll";
 import { useState, useCallback } from "react";
 import Content from "../../Components/Content";
-import useAxios from "../../utils/useAxios";
+import useLikePost from "../../Components/LikePost";
 
 export default function SavedPost() {
-  const api = useAxios();
   const [level, setLevel] = useState(() => 10);
   const { loading, posts, hasMore, setPosts, totalPost } = useInfiniteScroll(
     "savedpost/",
@@ -27,19 +26,7 @@ export default function SavedPost() {
     [loading, hasMore]
   );
 
-  const likePost = (pid, action) => {
-    api
-      .post(`postlikeout/${pid}`, {
-        action: `${action}`,
-      })
-      .then((res) => {
-        if (res.data.status === "success") {
-          api
-            .get(`savedpost`, { params: { level: level } })
-            .then((res) => setPosts(res.data.post));
-        }
-      });
-  };
+  const likePost = useLikePost(setPosts,"savedpost",level)
 
   if (window.screen.width > 1024) {
     return (

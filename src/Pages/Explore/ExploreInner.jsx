@@ -3,11 +3,10 @@ import useInfiniteScroll from "../../Components/InfiniteScroll";
 import { useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Content from "../../Components/Content";
-import useAxios from "../../utils/useAxios";
+import useLikePost from "../../Components/LikePost";
 
 export default function ExploreInner() {
   let { id } = useParams();
-  const api = useAxios();
   const [level, setLevel] = useState(() => 10);
   const { loading, posts, hasMore, setPosts } = useInfiniteScroll(
     `categoryposts/${id}`,
@@ -29,19 +28,7 @@ export default function ExploreInner() {
     [loading, hasMore]
   );
 
-  const likePost = (pid, action) => {
-    api
-      .post(`postlikeout/${pid}`, {
-        action: `${action}`,
-      })
-      .then((res) => {
-        if (res.data.status === "success") {
-          api
-            .get(`categoryposts/${id}`, { params: { level: level } })
-            .then((res) => setPosts(res.data.post));
-        }
-      });
-  };
+  const likePost = useLikePost(setPosts, `categoryposts/${id}`, level);
 
   if (window.screen.width > 1024) {
     return (

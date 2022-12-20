@@ -54,12 +54,12 @@ const Content = React.forwardRef((props, ref) => {
             {props.data.like_by.find((like) => like.id === userId) ? (
               <i
                 style={{ color: "red" }}
-                onClick={() => props.likePost(props.data.id, "unlike")}
+                onClick={(event) => props.likePost(props.data.id, "unlike",event)}
                 className="bi bi-heart-fill"
               ></i>
             ) : (
               <i
-                onClick={() => props.likePost(props.data.id, "like")}
+                onClick={(event) => props.likePost(props.data.id, "like",event)}
                 className="bi bi-heart"
               ></i>
             )}
@@ -74,12 +74,12 @@ const Content = React.forwardRef((props, ref) => {
             {props.data.saved_by.find((save) => save.id === userId) ? (
               <i
                 style={{ color: "white" }}
-                onClick={() => props.likePost(props.data.id, "unsave")}
+                onClick={(event) => props.likePost(props.data.id, "unsave",event)}
                 className="bi bi-bookmark-fill"
               ></i>
             ) : (
               <i
-                onClick={() => props.likePost(props.data.id, "save")}
+                onClick={(event) => props.likePost(props.data.id, "save",event)}
                 className="bi bi-bookmark"
               ></i>
             )}

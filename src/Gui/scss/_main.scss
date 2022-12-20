@@ -11,6 +11,7 @@ body {
 }
 a {
   text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 ul {
   list-style: none;
@@ -1626,7 +1627,7 @@ a {
   position: relative;
   width: 40px;
   height: 40px;
-  margin:35px 0;
+  margin:10px 0 20px 0;
 }
 .lds-ring1 div {
   box-sizing: border-box;

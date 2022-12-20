@@ -10,7 +10,7 @@ export default function useInfiniteScroll(url, level) {
   const [hasMore, setHasMore] = useState(true);
   const [totalPost, setTotalPost] = useState();
   const api = useAxios();
-  let { edited } = useContext(AuthContext);
+  let { edited,authToken } = useContext(AuthContext);
 
   useEffect(() => {
     setLoading(true);
@@ -33,7 +33,7 @@ export default function useInfiniteScroll(url, level) {
         setError(true);
       });
     return () => cancel();
-  }, [url, level, edited]);
+  }, [url, level, edited,authToken]);
 
   return { loading, error, posts, hasMore, setPosts, totalPost };
 }

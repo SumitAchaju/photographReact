@@ -4,25 +4,15 @@ import { useParams, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAxios from "../../utils/useAxios";
 import Content from "../../Components/Content";
 import AuthContext from "../../context/AuthContext";
+import useSingleLikePost from "../../Components/SingleLikepost";
 
 export default function PostSingle() {
   let { pid } = useParams();
   const api = useAxios();
   const [singlePost, setSinglePost] = useState(() => {});
-  let { edited } = useContext(AuthContext);
+  let { edited,authToken } = useContext(AuthContext);
   const go = useNavigate();
-
-  const likePost = (id, action) => {
-    api
-      .post(`postlikeout/${id}`, {
-        action: `${action}`,
-      })
-      .then((res) => {
-        if (res.data.status === "success") {
-          api.get(`singlepost/${pid}`).then((res) => setSinglePost(res.data));
-        }
-      });
-  };
+  const likePost = useSingleLikePost(setSinglePost,`singlepost/${pid}`)
 
   useEffect(() => {
     api
@@ -31,7 +21,7 @@ export default function PostSingle() {
       .catch((error) => {
         go("/");
       });
-  }, [pid, edited]);
+  }, [pid, edited,authToken,go]);
 
   return (
     <>
@@ -61,7 +51,7 @@ export default function PostSingle() {
       ):
       <div id="home">
       <div className="container-mine flex">
-      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
       </div>
       </div>}
     </>
