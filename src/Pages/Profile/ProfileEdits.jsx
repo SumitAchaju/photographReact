@@ -30,6 +30,7 @@ export default function ProfileEdits() {
       date_of_birth: e.target.dob.value,
       skill: e.target.skill.value,
       bio: e.target.bio.value,
+      name: e.target.firstname.value+" "+e.target.lastname.value
     };
     api.patch("updateprofile/", data).then((res) => {
       if (res.data.status === "success") {
