@@ -174,23 +174,29 @@ export default function Profile() {
               Follow={Follow}
             />
             {posts.length ? (
-              <div className="container-mine flex">
-                {posts.map((data, index) => {
-                  if (index + 1 === posts.length) {
-                    return (
-                      <Content
-                        ref={lastPostRef}
-                        key={data.id}
-                        data={data}
-                        likePost={likePost}
-                      />
-                    );
-                  } else {
-                    return (
-                      <Content key={data.id} data={data} likePost={likePost} />
-                    );
-                  }
-                })}
+              <div>
+                <div className="container-mine flex">
+                  {posts.map((data, index) => {
+                    if (index + 1 === posts.length) {
+                      return (
+                        <Content
+                          ref={lastPostRef}
+                          key={data.id}
+                          data={data}
+                          likePost={likePost}
+                        />
+                      );
+                    } else {
+                      return (
+                        <Content
+                          key={data.id}
+                          data={data}
+                          likePost={likePost}
+                        />
+                      );
+                    }
+                  })}
+                </div>
                 {loading && (
                   <div className="lds-ring1">
                     <div></div>
