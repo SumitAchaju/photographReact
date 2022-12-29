@@ -198,11 +198,13 @@ export default function Profile() {
                   })}
                 </div>
                 {loading && (
+                <div className="container-mine flex">
                   <div className="lds-ring1">
                     <div></div>
                     <div></div>
                     <div></div>
                     <div></div>
+                  </div>
                   </div>
                 )}
               </div>
