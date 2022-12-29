@@ -15,9 +15,6 @@ export default function Slider(props) {
     let imgwidth = img.width;
     let aspectratio = imgwidth / imgheight;
     let height = document.querySelector(".content").offsetWidth / aspectratio;
-    if (imgheight > imgwidth) {
-      height = height - height / 15;
-    }
     setHeight(height);
   };
   img.src = baseUrlImg + props.images[0].image;
