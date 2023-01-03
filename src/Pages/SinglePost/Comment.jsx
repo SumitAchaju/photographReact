@@ -24,9 +24,9 @@ export default function Comment() {
         comment: `${e.target.comment.value}`,
       })
       .then((res) => {
-        e.target.comment.value = "";
         setData(res.data);
       });
+    e.target.comment.value = "";
   };
 
   const deleteComment = (id) => {
