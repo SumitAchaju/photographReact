@@ -15,6 +15,7 @@ export default function Comment() {
   const addComment = (e) => {
     e.preventDefault();
     if(uploading){
+      console.log("aborted")
       return
     }
     else{
@@ -23,6 +24,7 @@ export default function Comment() {
     for (let comment of data.comment) {
       if (comment.comment_by.id === userId) {
         Message("Your comment already exist!!");
+        setUploading(false)
         return;
       }
     }
@@ -35,6 +37,7 @@ export default function Comment() {
         setData(res.data);
         e.target.comment.value = "";
         setUploading(false)
+        console.log("kdk")
       });
   };
 
@@ -49,7 +52,7 @@ export default function Comment() {
         <div className="likes-comment-con">
           <div className="comment-post">
             <form onSubmit={addComment}>
-              <input name="comment" type="text" placeholder="Add comment..." />
+              <input required name="comment" type="text" placeholder="Add comment..." />
               <button type="sumbit">
                 <i className="bi bi-send-fill"></i>
               </button>
