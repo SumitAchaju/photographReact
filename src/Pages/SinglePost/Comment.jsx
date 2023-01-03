@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -9,12 +10,19 @@ export default function Comment() {
   let { userId,Message } = useContext(AuthContext);
   const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const api = useAxios();
+  const [uploading,setUploading] = useState(false)
 
   const addComment = (e) => {
     e.preventDefault();
+    if(uploading){
+      return
+    }
+    else{
+      setUploading(true)
+    }
     for (let comment of data.comment) {
       if (comment.comment_by.id === userId) {
-        Message("comment already exist!!");
+        Message("Your comment already exist!!");
         return;
       }
     }
@@ -25,8 +33,9 @@ export default function Comment() {
       })
       .then((res) => {
         setData(res.data);
+        e.target.comment.value = "";
+        setUploading(false)
       });
-    e.target.comment.value = "";
   };
 
   const deleteComment = (id) => {
