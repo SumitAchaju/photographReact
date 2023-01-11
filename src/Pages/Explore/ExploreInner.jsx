@@ -1,7 +1,7 @@
 import React from "react";
 import useInfiniteScroll from "../../Components/InfiniteScroll";
 import { useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Content from "../../Components/Content";
 import useLikePost from "../../Components/LikePost";
 
@@ -12,7 +12,8 @@ export default function ExploreInner() {
     `categoryposts/${id}`,
     level
   );
-
+ const data = useLoaderData();
+ console.log(data)
   const observer = React.createRef();
   const lastPostRef = useCallback(
     (node) => {

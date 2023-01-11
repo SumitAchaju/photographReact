@@ -99,10 +99,10 @@ export default function ProfileInfo(props) {
           <div className="follow-following">
             <div className="follow-following-box">
               <div className="follow-following-box-nav">
-                <NavLink activeclassname={"active"} to="">
+                <NavLink preventScrollReset={true} activeclassname={"active"} to="">
                   Followers
                 </NavLink>
-                <NavLink activeclassname={"active"} to="following/">
+                <NavLink preventScrollReset={true} activeclassname={"active"} to="following/">
                   Following
                 </NavLink>
               </div>

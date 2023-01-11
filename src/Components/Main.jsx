@@ -5,6 +5,7 @@ import useAxios from "../utils/useAxios";
 import { useNavigate } from "react-router-dom";
 import PopUpModel from "./PopUpModel";
 import PopUpMsg from "./PopUpMsg";
+import { ScrollRestoration } from "react-router-dom";
 
 export default function Main() {
   let { LogoutUser, setUserData, userId, userData,authToken } = useContext(AuthContext);
@@ -152,6 +153,9 @@ export default function Main() {
         </div>
       </div>
       <Outlet />
+      <ScrollRestoration   getKey={(location, matches) => {
+    return location.pathname;
+  }} />
     </>
   );
 }

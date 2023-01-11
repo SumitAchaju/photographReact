@@ -24,6 +24,7 @@ export default function Comment() {
     for (let comment of data.comment) {
       if (comment.comment_by.id === userId) {
         Message("Your comment already exist!!");
+        e.target.comment.value = "";
         setUploading(false)
         return;
       }

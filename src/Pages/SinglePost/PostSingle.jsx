@@ -33,12 +33,12 @@ export default function PostSingle() {
               <div className="likes-comment">
                 <div className="likes-comment-top">
                   <div>
-                    <NavLink activeclassname={"active"} to="">
+                    <NavLink preventScrollReset activeclassname={"active"} to="">
                       Likes
                     </NavLink>
                   </div>
                   <div>
-                    <NavLink to={`comment/`}>Comments</NavLink>
+                    <NavLink preventScrollReset to={`comment/`}>Comments</NavLink>
                   </div>
                 </div>
                 <Outlet
