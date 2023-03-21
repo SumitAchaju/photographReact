@@ -23,7 +23,6 @@ function useAxios() {
     const response = await axios.post(`${baseURL}/api/token/refresh/`, {
       refresh: authToken.refresh,
     });
-    console.log("hi");
 
     localStorage.setItem("token", JSON.stringify(response.data));
 
