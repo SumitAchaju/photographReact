@@ -29,7 +29,7 @@ export function DataProvider({children}){
     }, [authToken]);
     const [followSuggestion, setFollowSuggestion] = useState({});
     useEffect(() => {
-      api.get("followsuggestion/").then((res) => setFollowSuggestion(res.data));
+      api.get("/followsuggestion/").then((res) => setFollowSuggestion(res.data));
     }, [authToken]);
     const [categoryPost, setCategoryPost] = useState([]);
     useEffect(() => {

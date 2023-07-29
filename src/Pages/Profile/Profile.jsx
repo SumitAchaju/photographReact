@@ -8,12 +8,12 @@ import ProfileInfo from "../../Components/ProfileInfo";
 import AuthContext from "../../context/AuthContext";
 import useAxios from "../../utils/useAxios";
 import useLikePost from "../../Components/LikePost";
+import { baseUrl } from "../../utils/ApiUrl";
 
 export default function Profile() {
   let { uid } = useParams();
   let { userId, authToken } = useContext(AuthContext);
   const api = useAxios();
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const [follow, setFollow] = useState(() => {});
   const [level, setLevel] = useState(() => 10);
   const { loading, posts, hasMore, setPosts, totalPost } = useInfiniteScroll(
@@ -65,7 +65,7 @@ export default function Profile() {
           <div id="home">
             <ProfileInfo
               userfriend={follow}
-              baseUrlImg={baseUrlImg}
+              baseUrl={baseUrl}
               post={totalPost}
               myprofile={uid.toString() === userId.toString() ? true : false}
               userId={userId}
@@ -166,7 +166,7 @@ export default function Profile() {
           <div id="home">
             <ProfileInfo
               userfriend={follow}
-              baseUrlImg={baseUrlImg}
+              baseUrl={baseUrl}
               post={posts.length}
               myprofile={uid.toString() === userId.toString() ? true : false}
               userId={userId}

@@ -2,9 +2,9 @@ import React from "react";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../utils/ApiUrl";
 
 export default function ProfileFollow(props) {
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   let { userId } = useContext(AuthContext);
   return (
     <>
@@ -14,7 +14,7 @@ export default function ProfileFollow(props) {
             <div key={follow.id} className="follow-following-follow-single">
               <div className="follow-following-follow-single-profile">
                 <div>
-                  <img src={baseUrlImg + follow.profile_image} alt="" />
+                  <img src={baseUrl + follow.profile_image} alt="" />
                 </div>
                 <div>
                   <span>

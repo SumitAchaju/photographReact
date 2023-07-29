@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { DataProvider } from "./DataContext";
+import { baseUrl } from "../utils/ApiUrl";
 
 const AuthContext = createContext();
 export default AuthContext;
@@ -30,7 +31,7 @@ export function AuthProvider({ children }) {
   const LoginUser = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.post("https://sumitachaju.pythonanywhere.com/api/token/", {
+      let response = await axios.post(`${baseUrl}/api/token/`, {
         username: `${e.target.username.value}`,
         password: `${e.target.password.value}`,
       });

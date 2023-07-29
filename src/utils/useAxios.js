@@ -3,14 +3,13 @@ import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-
-const baseURL = "https://sumitachaju.pythonanywhere.com";
+import { baseUrl } from "./ApiUrl";
 
 function useAxios() {
   const { authToken, setUserId, setAuthToken } = useContext(AuthContext);
 
   const axiosInstance = axios.create({
-    baseURL,
+    baseURL: baseUrl,
     headers: { Authorization: `Bearer ${authToken?.access}` },
   });
 
@@ -20,7 +19,7 @@ function useAxios() {
 
     if (!isExpired) return req;
 
-    const response = await axios.post(`${baseURL}/api/token/refresh/`, {
+    const response = await axios.post(`${baseUrl}/api/token/refresh/`, {
       refresh: authToken.refresh,
     });
 

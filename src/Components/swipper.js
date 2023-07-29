@@ -3,11 +3,12 @@ import { Navigation, Pagination, A11y } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { baseUrl } from "../utils/ApiUrl";
+
 import "swiper/css";
 import "swiper/css/navigation";
 
 export default function Slider(props) {
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   // const [height, setHeight] = useState();
   const [aspectRatio, setAspectRatio] = useState();
   let img = new Image();
@@ -19,7 +20,7 @@ export default function Slider(props) {
     // setHeight(height);
     setAspectRatio(aspectratio);
   };
-  img.src = baseUrlImg + props.images[0].image;
+  img.src = baseUrl + props.images[0].image;
   return (
     <Swiper
       // install Swiper modules
@@ -34,7 +35,7 @@ export default function Slider(props) {
           <img
             style={{ objectFit: "cover",aspectRatio:aspectRatio  }}
             // height={`${height}px`}
-            src={baseUrlImg + image.image}
+            src={baseUrl + image.image}
             alt=""
           />
         </SwiperSlide>

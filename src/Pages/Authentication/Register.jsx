@@ -6,6 +6,7 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import { Navigate } from "react-router-dom";
 import PopUpMsg from "../../Components/PopUpMsg";
+import { baseUrl } from "../../utils/ApiUrl";
 
 export default function Register() {
   let { loginStatus, setloginStatus, setAuthToken, setUserId, Message } =
@@ -34,12 +35,12 @@ export default function Register() {
       password2: e.target.confirmpassword.value,
     };
     axios
-      .post("https://sumitachaju.pythonanywhere.com/register/", registerData)
+      .post(`${baseUrl}/register/`, registerData)
       .then((res) => {
         if (res.status === 201) {
           try {
             axios
-              .post("https://sumitachaju.pythonanywhere.com/api/token/", {
+              .post(`${baseUrl}/api/token/`, {
                 username: `${e.target.username.value}`,
                 password: `${e.target.password.value}`,
               })

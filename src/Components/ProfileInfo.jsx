@@ -11,7 +11,7 @@ export default function ProfileInfo(props) {
               <div className="profile-page-img">
                 <img
                   src={
-                    props.baseUrlImg +
+                    props.baseUrl +
                     props.userfriend.userfriend.user.profile_image
                   }
                   alt=""

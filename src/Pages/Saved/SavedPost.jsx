@@ -7,7 +7,7 @@ import useLikePost from "../../Components/LikePost";
 export default function SavedPost() {
   const [level, setLevel] = useState(() => 10);
   const { loading, posts, hasMore, setPosts, totalPost } = useInfiniteScroll(
-    "savedpost/",
+    "/savedpost/",
     level
   );
 
@@ -31,7 +31,7 @@ export default function SavedPost() {
   if (window.screen.width > 1024) {
     return (
       <>
-        {posts.length !== 0 ? (
+        {posts ? (
           <div id="home">
             <div className="container-mine flex">
               <span className="searchresultname">{totalPost} Saved Posts</span>
@@ -116,7 +116,7 @@ export default function SavedPost() {
   } else {
     return (
       <>
-        {posts.length !== 0 ? (
+        {posts ? (
           <div id="home">
             <div className="container-mine flex">
               <span className="searchresultname">{totalPost} Saved Posts</span>

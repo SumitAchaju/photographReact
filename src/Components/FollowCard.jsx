@@ -2,9 +2,9 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { baseUrl } from "../utils/ApiUrl";
 
 export default function FollowCard(props) {
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   let { userId } = useContext(AuthContext);
   return (
     <>
@@ -16,7 +16,7 @@ export default function FollowCard(props) {
                 <Link to={`/profile/${sugg.id}`}>
                   <div className="follow-img">
                     <img
-                      src={baseUrlImg + sugg.profile_image}
+                      src={baseUrl + sugg.profile_image}
                       alt="followimg"
                     />
                   </div>
