@@ -32,6 +32,18 @@ export default function Main() {
     const dropdownWindow = document.querySelector(".header-profile-dropdown");
     dropdownWindow.classList.toggle("show-dropdown");
   };
+  useEffect(()=>{
+    document.addEventListener('click',(e)=>{
+      const dropdownWindow = document.querySelector(".header-profile-dropdown");
+      const profile = document.querySelector('.header-profile')
+      if(!dropdownWindow.classList.contains('show-dropdown')){
+        return
+      }
+      if (dropdownWindow.classList.contains('show-dropdown') && !profile.contains(e.target)){
+        dropdownWindow.classList.remove('show-dropdown');
+      }
+    })
+  },[])
 
   return (
     <>

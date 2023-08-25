@@ -115,6 +115,7 @@ header {
     }
     p {
       color: $icon-color;
+      user-select: none;
       &::selection {
         color: none;
       }
