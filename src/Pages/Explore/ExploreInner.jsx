@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Content from "../../Components/Content";
 import useLikePost from "../../Components/LikePost";
+import Loading from "../../Components/Loading"
 
 export default function ExploreInner() {
   let { id } = useParams();
@@ -91,26 +92,12 @@ export default function ExploreInner() {
               </div>
             </div>
             {loading && (
-              <div className="container-mine flex">
-                <div class="lds-ring1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
+              <Loading ring={1}/>
             )}
           </div>
         ) : (
           <div id="home">
-            <div className="container-mine flex">
-              <div class="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            </div>
+            <Loading />
           </div>
         )}
       </>
@@ -139,26 +126,12 @@ export default function ExploreInner() {
               })}
             </div>
             {loading && (
-              <div className="container-mine flex">
-                <div class="lds-ring1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
+             <Loading ring={1}/>
             )}
           </div>
         ) : (
           <div id="home">
-            <div className="container-mine flex">
-              <div className="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            </div>
+             <Loading />
           </div>
         )}
       </>

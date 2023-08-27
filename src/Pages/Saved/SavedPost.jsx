@@ -3,6 +3,7 @@ import useInfiniteScroll from "../../Components/InfiniteScroll";
 import { useState, useCallback } from "react";
 import Content from "../../Components/Content";
 import useLikePost from "../../Components/LikePost";
+import Loading from "../../Components/Loading";
 
 export default function SavedPost() {
   const [level, setLevel] = useState(() => 10);
@@ -91,25 +92,11 @@ export default function SavedPost() {
               </div>
             </div>
             {loading && (
-              <div className="container-mine flex">
-                <div className="lds-ring1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
+              <Loading ring={1} />
             )}
           </div>
         ) : (
-          <div className="container-mine flex">
-            <div className="lds-ring">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
+          <Loading />
         )}
       </>
     );

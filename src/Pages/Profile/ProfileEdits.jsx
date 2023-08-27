@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useAxios from "../../utils/useAxios";
+import Loading from "../../Components/Loading";
 
 export default function ProfileEdits() {
   const [userInfo, setUserInfo] = useState();
@@ -169,14 +170,7 @@ export default function ProfileEdits() {
   }
   if (!userInfo) {
     return (
-      <div className="container-mine flex">
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
+      <Loading />
     );
   }
   return (

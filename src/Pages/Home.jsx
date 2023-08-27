@@ -3,6 +3,7 @@ import { useContext } from "react";
 import Content from "../Components/Content";
 import DataContext from "../context/DataContext";
 import useLikePost from "../Components/LikePost";
+import Loading from "../Components/Loading";
 
 export default function Home() {
   const { homeValue } = useContext(DataContext);
@@ -84,14 +85,7 @@ export default function Home() {
               </div>
             </div>
             {loading === true ? (
-              <div className="container-mine flex">
-                <div className="lds-ring1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
+              <Loading ring={1}/>
             ) : (
               <div className="container-mine flex">
                 <p style={{ color: "white" }}>
@@ -101,14 +95,7 @@ export default function Home() {
             )}
           </div>
         ) : (
-          <div className="container-mine flex">
-            <div className="lds-ring">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
+          <Loading/>
         )}
       </>
     );
@@ -136,14 +123,7 @@ export default function Home() {
               })}
             </div>
             {loading === true ? (
-              <div className="container-mine flex">
-                <div className="lds-ring1">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
+              <Loading ring={1}/>
             ) : (
               <div className="container-mine flex">
                 <p style={{ color: "white" }}>
@@ -153,14 +133,7 @@ export default function Home() {
             )}
           </div>
         ) : (
-          <div className="container-mine flex">
-            <div className="lds-ring">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
+          <Loading/>
         )}
       </>
     );

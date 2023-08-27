@@ -33,7 +33,7 @@ export default function Main() {
     dropdownWindow.classList.toggle("show-dropdown");
   };
   useEffect(()=>{
-    document.addEventListener('click',(e)=>{
+    function dropDownHideEvent(e){
       const dropdownWindow = document.querySelector(".header-profile-dropdown");
       const profile = document.querySelector('.header-profile')
       if(!dropdownWindow.classList.contains('show-dropdown')){
@@ -42,7 +42,9 @@ export default function Main() {
       if (dropdownWindow.classList.contains('show-dropdown') && !profile.contains(e.target)){
         dropdownWindow.classList.remove('show-dropdown');
       }
-    })
+    }
+    document.addEventListener('click',dropDownHideEvent)
+    document.addEventListener('scroll',dropDownHideEvent)
   },[])
 
   return (

@@ -9,6 +9,7 @@ import AuthContext from "../../context/AuthContext";
 import useAxios from "../../utils/useAxios";
 import useLikePost from "../../Components/LikePost";
 import { baseUrl } from "../../utils/ApiUrl";
+import Loading from "../../Components/Loading";
 
 export default function Profile() {
   let { uid } = useParams();
@@ -129,14 +130,7 @@ export default function Profile() {
                   </div>
                 </div>
                 {loading && (
-                  <div className="container-mine flex">
-                    <div className="lds-ring1">
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                  </div>
+             <Loading ring={1}/>
                 )}
               </div>
             ) : (
@@ -148,14 +142,7 @@ export default function Profile() {
             )}
           </div>
         ) : (
-          <div className="container-mine flex">
-            <div className="lds-ring">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
+          <Loading/>
         )}
       </>
     );
@@ -198,14 +185,7 @@ export default function Profile() {
                   })}
                 </div>
                 {loading && (
-                <div className="container-mine flex">
-                  <div className="lds-ring1">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                  </div>
+             <Loading ring={1}/>
                 )}
               </div>
             ) : (
@@ -217,14 +197,7 @@ export default function Profile() {
             )}
           </div>
         ) : (
-          <div className="container-mine flex">
-            <div className="lds-ring">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
+          <Loading/>
         )}
       </>
     );

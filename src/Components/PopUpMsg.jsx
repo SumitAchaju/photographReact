@@ -19,11 +19,7 @@ export default function PopUpMsg() {
   return (
     <>
       <div className="popup">
-        {/* Trigger/Open The Modal */}
-        {/* <button onClick={popUp} id="myBtn">Open Modal</button> */}
-        {/* The Modal */}
         <div id="myModal1" className="modal">
-          {/* Modal content */}
           {trigger ? (
             <div className="modal-content">
               <div className="modal-header">

@@ -5,6 +5,7 @@ import useAxios from "../../utils/useAxios";
 import Content from "../../Components/Content";
 import AuthContext from "../../context/AuthContext";
 import useSingleLikePost from "../../Components/SingleLikepost";
+import Loading from "../../Components/Loading";
 
 export default function PostSingle() {
   let { pid } = useParams();
@@ -50,9 +51,7 @@ export default function PostSingle() {
         </div>
       ):
       <div id="home">
-      <div className="container-mine flex">
-      <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
-      </div>
+        <Loading />
       </div>}
     </>
   );

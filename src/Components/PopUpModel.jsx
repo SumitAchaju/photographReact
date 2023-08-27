@@ -9,14 +9,14 @@ export default function PopUpModel() {
   const [postData, setPostData] = useState({});
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState([]);
-  const [editSection,setEditSection] =useState(false)
+  const [editSection, setEditSection] = useState(false);
   const [loading, setLoading] = useState(false);
   const api = useAxios();
 
   const closePopUp = () => {
     setPostData({});
     setLoading(false);
-    setEditSection(false)
+    setEditSection(false);
     let modal = document.getElementById("myModal");
     modal.style.display = "none";
   };
@@ -27,12 +27,12 @@ export default function PopUpModel() {
       modal.style.display = "none";
       setPostData({});
       setLoading(false);
-      setEditSection(false)
+      setEditSection(false);
     }
   });
   const editPost = () => {
     setLoading(true);
-    setEditSection(true)
+    setEditSection(true);
     api.get(`/Post/${editId}`).then((res) => {
       setPostData(res.data);
       setCategoryId(res.data.category.map((data) => data.id));
@@ -41,7 +41,7 @@ export default function PopUpModel() {
     api.get("/postcategory/").then((res) => setCategory(res.data));
   };
   const deletePost = () => {
-    setLoading(true)
+    setLoading(true);
     api.get(`deletepost/${editId}`).then((res) => {
       if (res.data.status === "success") {
         if (edited) {
@@ -60,7 +60,7 @@ export default function PopUpModel() {
     let checkedbox = document.querySelectorAll("input[type=checkbox]:checked");
     if (checkedbox.length === 0) {
       Message("you must select atleast one category!");
-      setLoading(false)
+      setLoading(false);
       return;
     }
     let categoryid = [];
@@ -90,26 +90,25 @@ export default function PopUpModel() {
   return (
     <>
       <div className="popup">
-        {/* Trigger/Open The Modal */}
-        {/* <button onClick={popUp} id="myBtn">Open Modal</button> */}
-        {/* The Modal */}
         <div id="myModal" className="modal">
-          {/* Modal content */}
           {loading ? (
             <div className="modal-content">
-                            <div className="modal-header">
+              <div className="modal-header">
                 <span onClick={closePopUp} className="close">
                   ×
                 </span>
                 <h2>Edit Post</h2>
-              </div>  
+              </div>
               <div className="modal-body">
-              <div style={{ "margin": "20px auto" ,"display":"block"}} className="lds-ring1">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+                <div
+                  style={{ margin: "20px auto", display: "block" }}
+                  className="lds-ring1"
+                >
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             </div>
           ) : (
@@ -121,7 +120,13 @@ export default function PopUpModel() {
                 <h2>Edit Post</h2>
               </div>
               <div className="modal-body">
-                <button style={!editSection?{"display":"block"}:{"display":"none"}} id="popupedit" onClick={editPost}>
+                <button
+                  style={
+                    !editSection ? { display: "block" } : { display: "none" }
+                  }
+                  id="popupedit"
+                  onClick={editPost}
+                >
                   Edit
                 </button>
                 {postData.id ? (
@@ -155,7 +160,13 @@ export default function PopUpModel() {
                     <button>update</button>
                   </form>
                 ) : null}
-                <button style={!editSection?{"display":"block"}:{"display":"none"}} id="popupdelete" onClick={deletePost}>
+                <button
+                  style={
+                    !editSection ? { display: "block" } : { display: "none" }
+                  }
+                  id="popupdelete"
+                  onClick={deletePost}
+                >
                   Delete
                 </button>
               </div>
