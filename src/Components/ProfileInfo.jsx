@@ -88,7 +88,7 @@ export default function ProfileInfo(props) {
                     Follow
                   </Link>
                 )}
-                <Link to="">Message</Link>
+                <Link to={`/chats/${props.userfriend.userfriend.user.id}`}>Message</Link>
               </div>
             ) : (
               <div></div>

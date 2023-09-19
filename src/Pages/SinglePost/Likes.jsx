@@ -1,16 +1,16 @@
 import React from "react";
+import { baseUrl } from "../../utils/ApiUrl";
 import { Link, useOutletContext } from "react-router-dom";
 
 export default function Likes() {
   let { data } = useOutletContext();
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   return (
     <>
       <div className="likes-comment-con">
         {data.like_by.length ? (
           data.like_by.map((like) => (
             <div key={like.id} className="likeby">
-              <img src={baseUrlImg + like.profile_image} alt="" />
+              <img src={baseUrl + like.profile_image} alt="" />
               <Link to={`/profile/${like.id}`}>
                 <h4>
                   {like.first_name} {like.last_name}

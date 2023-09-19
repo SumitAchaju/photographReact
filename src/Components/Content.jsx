@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Slider from "./swipper";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { baseUrl } from "../utils/ApiUrl";
 
 const Content = React.forwardRef((props, ref) => {
   let { userId, setEditId } = useContext(AuthContext);
@@ -22,7 +23,6 @@ const Content = React.forwardRef((props, ref) => {
       }
     }
   }
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   return (
     <>
       <div ref={ref} className="content">
@@ -31,7 +31,7 @@ const Content = React.forwardRef((props, ref) => {
             <Link to={`/profile/${props.data.user.id}`}>
               <img
                 width="20px"
-                src={baseUrlImg + props.data.user.profile_image}
+                src={baseUrl + props.data.user.profile_image}
                 alt=""
               />
               <p>

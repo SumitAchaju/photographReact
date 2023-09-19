@@ -89,7 +89,6 @@ export function AuthProvider({ children }) {
     setTrigger: setTrigger,
     Message: Message,
   };
-
   return (
     <AuthContext.Provider value={contextData}>
       <DataProvider>{children}</DataProvider>

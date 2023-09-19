@@ -14,7 +14,7 @@ export default function FollowCard(props) {
             {props.followSuggestion.user.map((sugg) => (
               <div key={sugg.id} className="content">
                 <Link to={`/profile/${sugg.id}`}>
-                  <div className="follow-img">
+                  <div className={`follow-img ${sugg.active_status?'active-user':''}`}>
                     <img
                       src={baseUrl + sugg.profile_image}
                       alt="followimg"
@@ -51,7 +51,7 @@ export default function FollowCard(props) {
                         Follow
                       </Link>
                     )}
-                    <Link className="follow-message-change-color" to="">
+                    <Link className="follow-message-change-color" to={`/chats/${sugg.id}`}>
                       Message
                     </Link>
                   </div>

@@ -23,12 +23,12 @@ import ProfileFollowings from "./Pages/Profile/ProfileFollowings";
 import ProfileFollows from "./Pages/Profile/ProfileFollows";
 import FriendSearch from "./Pages/Search/FriendSearch";
 import ProfileEdits from "./Pages/Profile/ProfileEdits";
-import Chat from "./Pages/Chats/Chat";
 import Post from "./Pages/Posts/Post";
 import SavedPost from "./Pages/Saved/SavedPost";
 import More from "./Pages/More/More";
 import NotFound from "./Pages/404NotFound";
 import Loading from "./Pages/Loading";
+import ChatPlaceHolder from "./Pages/ChatPlaceHolder";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -39,7 +39,10 @@ const router = createBrowserRouter(
           <Route path="explore" element={<Explore />} />
           <Route path="follow" element={<Follow />} />
           <Route path="explore/:id" element={<ExploreInner />} />
-          <Route path="chats" element={<Chat />} />
+          {/* <Route path="chats" element={<Chat />}>
+            <Route path=":id" element={<ChatBox />} />
+          </Route> */}
+          <Route path="chats" element ={<ChatPlaceHolder/>} />
           <Route path="posts" element={<Post />} />
           <Route path="profile/:uid" element={<Profile />}>
             <Route index element={<ProfileFollows />} />

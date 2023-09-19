@@ -1,14 +1,18 @@
 import React, { useContext, useEffect } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../utils/useAxios";
 import { useNavigate } from "react-router-dom";
 import PopUpModel from "./PopUpModel";
 import PopUpMsg from "./PopUpMsg";
 import { ScrollRestoration } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import CustomNavLink from "./CustomNavlink";
 
 export default function Main() {
-  let { LogoutUser, setUserData, userId, userData,authToken } = useContext(AuthContext);
+  let { LogoutUser, setUserData, userId, userData, authToken } =
+    useContext(AuthContext);
+  // const { unSeenMsg } = useContext(DataContext);
   const api = useAxios();
   const navigate = useNavigate();
   useEffect(() => {
@@ -17,9 +21,9 @@ export default function Main() {
         setUserData(response.data);
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }, [setUserData, userId,authToken]);
+  }, [setUserData, userId, authToken]);
 
   const Search = (e) => {
     e.preventDefault();
@@ -28,24 +32,6 @@ export default function Main() {
       navigate(`friendsearch/${value}`);
     }
   };
-  const profile_dropdown = () => {
-    const dropdownWindow = document.querySelector(".header-profile-dropdown");
-    dropdownWindow.classList.toggle("show-dropdown");
-  };
-  useEffect(()=>{
-    function dropDownHideEvent(e){
-      const dropdownWindow = document.querySelector(".header-profile-dropdown");
-      const profile = document.querySelector('.header-profile')
-      if(!dropdownWindow.classList.contains('show-dropdown')){
-        return
-      }
-      if (dropdownWindow.classList.contains('show-dropdown') && !profile.contains(e.target)){
-        dropdownWindow.classList.remove('show-dropdown');
-      }
-    }
-    document.addEventListener('click',dropDownHideEvent)
-    document.addEventListener('scroll',dropDownHideEvent)
-  },[])
 
   return (
     <>
@@ -69,14 +55,45 @@ export default function Main() {
           </form>
         </div>
         <div className="notification">
-          <div className="message-notification">
+          <div
+            className="message-notification"
+            // data-msg-number={unSeenMsg?.length}
+            data-msg-number='0'
+          >
             <i className="bi bi-messenger"></i>
+            {/* {unSeenMsg && unSeenMsg.length !== 0 && (
+              <div className="message-notification-dropdown">
+                {unSeenMsg &&
+                  unSeenMsg.map((item) => (
+                    <Link key={item.id} to={`/chats/${item.send_user.id}`}>
+                      <div className="unseen-message">
+                        <figure>
+                          <img
+                            src={baseUrl + item.send_user.profile_image}
+                            alt="profile"
+                          />
+                        </figure>
+                        <div>
+                          <span className="profile-name">
+                            {item.send_user.first_name +
+                              " " +
+                              item.send_user.last_name}
+                          </span>
+                          <span className="unseen-msg">
+                            {item.message_text}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+              </div>
+            )} */}
           </div>
           <div className="all-notification">
             <i className="bi bi-bell-fill"></i>
           </div>
         </div>
-        <div onClick={profile_dropdown} className="header-profile">
+        <div className="header-profile">
           <img src={userData.profile_image} alt="profile" />
           <p>
             {userData.first_name} {userData.last_name}
@@ -128,34 +145,34 @@ export default function Main() {
         <nav>
           <ul>
             <li id="h">
-              <NavLink activeclassname={"active"} to="/">
+              <CustomNavLink to="/">
                 <i className="fa-solid fa-house-chimney"></i> Home
-              </NavLink>
+              </CustomNavLink>
             </li>
             <li id="e">
-              <NavLink to="explore/">
+              <CustomNavLink  to="explore/">
                 <i className="fa-solid fa-earth-americas"></i> Explore
-              </NavLink>
+              </CustomNavLink>
             </li>
             <li id="f">
-              <NavLink to="follow/">
+              <CustomNavLink  to="follow/">
                 <i className="fa-solid fa-circle-user"></i> Follow
-              </NavLink>
+              </CustomNavLink>
             </li>
             <li id="c" className="not-show-in-mobile">
-              <NavLink to="chats/">
+              <CustomNavLink  to="chats/">
                 <i className="bi bi-chat-left-text-fill"></i> Chats
-              </NavLink>
+              </CustomNavLink>
             </li>
             <li id="g">
-              <NavLink to="posts/">
+              <CustomNavLink  to="posts/">
                 <i className="bi bi-file-earmark-arrow-up-fill"></i> Posts
-              </NavLink>
+              </CustomNavLink>
             </li>
             <li id="m">
-              <NavLink to="more/">
+              <CustomNavLink   to="more/">
                 <i className="bi bi-three-dots"></i> More
-              </NavLink>
+              </CustomNavLink>
             </li>
           </ul>
         </nav>
@@ -167,9 +184,12 @@ export default function Main() {
         </div>
       </div>
       <Outlet />
-      <ScrollRestoration   getKey={(location, matches) => {
-    return location.pathname;
-  }} />
+      <ScrollRestoration
+        getKey={(location, matches) => {
+          return location.pathname;
+        }}
+      />
+      <Toaster />
     </>
   );
 }

@@ -1,0 +1,397 @@
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(205, 205, 205);
+    border-radius: 99px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(193, 193, 193);
+  }
+.d-flex{
+    display: flex;
+}
+.align-center{
+    align-items: center;
+}
+.justify-center{
+    justify-content: center;
+}
+.text-color{
+    color: $text-color;
+}
+.chatbox{
+    width: 65%;
+    background-color: $content-color;
+    border-radius: 30px;
+    position: relative;
+}
+.chatbox_head{
+    @include flex();
+    padding: 15px;
+    background-color: $theme;
+    border-radius: 30px 30px 0 0;
+}
+.chatbox_head_profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .profile_image{
+        @include round-image(40px,40px)
+    }
+    .profile_name{
+        color: white;
+    }
+}
+.chat_control_dot{
+    i{
+        color: $icon-color;
+    }
+}
+.chat-friend-list{
+    padding: 15px 15px 26px 15px;
+    background-color: $content-color;
+    border-radius: 30px;
+    width: 25%;
+}
+.chat-friend-list-title{
+    font-weight: 600;
+    font-size: 20px;
+    color: $text-color;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.chat-friend-search-input{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    input {
+        color: $input-text-color;
+        width: 100%;
+        padding-left: 15px;
+        height: 40px;
+        border-radius: 40px;
+        border: $border-light;
+        background-color: $input-color;
+      }
+      input:focus {
+        outline: 3px solid rgb(108, 184, 197);
+        border: none;
+      }
+      button {
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      i {
+        font-size: 18px;
+        color: $icon-color;
+      }
+}
+.chat-friend-profile{
+    margin-top: 30px;
+    height: calc(100dvh - 306px);
+    overflow: auto;
+    a{
+        display: block;
+        margin-bottom: 26px;
+    }
+    a:hover p{
+        color: $text-color !important;
+    }
+}
+.friend-list-profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    img{
+        @include round-image(40px,40px);
+    }
+    .friend-list-name{
+        font-weight: 500;
+    }
+    .latest-message{
+        font-size: 14px;
+        font-weight: 600;
+        color:rgb(190, 2, 242);
+    }
+    .seen-status{
+        font-size: 13px;
+    }
+    .friend-list-msg-date{
+        font-size: 13px;
+    }
+    .latest-message{
+        max-width: 12ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .seen-msg-color{
+        color: rgb(161, 161, 161) !important;
+        font-weight: normal !important;
+    }
+}
+.friend-list-profile:last-child{
+    margin-bottom: 0;
+}
+
+.chatbox-body{
+    height: calc(100dvh - 295px);
+    padding: 25px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+ 
+.chatbox-body::-webkit-scrollbar-thumb,.chat-friend-profile::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 99px;
+  }
+.chatbox-body:hover::-webkit-scrollbar-thumb,.chat-friend-profile:hover::-webkit-scrollbar-thumb  {
+    background: rgb(205, 205, 205);
+}
+.chatbox-body-profile-content{
+    margin: 25px 0 50px 0;
+    img{
+        @include round-image(100px,100px);
+        display: block;
+        margin: auto;
+    }
+    span{
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+    }
+}
+.message{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+    >div{
+        max-width: 65%;
+    }
+    .sender-profile{
+        @include round-image(25px,25px);
+    }
+    .message-text{
+        padding: 10px 15px;
+        color: white;
+        width: fit-content;
+        margin-bottom: 2px;
+    }
+    .empty-msg-status{
+        width: 15px;
+        height: 15px;
+    }
+    .seen-msg-status{
+        @include round-image(15px,15px)
+    }
+    i{
+        color: white;
+        font-size: 15px;
+    }
+}
+.reciever-message{
+    p{
+        border-radius: 20px;
+        background-color: $input-color;
+    }
+}
+.reciever-message + .sender-message ,.sender-message + .reciever-message{
+    margin-top: 20px;
+}
+.sender-message{
+    justify-content: flex-end;
+    p{
+        border-radius: 20px;
+        background-color: $theme;
+        margin-left: auto;
+    }
+}
+.chatbox-message-input{
+    background-color: $content-color;
+    border-radius: 0 0 30px 30px;
+    padding: 10px;
+    form{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    input {
+        color: $input-text-color;
+        padding-left: 15px;
+        width: 80%;
+        height: 50px;
+        border-radius: 50px;
+        border: $border-light;
+        background-color: $input-color;
+        margin-right: 15px;
+      }
+      input:focus {
+        outline: 3px solid rgb(108, 184, 197);
+        border: none;
+      }
+      button {
+        border: 0;
+        background-color: $input-color;
+        cursor: pointer;
+        padding: 15px 15px 10px 10px;
+        border-radius: 99px;
+      }
+      i {
+        font-size: 22px;
+        color: $icon-color;
+      }
+}
+.msg-notification-toast{
+    padding: 10px 5px;
+    .msg-notification-toast-profile{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 10px;
+        img{
+            @include round-image(40px,40px);
+            display: block;
+        }
+        span{
+            display: block;
+            color: $text-color;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+    .msg-notification-toast-message{
+        color: $text-color;
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    .msg-notification-toast-message p{
+        color: $text-color !important;
+    }
+}
+.active-user-green{
+    position: relative;
+    &::after{
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: rgb(9, 241, 9);
+        bottom: 0px;
+        right: 0px;
+    }
+}
+
+.seen-profile img{
+    @include round-image(15px,15px);
+}
+
+.active-user-slide{
+    figure{
+        text-align: center;
+        position: relative;
+        margin: 0 auto 8px auto;
+        width: 50px;
+        height: 50px;
+        &::after{
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgb(9, 241, 9);
+            bottom: 0px;
+            right: 0px;
+        }
+    }
+    img{
+        @include round-image(50px,50px);
+    }
+    span{
+        color: $text-color;
+        font-size: 13px;
+        text-align: center;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        
+    }
+    .swiper-button-prev {
+        left: 0 !important;
+        top: 10% !important;
+        height: 80% !important;
+      }
+      .swiper-button-next {
+        top: 10% !important;
+        right: 0 !important;
+        height: 80% !important;
+      }
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        font-size: 20px !important;
+        padding: 0 !important;
+        opacity: 0;
+        height: 100%;
+      }
+}
+.message-notification{
+    position: relative;
+    padding: 5px;
+    &:hover .message-notification-dropdown{
+        display: block;
+    }
+}
+.message-notification-dropdown{
+    display: none;
+    position: absolute;
+    left: -20px;
+    top: 40px;
+    width: 200px;
+    padding: 10px 0;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color:$theme;
+    border-radius: 15px;
+    box-shadow: 0 0 20px 10px rgba($color: white, $alpha: 0.08) ;
+    .unseen-message{
+        display: flex;
+        align-items: start;
+        gap: 10px;
+        padding: 10px 20px;
+        transition: .3s ease-in-out;
+        &:hover{
+            background-color: rgb(69, 69, 69);
+        }
+    }
+    img{
+        @include round-image(20px,20px);
+    }
+    .profile-name{
+        color: $text-color;
+        font-weight: 600;
+        font-size: 13px;
+        display: block;
+    }
+    .unseen-msg{
+        font-size: 13px;
+        color: white;
+    }
+}

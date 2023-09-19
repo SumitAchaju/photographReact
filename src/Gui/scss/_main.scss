@@ -78,26 +78,29 @@ header {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: red;
+        background-color: green;
         right: 0px;
         top: 0px;
       }
     }
-    .message-notification {
-      padding-right: 40px;
+    .message-notification[data-msg-number] {
+      margin-right: 40px;
       color: $icon-color;
       font-size: 20px;
       position: relative;
       cursor: pointer;
-      i::after {
-        content: "";
+      &::before{
+        content: attr(data-msg-number);
         position: absolute;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: green;
-        left: 12px;
-        top: 0px;
+        min-width: 8px;
+        top: -3px;
+        right: -3px;
+        font-size: 12px;
+        padding: 0 3px;
+        background-color: red;
+        border-radius: 999px;
+        font-weight: bold;
+        text-align: center
       }
     }
   }
@@ -106,6 +109,7 @@ header {
     gap: 5px;
     cursor: pointer;
     position: relative;
+    padding: 5px;
     &::selection {
       color: none;
     }
@@ -127,23 +131,26 @@ header {
     i {
       color: $icon-color;
     }
+    &:hover .header-profile-dropdown{
+      display: block;
+    }
     .header-profile-dropdown {
       display: none;
       position: absolute;
       left: 0px;
-      bottom: -165px;
+      top: 45px;
       ul {
         background-color: $theme;
         padding: 15px 0;
         border-radius: 15px;
         width: 180px;
-        box-shadow: 0px 0px 8px 0px rgb(193, 193, 193);
+        box-shadow: 0 0 20px 10px rgba($color: white, $alpha: 0.08);
         li {
           line-height: 40px;
 
           transition: 0.4s;
           &:hover {
-            background-color: gray;
+            background-color: rgb(69, 69, 69);
           }
           a {
             width: 100%;
@@ -543,6 +550,19 @@ a {
     }
     border-radius: 35px;
     margin: 20px 0;
+    .follow-img.active-user{
+      position: relative;
+      &::before{
+        content: '';
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: rgb(9, 241, 9);
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+    }
     .follow-img {
       width: 132px;
       height: 132px;

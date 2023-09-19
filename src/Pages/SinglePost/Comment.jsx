@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import useAxios from "../../utils/useAxios";
+import { baseUrl } from "../../utils/ApiUrl";
 
 export default function Comment() {
   let { data, setData } = useOutletContext();
   let { userId,Message } = useContext(AuthContext);
-  const baseUrlImg = "https://sumitachaju.pythonanywhere.com";
   const api = useAxios();
   const [uploading,setUploading] = useState(false)
 
@@ -66,7 +66,7 @@ export default function Comment() {
                   <div key={usercomment.comment_by.id}>
                     <div>
                       <img
-                        src={baseUrlImg + usercomment.comment_by.profile_image}
+                        src={baseUrl + usercomment.comment_by.profile_image}
                         alt=""
                       />
                     </div>
@@ -98,7 +98,7 @@ export default function Comment() {
                       <Link to={`/profile/${comment.comment_by.id}`}>
                         <div>
                           <img
-                            src={baseUrlImg + comment.comment_by.profile_image}
+                            src={baseUrl + comment.comment_by.profile_image}
                             alt=""
                           />
                         </div>
