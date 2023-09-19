@@ -54,7 +54,7 @@
         padding-left: 20px;
       }
       .message-notification {
-        margin-right: 20px;
+        margin-right: 20px !important;
       }
     }
   }
@@ -185,8 +185,8 @@
         padding-left: 25px;
       }
       .message-notification {
-        margin-right: 25px;
-      }
+        margin-right: 25px !important;
+      } 
     }
     .header-profile {
       p {
@@ -310,7 +310,7 @@
         font-size: 18px;
       }
       .message-notification {
-        margin: 15px;
+        margin-right: 15px !important;
         font-size: 18px;
       }
     }
