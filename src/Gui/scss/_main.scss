@@ -23,7 +23,8 @@ header {
   @include flex;
   background-color: $theme;
   padding: 10px 50px;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   border-bottom: $border-light;
   top: 0;
   z-index: 999;
@@ -246,6 +247,7 @@ aside {
 .container-mine {
   width: 80%;
   margin-left: 20%;
+  margin-top: 40px;
   background-color: $background-color;
 }
 .align-items-start {
