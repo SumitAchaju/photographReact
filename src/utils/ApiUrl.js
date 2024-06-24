@@ -1,5 +1,5 @@
-export const baseUrl = 'https://web-340upwydqb0b.up-pl-waw1-1.apps.run-on-seenode.com'
-export const socketBaseUrl = 'ws://web-340upwydqb0b.up-pl-waw1-1.apps.run-on-seenode.com'
+export const baseUrl = "https://sumitachaju.pythonanywhere.com";
+export const socketBaseUrl = "ws://sumitachaju.pythonanywhere.com/";
 
 // export const baseUrl = 'http://127.0.0.1:80'
 // export const socketBaseUrl = 'ws://127.0.0.1:8000'
