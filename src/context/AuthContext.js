@@ -12,11 +12,21 @@ export function AuthProvider({ children }) {
     localStorage.getItem("token") ? true : false
   );
 
-  const [authToken, setAuthToken] = useState(() =>
-    localStorage.getItem("token")
-      ? JSON.parse(localStorage.getItem("token"))
-      : null
-  );
+  const [authToken, setAuthToken] = useState(() => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      try {
+        token = JSON.parse(token);
+        return token;
+      } catch (e) {
+        localStorage.removeItem("token");
+        setloginStatus(false);
+        return null;
+      }
+    } else {
+      return null;
+    }
+  });
 
   const [userId, setUserId] = useState(() =>
     authToken ? jwt_decode(authToken.access).user_id : null

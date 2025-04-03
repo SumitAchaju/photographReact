@@ -1,3 +1,6 @@
+// export const baseUrl = "https://photographapi.onrender.com";
+// export const socketBaseUrl = "ws://photographapi.onrender.com";
+
 export const baseUrl = "https://sumitachaju.pythonanywhere.com";
 export const socketBaseUrl = "ws://sumitachaju.pythonanywhere.com/";
 
